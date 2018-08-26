@@ -207,6 +207,7 @@ contract Deal {
   }
 
   /// The function to mark an order as delivered
+  /// The payment will go to the courier and the seller
   function delivery(uint invoiceno, uint timestamp) payable public {
 
     /// Validate the invoice number

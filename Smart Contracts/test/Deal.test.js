@@ -65,7 +65,7 @@ contract("Deal", function(accounts) {
       deal = instance;
       return deal.owner();
 
-    }).then(function(owner){
+    }).then(function(owner) {
 
       // Make sure that `seller` address is same address as 
       //    the address that created the contract
@@ -97,7 +97,7 @@ contract("Deal", function(accounts) {
 
 
   // Test 3:
-  it("should first order was number 1", function() {
+  it("The first order created is the first order on the list", function() {
 
     // The seller creates a Deal object
     var deal;
@@ -120,189 +120,280 @@ contract("Deal", function(accounts) {
           else { resolve(tx); }
         });
       });
-    }).then(function(tx){
+    }).then(function(tx) {
       console.log(tx.gasPrice.toString());
-    }).then(function(){
+
+    }).then(function() {
       //query getTransactionReceipt
-    }).then(function(){
+    }).then(function() {
+
+      // Getting the first order in the list
       return deal.queryOrder(orderno);
-    }).then(function(order){
+    }).then(function(order) {
+
+      // Ensures the order exists
       assert.notEqual(order, null, "The order number 1 did not exists"); 
     });
 
   });
 
-  it("should the shipment price was set", function(){
+
+
+  // TEST 4:
+  it("The shipment price was set for an order", function() {
 
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
 
+      // Send the order from the buyer
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send the price for the order
       return deal.sendPrice(orderno, shipment_price, TYPE_SHIPMENT, {from: seller});
-    }).then(function(){
+
+    }).then(function() {
+
+      // Get the order
       return deal.queryOrder(orderno); 
-    }).then(function(order){
+    }).then(function(order) {
+
+      // make sure the order's shipment price matches the one we sent
       assert.equal(order[ORDER_SHIPMENT_PRICE].toString(), shipment_price); 
     });
 
   });
   
-  it("should the order's price was set", function(){
+
+  // TEST 5:
+  it("The order's price was set for an order", function() {
 
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
 
+      // Send the order
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send the price
       return deal.sendPrice(orderno, order_price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Get the order
       return deal.queryOrder(orderno);
-    }).then(function(order){
+    }).then(function(order) {
+
+      // Ensure the order price matches the one we sent
       assert.equal(order[ORDER_PRICE].toString(), order_price);
     });
   
   });
 
-  it("should the safe pay was correct", function(){
+
+  // TEST 6:
+  it("The safe pay amount is correct for an order", function() {
     
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
       
+      // Send the order from buyer
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send the price of the order
       return deal.sendPrice(orderno, order_price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send the price of the shipment
       return deal.sendPrice(orderno, shipment_price, TYPE_SHIPMENT, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send the payment based on the price from buyer
       return deal.sendSafepay(orderno, {from: buyer, value: price});
-    }).then(function(){
+    }).then(function() {
+
+      // Get the order
       return deal.queryOrder(orderno);
-    }).then(function(order){
+    }).then(function(order) {
+
+      // Ensure the order's safepay amount (shipment price plus order price) matches price of order
       assert.equal(order[ORDER_SAFEPAY].toString(), price);
     });
   });
 
-  it("should the contract's balance was correct after the safepay", function(){
+
+  // TEST 7:
+  it("The contract's balance is correct after buyer pays", function() {
     
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
       
+      // Send order from buyer
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send price for order
       return deal.sendPrice(orderno, order_price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send price for shipment 
       return deal.sendPrice(orderno, shipment_price, TYPE_SHIPMENT, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send payment
       return deal.sendSafepay(orderno, {from: buyer, value: price});
-    }).then(function(){
-      return new Promise(function(resolve, reject){
-        return web3.eth.getBalance(deal.address, function(err, hash){
-          if(err){
+    }).then(function() {
+      return new Promise(function(resolve, reject) {
+
+        // Get the balance of the contract address
+        return web3.eth.getBalance(deal.address, function(err, hash) {
+          if(err) {
             reject(err);
           }
           resolve(hash);
         });
       });
-    }).then(function(balance){
+    }).then(function(balance) {
+
+      // Verify the contract balance is the same as the price
       assert.equal(balance.toString(), price);
     });
   });
 
-  it("should the first invoice was number 1", function(){
+
+  // TEST 8:
+  it("The first invoice is the first in the list after sending one invoice ", function() {
     
     var deal;
 
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
 
+      // Send order from buyer
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send order price
       return deal.sendPrice(orderno, price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send an Invoice with delivery date 
       return deal.sendInvoice(orderno, 0, courier, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Get the invoice
       return deal.getInvoice(invoiceno);
-    }).then(function(invoice){
+    }).then(function(invoice) {
+
+      // Ensure that the invoice exists
       assert.notEqual(invoice, null);
     });
   });
   
 
-  it("should the invoice 1 it is for order 1", function(){
+  // TEST 9:
+  it("The first invoice is for the first order", function() {
     
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
 
+      // Send an order from buyer
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send a price for the order
       return deal.sendPrice(orderno, price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send an invoice for the order
       return deal.sendInvoice(orderno, 0, courier, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Get the first invoice
       return deal.getInvoice(invoiceno);
-    }).then(function(invoice){
+    }).then(function(invoice) {
+
+      // Verify the first invoice's order number is the same as the order number we requested the price for
       assert.equal(invoice[INVOICE_ORDERNO].toString(), orderno);
     });
   });
 
-  it("should the courier was correct", function(){
+
+  // TEST 10:
+  it("The courier was correct", function() {
     
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
 
+      // Send an order
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send a price for the order
       return deal.sendPrice(orderno, price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send an invoice for the order
       return deal.sendInvoice(orderno, 0, courier, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Get an invoice for the order
       return deal.getInvoice(invoiceno);
-    }).then(function(invoice){
+    }).then(function(invoice) {
+
+      // Ensure the invoice's courier is the same as the one sent in the invoice
       assert.equal(invoice[INVOICE_COURIER].toString(), courier);
     });
   });
 
-  it("should the contract's balance was correct after the delivery", function(){
+  it("The contract's balance is correct after delivery", function() {
     
     var deal;
-
-    return Deal.new(buyer, {from: seller}).then(function(instance){
+    return Deal.new(buyer, {from: seller}).then(function(instance) {
       deal = instance;
-      
+
+      // Send an order
       return deal.sendOrder(goods, quantity, {from: buyer});
-    }).then(function(){
+    }).then(function() {
+
+      // Send an order price for the order
       return deal.sendPrice(orderno, order_price, TYPE_ORDER, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send a shipment price for the order
       return deal.sendPrice(orderno, shipment_price, TYPE_SHIPMENT, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Send a payment to the contract
       return deal.sendSafepay(orderno, {from: buyer, value: price});
-    }).then(function(){
+    }).then(function() {
+
+      // Send an invoice
       return deal.sendInvoice(orderno, 0, courier, {from: seller});
-    }).then(function(){
+    }).then(function() {
+
+      // Mark an order as delivered
       return deal.delivery(invoiceno, 0, {from: courier});
-    }).then(function(){
-      return new Promise(function(resolve, reject){
-        return web3.eth.getBalance(deal.address, function(err, hash){
-          if(err){
+    }).then(function() {
+      return new Promise(function(resolve, reject) {
+
+        // Get balance of contract address
+        return web3.eth.getBalance(deal.address, function(err, hash) {
+          if(err) {
             reject(err);
           }
           resolve(hash);
         });
       });
-    }).then(function(balance){
+    }).then(function(balance) {
+
+      // Ensure that the contract balance is zero, because the payment is sent from contract to courier and seller
       assert.equal(balance.toString(), 0);
     });
   });
