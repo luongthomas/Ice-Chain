@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    
+    @IBOutlet weak var hamburgerView: UIView!
+    @IBOutlet weak var trailingHamburger: NSLayoutConstraint!
+    @IBOutlet weak var leadingHamburger: NSLayoutConstraint!
+    
+    var hamburgerMenuIsVisible = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,7 +27,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func openHamburger(_ sender: Any) {
+        // if hamburger menu is NOT visible, then move the hamburgerView back to where it used to be
+        if !hamburgerMenuIsVisible {
+            leadingHamburger.constant = 150
+            
+            // This constant is NEGATIVE because we are moving it to 150 points OUTWARD and that means -150
+            trailingHamburger.constant = 150
+            
+            // 1
+            hamburgerMenuIsVisible = true
+            
+        } else {
+            // If hamburger menu IS visible, then move the view back to its original position
+            leadingHamburger.constant = 0
+            trailingHamburger.constant = 0
+            
+            // 2
+            hamburgerMenuIsVisible = false
+        }
+        
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+        }) { (animationComplete) in
+            print("The animation is complete!")
+        }
+    }
+    
 }
 
 @IBDesignable
