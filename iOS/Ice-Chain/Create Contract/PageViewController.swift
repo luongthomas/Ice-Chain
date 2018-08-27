@@ -81,7 +81,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     
     
     lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newVc(viewController: "sbBlue"),
+        return [self.newVc(viewController: "NewContract"),
+                self.newVc(viewController: "sbBlue"),
                 self.newVc(viewController: "sbRed")]
     }()
     
@@ -98,7 +99,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
         pageControl.tintColor = .black
-        pageControl.pageIndicatorTintColor = .white
+        pageControl.pageIndicatorTintColor = .gray
         pageControl.currentPageIndicatorTintColor = .black
         self.view.addSubview(pageControl)
         

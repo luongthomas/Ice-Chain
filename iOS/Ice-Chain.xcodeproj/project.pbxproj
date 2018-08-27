@@ -10,6 +10,7 @@
 		649BF7B028CECEE84DBEEC2A /* Pods_Ice_Chain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */; };
 		716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D90082133B947009CD6D9 /* BlockchainVC.swift */; };
 		716D900B2133CA35009CD6D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900A2133CA35009CD6D9 /* PageViewController.swift */; };
+		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
 		71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C25212B23B600E99C3F /* AppDelegate.swift */; };
 		71763C28212B23B600E99C3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C27212B23B600E99C3F /* ViewController.swift */; };
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		2FD87D9CC845E41A0B15679A /* Pods-Ice-Chain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.debug.xcconfig"; sourceTree = "<group>"; };
 		716D90082133B947009CD6D9 /* BlockchainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainVC.swift; sourceTree = "<group>"; };
 		716D900A2133CA35009CD6D9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicContractInfoVC.swift; sourceTree = "<group>"; };
 		71763C22212B23B600E99C3F /* Ice-Chain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ice-Chain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71763C25212B23B600E99C3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71763C27212B23B600E99C3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		716D900D2134BF15009CD6D9 /* Create Contract */ = {
+			isa = PBXGroup;
+			children = (
+				716D900A2133CA35009CD6D9 /* PageViewController.swift */,
+				716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */,
+			);
+			path = "Create Contract";
+			sourceTree = "<group>";
+		};
 		71763C19212B23B600E99C3F = {
 			isa = PBXGroup;
 			children = (
@@ -65,10 +76,10 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
 				71763C27212B23B600E99C3F /* ViewController.swift */,
 				716D90082133B947009CD6D9 /* BlockchainVC.swift */,
-				716D900A2133CA35009CD6D9 /* PageViewController.swift */,
 				71763C29212B23B600E99C3F /* Main.storyboard */,
 				71763C2C212B23B800E99C3F /* Assets.xcassets */,
 				71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */,
@@ -209,6 +220,7 @@
 			files = (
 				71763C28212B23B600E99C3F /* ViewController.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
+				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* PageViewController.swift in Sources */,
 			);
