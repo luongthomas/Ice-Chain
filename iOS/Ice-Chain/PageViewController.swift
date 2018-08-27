@@ -9,7 +9,12 @@
 import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    var pageControl = UIPageControl()
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        
+        
         guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
@@ -62,6 +67,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
+        
+        // Set up page control
+        self.delegate = self
+        configurePageControl()
+    }
+    
+    // MARK: Delegate functions
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0]
+        self.pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController)!
     }
     
     
@@ -75,5 +90,19 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
     
+    
+    func configurePageControl() {
+        // The total number of pages avaialble is based on how many available colors we have
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        
+        pageControl.numberOfPages = orderedViewControllers.count
+        pageControl.currentPage = 0
+        pageControl.tintColor = .black
+        pageControl.pageIndicatorTintColor = .white
+        pageControl.currentPageIndicatorTintColor = .black
+        self.view.addSubview(pageControl)
+        
+        
+    }
 
 }
