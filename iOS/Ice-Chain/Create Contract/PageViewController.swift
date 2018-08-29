@@ -12,12 +12,18 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     
     var pageControl = UIPageControl()
     
+    lazy var orderedViewControllers: [UIViewController] = {
+        return [self.newVc(viewController: "NewContract"),
+                self.newVc(viewController: "TempRange"),
+                self.newVc(viewController: "sbBlue"),
+                self.newVc(viewController: "sbRed")]
+    }()
+    
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
-            return nil
-        }
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
         
         let previousIndex = viewControllerIndex - 1
         
@@ -36,9 +42,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
-            return nil
-        }
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
         
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
@@ -76,15 +80,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     // MARK: Delegate functions
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
-        self.pageControl.currentPage = orderedViewControllers.firstIndex(of: pageContentViewController)!
+        self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
     
     
-    lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newVc(viewController: "NewContract"),
-                self.newVc(viewController: "sbBlue"),
-                self.newVc(viewController: "sbRed")]
-    }()
+    
     
     
     func newVc(viewController: String) -> UIViewController {
