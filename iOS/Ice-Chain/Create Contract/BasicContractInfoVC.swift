@@ -16,6 +16,9 @@ class BasicContractInfoVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
+        // this may be blank
+    }
 
     /*
     // MARK: - Navigation
