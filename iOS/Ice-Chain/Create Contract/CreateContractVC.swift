@@ -10,6 +10,12 @@ import UIKit
 
 class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     var pageControl = UIPageControl()
     
     lazy var orderedViewControllers: [UIViewController] = {
@@ -82,10 +88,6 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
-    
-    
-    
-    
     
     func newVc(viewController: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController)
