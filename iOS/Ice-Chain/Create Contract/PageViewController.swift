@@ -15,8 +15,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "NewContract"),
                 self.newVc(viewController: "TempRange"),
-                self.newVc(viewController: "sbBlue"),
-                self.newVc(viewController: "sbRed")]
+                self.newVc(viewController: "Deadline"),
+                self.newVc(viewController: "CargoValue")]
     }()
     
     

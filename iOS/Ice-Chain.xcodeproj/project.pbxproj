@@ -16,6 +16,7 @@
 		71763C28212B23B600E99C3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C27212B23B600E99C3F /* ViewController.swift */; };
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
 		71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */; };
+		71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E432144D45200C58E60 /* NetworkUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		71763C2A212B23B600E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71763C2F212B23B800E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71763C31212B23B800E99C3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71DC6E432144D45200C58E60 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		B004B21723304BD8D07C086C /* Pods-Ice-Chain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.release.xcconfig"; sourceTree = "<group>"; };
 		BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ice_Chain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				71DC6E422144D43000C58E60 /* Utility */,
 				71735D71213749D6002A1F8F /* Assets.xcassets */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
@@ -86,6 +89,14 @@
 				71763C31212B23B800E99C3F /* Info.plist */,
 			);
 			path = "Ice-Chain";
+			sourceTree = "<group>";
+		};
+		71DC6E422144D43000C58E60 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				71DC6E432144D45200C58E60 /* NetworkUtility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		A67F6B15C83C12B81F114CF8 /* Frameworks */ = {
@@ -223,6 +234,7 @@
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* PageViewController.swift in Sources */,
+				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
