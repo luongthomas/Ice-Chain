@@ -46,7 +46,14 @@ class NetworkUtility {
     func getAccounts() {
         sendRpcCommand(command: "listaccounts", parameters: []) { accounts, error in
             if let accounts = accounts {
-                print("\(accounts)")
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let account = try jsonDecoder.decode(Accounts.self, from: accounts)
+                    print(account.result.buyer)
+                    print(account.result.seller)
+                } catch {
+                    print(error)
+                }
             }
             if let error = error {
                 print("\(error)")
@@ -55,7 +62,7 @@ class NetworkUtility {
     }
     
     
-    func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (String?, Error?) -> ()) {
+    func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (Data?, Error?) -> ()) {
         
         // TODO: Check command is valid
         // TODO: Check Parameters?
@@ -74,8 +81,9 @@ class NetworkUtility {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
             
             switch response.result {
-            case .success(let result):
-                completionHandler("\(result)", nil)
+            case .success( _):
+                
+                completionHandler(response.data, nil)
             case .failure(let error):
                 completionHandler(nil, error)
             }
