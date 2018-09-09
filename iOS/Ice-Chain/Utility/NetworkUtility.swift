@@ -28,7 +28,6 @@ class NetworkUtility {
     }
     
     
-    func communicateWithBlockchain() {
         //        let parameters: [String: Any] = [
         //            "jsonrpc": "1.0",
         //            "id":"iOS",
@@ -42,25 +41,43 @@ class NetworkUtility {
         //                "qHkSLraGVW1PqYSizqJDLGT8GSwSKc7Gaf"
         //            ]
         //        ]
+
+    
+    func getAccounts() {
+        sendRpcCommand(command: "listaccounts", parameters: []) { accounts, error in
+            if let accounts = accounts {
+                print("\(accounts)")
+            }
+            if let error = error {
+                print("\(error)")
+            }
+        }
+    }
+    
+    
+    func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (String?, Error?) -> ()) {
+        
+        // TODO: Check command is valid
+        // TODO: Check Parameters?
         
         let parameters: [String: Any] = [
             "jsonrpc": "1.0",
             "id": "iOS",
-            "method": "getblockchaininfo",
-            "params": []
+            "method": command,
+            "params": parameters
         ]
         
-        let url = "https://qtum-testnet.iame.io/qtum-rpc?apiKey=585e54431550c0e6105acaeee44561e8"
+        let base = "https://qtum-testnet.iame.io/qtum-rpc?"
+        let key = "apiKey=585e54431550c0e6105acaeee44561e8"
+        let url = base + key
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
-            //            print(response)
             
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
-            
-            if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
+            switch response.result {
+            case .success(let result):
+                completionHandler("\(result)", nil)
+            case .failure(let error):
+                completionHandler(nil, error)
             }
         }
     }
