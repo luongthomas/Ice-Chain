@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Accounts: Codable {
-    var result : Result
+struct AccountBalance: Codable {
+    var result : AccountBalanceInfo
     var id : String
     var error : String?
 
 }
 
-struct Result: Codable {
+struct AccountBalanceInfo: Codable {
     let buyer : Double
     let seller : Double
 }

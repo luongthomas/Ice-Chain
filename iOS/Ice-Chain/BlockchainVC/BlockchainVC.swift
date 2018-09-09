@@ -15,7 +15,7 @@ class BlockchainVC: UIViewController {
     let networkUtility = NetworkUtility()
     
     @IBAction func blockchainBtn(_ sender: Any) {
-        networkUtility.getAccounts()
+        networkUtility.getAddressGroupings()
     }
     
     

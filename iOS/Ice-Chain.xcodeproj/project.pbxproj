@@ -18,6 +18,7 @@
 		71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */; };
 		71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E432144D45200C58E60 /* NetworkUtility.swift */; };
 		71DC6E47214587F600C58E60 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E46214587F600C58E60 /* Accounts.swift */; };
+		71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E4A2145918500C58E60 /* Addresses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		71763C31212B23B800E99C3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71DC6E432144D45200C58E60 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		71DC6E46214587F600C58E60 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
+		71DC6E4A2145918500C58E60 /* Addresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addresses.swift; sourceTree = "<group>"; };
 		B004B21723304BD8D07C086C /* Pods-Ice-Chain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.release.xcconfig"; sourceTree = "<group>"; };
 		BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ice_Chain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,15 +82,14 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				71DC6E4D214596CD00C58E60 /* Storyboards */,
+				71DC6E4C214596BE00C58E60 /* BlockchainVC */,
 				71DC6E45214587B300C58E60 /* Model */,
 				71DC6E422144D43000C58E60 /* Utility */,
 				71735D71213749D6002A1F8F /* Assets.xcassets */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
 				71763C27212B23B600E99C3F /* ViewController.swift */,
-				716D90082133B947009CD6D9 /* BlockchainVC.swift */,
-				71763C29212B23B600E99C3F /* Main.storyboard */,
-				71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */,
 				71763C31212B23B800E99C3F /* Info.plist */,
 			);
 			path = "Ice-Chain";
@@ -106,8 +107,26 @@
 			isa = PBXGroup;
 			children = (
 				71DC6E46214587F600C58E60 /* Accounts.swift */,
+				71DC6E4A2145918500C58E60 /* Addresses.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		71DC6E4C214596BE00C58E60 /* BlockchainVC */ = {
+			isa = PBXGroup;
+			children = (
+				716D90082133B947009CD6D9 /* BlockchainVC.swift */,
+			);
+			path = BlockchainVC;
+			sourceTree = "<group>";
+		};
+		71DC6E4D214596CD00C58E60 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				71763C29212B23B600E99C3F /* Main.storyboard */,
+				71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		A67F6B15C83C12B81F114CF8 /* Frameworks */ = {
@@ -240,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
 				71763C28212B23B600E99C3F /* ViewController.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
