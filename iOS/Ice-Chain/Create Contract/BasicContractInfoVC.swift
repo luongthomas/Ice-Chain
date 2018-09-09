@@ -10,14 +10,24 @@ import UIKit
 
 class BasicContractInfoVC: UIViewController {
 
+    var contract = Contract()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
     }
     
     @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
         // this may be blank
+        
     }
 
+    @IBAction func continueButton(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        parentVC.setViewControllers([parentVC.orderedViewControllers[1]], direction: .forward, animated: true, completion: nil)
+    }
 }
