@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="815" y="1040"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Create ContractVC-->
         <scene sceneID="e4D-IA-8hT">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hPy-UJ-hVF" customClass="PageViewController" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hPy-UJ-hVF" customClass="CreateContractVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kq2-XV-2Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="134" y="1042"/>
