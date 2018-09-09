@@ -39,6 +39,7 @@ class Contract  {
     }
     
     func resetContract() {
+        print("Contract reset")
         self.name = ""
         self.buyerEmail = ""
         self.cargoType = ""
