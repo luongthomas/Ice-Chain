@@ -64,25 +64,21 @@ class NetworkUtility {
     
     func getAddressGroupings() {
         sendRpcCommand(command: "listaddressgroupings", parameters: [], completionHandler: { (data, err) in
-            var sellerAddresses = [String]()
-            var sellerAmount = 0.0
-            var buyerAddresses = [String]()
-            var buyerAmount = 0.0
-            let sellerType = "seller"
-            let buyerType = "buyer"
-            
+            var buyer = Buyer()
+            var seller = Seller()
+
             if let data = data {
                 do {
                     let addresses = try self.jsonDecoder.decode(AccountAddress.self, from: data)
                     for address in addresses.result {
                         for account in address {
                             if let accountType = account.accountType {
-                                if accountType == sellerType {
-                                    sellerAmount += account.amount
-                                    sellerAddresses.append(account.address)
-                                } else if accountType == buyerType {
-                                    buyerAmount += account.amount
-                                    buyerAddresses.append(account.address)
+                                if accountType == seller.type {
+                                    seller.balance += account.amount
+                                    seller.addresses.append(account.address)
+                                } else if accountType == buyer.type {
+                                    buyer.balance += account.amount
+                                    buyer.addresses.append(account.address)
                                 }
                             }
                         }
@@ -96,8 +92,8 @@ class NetworkUtility {
                 print("\(err)")
             }
             
-            print("Seller addresses are: \(sellerAddresses) with amount of \(sellerAmount)")
-            print("Buyer addresses are: \(buyerAddresses) with amount of \(buyerAmount)")
+            print("Seller addresses are: \(seller.addresses) with amount of \(seller.balance)")
+            print("Buyer addresses are: \(buyer.addresses) with amount of \(buyer.balance)")
             
             }
         )

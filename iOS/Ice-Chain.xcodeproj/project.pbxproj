@@ -19,6 +19,8 @@
 		71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E432144D45200C58E60 /* NetworkUtility.swift */; };
 		71DC6E47214587F600C58E60 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E46214587F600C58E60 /* Accounts.swift */; };
 		71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E4A2145918500C58E60 /* Addresses.swift */; };
+		71DC6E4F21459F8D00C58E60 /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E4E21459F8D00C58E60 /* Buyer.swift */; };
+		71DC6E5121459FB700C58E60 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E5021459FB700C58E60 /* Seller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		71DC6E432144D45200C58E60 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		71DC6E46214587F600C58E60 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		71DC6E4A2145918500C58E60 /* Addresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addresses.swift; sourceTree = "<group>"; };
+		71DC6E4E21459F8D00C58E60 /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
+		71DC6E5021459FB700C58E60 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
 		B004B21723304BD8D07C086C /* Pods-Ice-Chain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.release.xcconfig"; sourceTree = "<group>"; };
 		BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ice_Chain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +112,8 @@
 			children = (
 				71DC6E46214587F600C58E60 /* Accounts.swift */,
 				71DC6E4A2145918500C58E60 /* Addresses.swift */,
+				71DC6E4E21459F8D00C58E60 /* Buyer.swift */,
+				71DC6E5021459FB700C58E60 /* Seller.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,10 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */,
+				71DC6E4F21459F8D00C58E60 /* Buyer.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
 				71763C28212B23B600E99C3F /* ViewController.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
+				71DC6E5121459FB700C58E60 /* Seller.swift in Sources */,
 				716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* PageViewController.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
