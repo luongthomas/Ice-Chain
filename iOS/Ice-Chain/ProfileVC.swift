@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ProfileVC: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var hamburgerView: UIView!
@@ -17,6 +17,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var hamburgerMenuIsVisible = false
     
+    let networkUtility = NetworkUtility()
+    
+    @IBAction func handleButtonPress(_ sender: Any) {
+        networkUtility.getAddressGroupings()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

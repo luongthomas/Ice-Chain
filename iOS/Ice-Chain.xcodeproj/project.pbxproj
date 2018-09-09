@@ -13,7 +13,7 @@
 		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
 		71735D72213749D6002A1F8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71735D71213749D6002A1F8F /* Assets.xcassets */; };
 		71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C25212B23B600E99C3F /* AppDelegate.swift */; };
-		71763C28212B23B600E99C3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C27212B23B600E99C3F /* ViewController.swift */; };
+		71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C27212B23B600E99C3F /* ProfileVC.swift */; };
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
 		71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */; };
 		71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E432144D45200C58E60 /* NetworkUtility.swift */; };
@@ -31,7 +31,7 @@
 		71735D71213749D6002A1F8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71763C22212B23B600E99C3F /* Ice-Chain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ice-Chain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71763C25212B23B600E99C3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71763C27212B23B600E99C3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		71763C27212B23B600E99C3F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		71763C2A212B23B600E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71763C2F212B23B800E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71763C31212B23B800E99C3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				71735D71213749D6002A1F8F /* Assets.xcassets */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
-				71763C27212B23B600E99C3F /* ViewController.swift */,
+				71763C27212B23B600E99C3F /* ProfileVC.swift */,
 				71763C31212B23B800E99C3F /* Info.plist */,
 			);
 			path = "Ice-Chain";
@@ -268,7 +268,7 @@
 				71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */,
 				71DC6E4F21459F8D00C58E60 /* Buyer.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
-				71763C28212B23B600E99C3F /* ViewController.swift in Sources */,
+				71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				71DC6E5121459FB700C58E60 /* Seller.swift in Sources */,
