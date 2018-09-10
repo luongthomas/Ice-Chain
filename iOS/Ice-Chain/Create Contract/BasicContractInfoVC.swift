@@ -20,26 +20,25 @@ class BasicContractInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
-        // this may be blank
-        
-    }
 
     @IBAction func continueButton(_ sender: Any) {
         
         if (isTextFieldsEmpty()) {
             return
         } else {
+            contract.name = contractNameTextField.text!
+            contract.buyerEmail = buyerEmailTextField.text!
+            contract.cargoType = cargoTypeTextField.text!
+        
+            // get parent view controller
+            let parentVC = self.parent as! CreateContractVC
             
+            // change page of PageViewController
+            let nextPage = [parentVC.orderedViewControllers[1]]
+            parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
         }
-        
-        // get parent view controller
-        let parentVC = self.parent as! CreateContractVC
-        
-        // change page of PageViewController
-        parentVC.setViewControllers([parentVC.orderedViewControllers[1]], direction: .forward, animated: true, completion: nil)
     }
+    
     
     func isTextFieldsEmpty() -> Bool {
         if let contractNameText = contractNameTextField.text,
@@ -61,8 +60,6 @@ class BasicContractInfoVC: UIViewController {
             }
         }
         
-        
-        
         return false
     }
     
@@ -70,7 +67,7 @@ class BasicContractInfoVC: UIViewController {
     func displayMyAlertMessage(userMessage:String){
         let alert = UIAlertController(title: "Hold on there", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)

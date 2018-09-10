@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		649BF7B028CECEE84DBEEC2A /* Pods_Ice_Chain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */; };
 		7150E81F2145A5DF009CA176 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E81E2145A5DF009CA176 /* Contract.swift */; };
+		7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82021460D54009CA176 /* TemperatureRangeVC.swift */; };
 		716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D90082133B947009CD6D9 /* BlockchainVC.swift */; };
 		716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900A2133CA35009CD6D9 /* CreateContractVC.swift */; };
 		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		2FD87D9CC845E41A0B15679A /* Pods-Ice-Chain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.debug.xcconfig"; sourceTree = "<group>"; };
 		7150E81E2145A5DF009CA176 /* Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
+		7150E82021460D54009CA176 /* TemperatureRangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureRangeVC.swift; sourceTree = "<group>"; };
 		716D90082133B947009CD6D9 /* BlockchainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainVC.swift; sourceTree = "<group>"; };
 		716D900A2133CA35009CD6D9 /* CreateContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContractVC.swift; sourceTree = "<group>"; };
 		716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicContractInfoVC.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				716D900A2133CA35009CD6D9 /* CreateContractVC.swift */,
 				716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */,
+				7150E82021460D54009CA176 /* TemperatureRangeVC.swift */,
 			);
 			path = "Create Contract";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
+				7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
