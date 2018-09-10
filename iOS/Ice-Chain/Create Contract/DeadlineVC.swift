@@ -28,7 +28,7 @@ class DeadlineVC: UIViewController {
         let parentVC = self.parent as! CreateContractVC
 
         // change page of PageViewController
-        let nextPage = [parentVC.orderedViewControllers[3]]
+        let nextPage = [parentVC.pages[3]]
         parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
     }
     

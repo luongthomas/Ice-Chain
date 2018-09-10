@@ -127,7 +127,7 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
         let parentVC = self.parent as! CreateContractVC
         
         // change page of PageViewController
-        let nextPage = [parentVC.orderedViewControllers[2]]
+        let nextPage = [parentVC.pages[2]]
         parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
     }
     

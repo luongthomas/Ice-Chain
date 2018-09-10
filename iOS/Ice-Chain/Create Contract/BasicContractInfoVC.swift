@@ -34,7 +34,7 @@ class BasicContractInfoVC: UIViewController {
             let parentVC = self.parent as! CreateContractVC
             
             // change page of PageViewController
-            let nextPage = [parentVC.orderedViewControllers[1]]
+            let nextPage = [parentVC.pages[1]]
             parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
         }
     }

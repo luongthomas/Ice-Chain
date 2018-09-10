@@ -14,12 +14,13 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     
     // Everytime new contract screen appears, reset contract details to create new one
     override func viewDidAppear(_ animated: Bool) {
-        contract.resetContract()
+        
+        
     }
     
     var pageControl = UIPageControl()
     
-    lazy var orderedViewControllers: [UIViewController] = {
+    lazy var pages: [UIViewController] = {
         return [self.newVc(viewController: "NewContract"),
                 self.newVc(viewController: "TempRange"),
                 self.newVc(viewController: "Deadline"),
@@ -27,10 +28,11 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     }()
     
     
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
         
         let previousIndex = viewControllerIndex - 1
         
@@ -41,18 +43,18 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
             return nil
         }
         
-        guard orderedViewControllers.count > previousIndex else {
+        guard pages.count > previousIndex else {
             return nil
         }
         
-        return orderedViewControllers[previousIndex]
+        return pages[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
         
         let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = orderedViewControllers.count
+        let orderedViewControllersCount = pages.count
         
         // User is on last VC and swiped right to loop to first controller
         guard orderedViewControllersCount != nextIndex else {
@@ -65,7 +67,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
             return nil
         }
         
-        return orderedViewControllers[nextIndex]
+        return pages[nextIndex]
     }
     
 
@@ -73,7 +75,8 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         super.viewDidLoad()
         
         // Set up first view that will show up on page control
-        if let firstViewController = orderedViewControllers.first {
+        if let firstViewController = pages.first {
+            contract.resetContract()
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         
@@ -84,8 +87,9 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     
     // MARK: Delegate functions
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
         let pageContentViewController = pageViewController.viewControllers![0]
-        self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
+        self.pageControl.currentPage = pages.index(of: pageContentViewController)!
     }
     
     func newVc(viewController: String) -> UIViewController {
@@ -97,7 +101,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         // The total number of pages avaialble is based on how many available colors we have
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
         
-        pageControl.numberOfPages = orderedViewControllers.count
+        pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         pageControl.tintColor = .black
         pageControl.pageIndicatorTintColor = .gray
