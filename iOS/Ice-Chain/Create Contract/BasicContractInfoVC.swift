@@ -30,6 +30,8 @@ class BasicContractInfoVC: UIViewController {
         
         if (isTextFieldsEmpty()) {
             return
+        } else {
+            
         }
         
         // get parent view controller
@@ -47,10 +49,12 @@ class BasicContractInfoVC: UIViewController {
                 displayMyAlertMessage (userMessage: "Please enter a contract name")
                 return true
             }
+            
             if buyerEmailText.isEmpty {
                 displayMyAlertMessage (userMessage: "Please enter a buyer email")
                 return true
             }
+            
             if cargoTypeText.isEmpty {
                 displayMyAlertMessage (userMessage: "Please enter a cargo type")
                 return true
