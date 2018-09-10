@@ -24,7 +24,7 @@ class Contract  {
     var owner: CustomerType
     var status: AgreementStatus
     
-    init() {
+    private init() {
         self.name = ""
         self.buyerEmail = ""
         self.cargoType = ""
@@ -53,10 +53,7 @@ class Contract  {
         self.status = AgreementStatus.NONE
     }
     
-    static let sharedInstance: Contract = {
-        let instance = Contract()
-        return instance
-    }()
+    static let shared = Contract()
     
     
 }

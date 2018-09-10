@@ -14,9 +14,6 @@ class BasicContractInfoVC: UIViewController {
     @IBOutlet weak var buyerEmailTextField: TextField!
     @IBOutlet weak var cargoTypeTextField: TextField!
     
-    
-    var contract = Contract()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,9 +23,9 @@ class BasicContractInfoVC: UIViewController {
         if (isTextFieldsEmpty()) {
             return
         } else {
-            contract.name = contractNameTextField.text!
-            contract.buyerEmail = buyerEmailTextField.text!
-            contract.cargoType = cargoTypeTextField.text!
+            Contract.shared.name = contractNameTextField.text!
+            Contract.shared.buyerEmail = buyerEmailTextField.text!
+            Contract.shared.cargoType = cargoTypeTextField.text!
         
             // get parent view controller
             let parentVC = self.parent as! CreateContractVC

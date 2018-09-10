@@ -11,8 +11,6 @@ import UIKit
 
 class DeadlineVC: UIViewController {
     
-    var contract = Contract()
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBAction func continueButton(_ sender: Any) {
@@ -22,7 +20,7 @@ class DeadlineVC: UIViewController {
         print(selectedDate)
 
         // Set contract Date
-        contract.deadline = datePicker.date
+        Contract.shared.deadline = datePicker.date
 
         // get parent view controller
         let parentVC = self.parent as! CreateContractVC

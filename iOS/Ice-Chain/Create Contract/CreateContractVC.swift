@@ -10,8 +10,6 @@ import UIKit
 
 class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    var contract = Contract()
-    
     // Everytime new contract screen appears, reset contract details to create new one
     override func viewDidAppear(_ animated: Bool) {
         
@@ -76,7 +74,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         
         // Set up first view that will show up on page control
         if let firstViewController = pages.first {
-            contract.resetContract()
+            Contract.shared.resetContract()
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         

@@ -9,8 +9,6 @@
 import UIKit
 
 class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
-
-    var contract = Contract()
     
     // TODO: Add label to top of screen to show current selection
 
@@ -101,8 +99,8 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
     
     
     func setTempRangeFor(min: Double, max: Double) {
-        self.contract.tempMin = min
-        self.contract.tempMax = max
+        Contract.shared.tempMin = min
+        Contract.shared.tempMax = max
         
     }
 

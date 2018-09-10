@@ -12,6 +12,7 @@
 		7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82021460D54009CA176 /* TemperatureRangeVC.swift */; };
 		7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E822214617BD009CA176 /* DeadlineVC.swift */; };
 		7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82421462FD9009CA176 /* CargoValueVC.swift */; };
+		7150E82721463C60009CA176 /* CargoDepositorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82621463C60009CA176 /* CargoDepositorVC.swift */; };
 		716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D90082133B947009CD6D9 /* BlockchainVC.swift */; };
 		716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900A2133CA35009CD6D9 /* CreateContractVC.swift */; };
 		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
@@ -33,6 +34,7 @@
 		7150E82021460D54009CA176 /* TemperatureRangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureRangeVC.swift; sourceTree = "<group>"; };
 		7150E822214617BD009CA176 /* DeadlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineVC.swift; sourceTree = "<group>"; };
 		7150E82421462FD9009CA176 /* CargoValueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoValueVC.swift; sourceTree = "<group>"; };
+		7150E82621463C60009CA176 /* CargoDepositorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoDepositorVC.swift; sourceTree = "<group>"; };
 		716D90082133B947009CD6D9 /* BlockchainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainVC.swift; sourceTree = "<group>"; };
 		716D900A2133CA35009CD6D9 /* CreateContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContractVC.swift; sourceTree = "<group>"; };
 		716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicContractInfoVC.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				7150E82021460D54009CA176 /* TemperatureRangeVC.swift */,
 				7150E822214617BD009CA176 /* DeadlineVC.swift */,
 				7150E82421462FD9009CA176 /* CargoValueVC.swift */,
+				7150E82621463C60009CA176 /* CargoDepositorVC.swift */,
 			);
 			path = "Create Contract";
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
 				7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */,
+				7150E82721463C60009CA176 /* CargoDepositorVC.swift in Sources */,
 				7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
