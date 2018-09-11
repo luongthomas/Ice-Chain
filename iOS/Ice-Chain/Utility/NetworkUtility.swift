@@ -12,7 +12,7 @@ import Alamofire
 class NetworkUtility {
     
     func sampleNetwork() {
-        Alamofire.request("https://httpbin.org/get").responseJSON { response in
+        Alamofire.request("https://httpbin.varvar/get").responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
@@ -64,21 +64,21 @@ class NetworkUtility {
     
     func getAddressGroupings() {
         sendRpcCommand(command: "listaddressgroupings", parameters: [], completionHandler: { (data, err) in
-            var buyer = Buyer()
-            var seller = Seller()
 
             if let data = data {
                 do {
+                    Users.shared.sellerAddresses = [String]()
+                    Users.shared.buyerAddresses = [String]()
                     let addresses = try self.jsonDecoder.decode(AccountAddress.self, from: data)
                     for address in addresses.result {
                         for account in address {
                             if let accountType = account.accountType {
-                                if accountType == seller.type {
-                                    seller.balance += account.amount
-                                    seller.addresses.append(account.address)
-                                } else if accountType == buyer.type {
-                                    buyer.balance += account.amount
-                                    buyer.addresses.append(account.address)
+                                if accountType == Users.shared.sellerType {
+                                    Users.shared.sellerAddresses.append(account.address)
+                                    Users.shared.sellerBalance = account.amount
+                                } else if accountType == Users.shared.buyerType {
+                                    Users.shared.buyerAddresses.append(account.address)
+                                    Users.shared.buyerBalance = account.amount
                                 }
                             }
                         }
@@ -92,8 +92,8 @@ class NetworkUtility {
                 print("\(err)")
             }
             
-            print("Seller addresses are: \(seller.addresses) with amount of \(seller.balance)")
-            print("Buyer addresses are: \(buyer.addresses) with amount of \(buyer.balance)")
+            print("Seller addresses are: \(Users.shared.sellerAddresses) with amount of \(Users.shared.sellerBalance)")
+            print("Buyer addresses are: \(Users.shared.buyerAddresses) with amount of \(Users.shared.buyerBalance)")
             
             }
         )
