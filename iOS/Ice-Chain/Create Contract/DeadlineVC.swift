@@ -30,4 +30,10 @@ class DeadlineVC: UIViewController {
         parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let currentDate = Date()
+        datePicker.minimumDate = currentDate
+    }
 }

@@ -746,6 +746,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="557273382.52854204">
                                     <!--2018-08-29 22:09:42 +0000-->
                                 </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                    <!--1970-01-01 11:00:00 +0000-->
+                                </date>
                             </datePicker>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-A1-RkQ">
                                 <rect key="frame" x="146" y="528" width="82" height="82"/>
