@@ -60,17 +60,17 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
 
 @IBDesignable
 public class Button: UIButton {
-    @IBInspectable public var borderColor:UIColor? {
+    @IBInspectable public override var borderColor:UIColor? {
         didSet {
             layer.borderColor = borderColor?.cgColor
         }
     }
-    @IBInspectable public var borderWidth:CGFloat = 0 {
+    @IBInspectable public override var borderWidth:CGFloat  {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
-    @IBInspectable public var cornerRadius:CGFloat {
+    @IBInspectable public override var cornerRadius:CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -91,3 +91,5 @@ public class TextField: UITextField, UITextFieldDelegate {
         delegate = self
     }
 }
+
+
