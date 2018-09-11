@@ -224,7 +224,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Bananas" borderStyle="bezel" placeholder="Bananas" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WYY-2X-jXF" userLabel="Cargo Type" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Medicine" borderStyle="bezel" placeholder="Bananas" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WYY-2X-jXF" userLabel="Cargo Type" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="20" y="365" width="338" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1042,7 +1042,7 @@
                                     <segue destination="jZE-Fq-DGY" kind="show" id="w41-tK-5tJ"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-A9-HJL">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="67" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-A9-HJL">
                                 <rect key="frame" x="46" y="288" width="283" height="31"/>
                                 <color key="tintColor" red="0.13829774748022383" green="0.14929013324873097" blue="0.13292626627254645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>

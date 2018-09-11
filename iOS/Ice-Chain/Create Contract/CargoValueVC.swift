@@ -19,7 +19,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     // Temp variable to set the text and calculate values
     var savedCargoValue = 10000.0
-    var savedDepositRate = 50.0
+    var savedDepositRate = 67.0
 
     
     @IBAction func SliderValueChanged(_ sender: UISlider) {
@@ -49,6 +49,13 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         depositRateDialog.contentHorizontalAlignment = .center
         setCargoValueFromTextField()
         calculateDepositRateAndSetText()
+        
+        
+        // Default values
+        Contract.shared.owner = .BUYER
+        Contract.shared.depositor = .SELLER
+        Contract.shared.depositRate = 67.0
+        
     }
     
     func setCargoValueFromTextField() {
