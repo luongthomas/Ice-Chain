@@ -16,6 +16,8 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var maxTempRangeTextField: TextField!
     @IBOutlet weak var prechosenOptions: UIStackView!
     
+    @IBOutlet weak var vaccinesBtn: Button!
+    
     let niceBlue = UIColor(red: 66/255, green: 137/255, blue: 247/255, alpha: 1)
     
     func resetAllBtnColors() {
@@ -108,6 +110,11 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        if let btn = vaccinesBtn {
+            // select default value
+            btn.sendActions(for: .touchUpInside)
+        }
         
     }
     

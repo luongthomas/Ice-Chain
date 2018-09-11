@@ -652,6 +652,7 @@
                     </view>
                     <connections>
                         <outlet property="prechosenOptions" destination="EMV-DS-2GP" id="6bm-lf-Ngi"/>
+                        <outlet property="vaccinesBtn" destination="km5-Uh-iWd" id="a2s-4Q-gIe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dj8-fm-eBB" sceneMemberID="firstResponder"/>
