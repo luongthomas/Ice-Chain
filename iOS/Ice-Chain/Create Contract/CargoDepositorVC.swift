@@ -10,6 +10,7 @@ import UIKit
 
 class CargoDepositorVC: UIViewController {
     
+    @IBOutlet weak var vendorBtn: Button!
     
     let niceBlue = UIColor(red: 66/255, green: 137/255, blue: 247/255, alpha: 1)
     
@@ -17,6 +18,14 @@ class CargoDepositorVC: UIViewController {
         for case let button as UIButton in self.view.subviews {
             button.backgroundColor = .white
             button.setTitleColor(niceBlue, for: .normal)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let btn = vendorBtn {
+            // select default value
+            btn.sendActions(for: .touchUpInside)
         }
     }
     

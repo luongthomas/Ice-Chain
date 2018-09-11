@@ -1235,6 +1235,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="isg-tK-2kK"/>
                     </view>
+                    <connections>
+                        <outlet property="vendorBtn" destination="vww-dA-6J4" id="56o-ya-cmy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGq-gh-g5T" sceneMemberID="firstResponder"/>
                 <exit id="AGE-jv-TWv" userLabel="Exit" sceneMemberID="exit"/>
