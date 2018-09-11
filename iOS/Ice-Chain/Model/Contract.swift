@@ -58,14 +58,14 @@ class Contract  {
     
 }
 
-enum AgreementStatus {
+enum AgreementStatus: String {
     case AGREED
     case DECLINED
     case OFFERED
     case NONE
 }
 
-enum CustomerType {
+enum CustomerType: String {
     case SELLER
     case BUYER
     case NONE
