@@ -45,6 +45,10 @@ class ConfirmContractVC: UIViewController {
         owner.text = Contract.shared.owner.rawValue
     }
     
+    @IBAction func confirmContract(_ sender: Any) {
+        
+        print("Confirming Contract")
+    }
     
     
     

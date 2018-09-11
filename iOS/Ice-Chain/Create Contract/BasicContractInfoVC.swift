@@ -64,7 +64,7 @@ class BasicContractInfoVC: UIViewController {
     func displayMyAlertMessage(userMessage:String){
         let alert = UIAlertController(title: "Hold on there", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style:UIAlertActionStyle.default, handler: nil)
         
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)

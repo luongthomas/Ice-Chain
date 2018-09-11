@@ -16,6 +16,8 @@
 		7150E8292146E296009CA176 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7150E8282146E295009CA176 /* Assets.xcassets */; };
 		7150E82B21477338009CA176 /* ConfirmContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82A21477338009CA176 /* ConfirmContractVC.swift */; };
 		7150E82E21478B90009CA176 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82D21478B90009CA176 /* ViewExtension.swift */; };
+		7150E83021482146009CA176 /* MyContractsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82F21482146009CA176 /* MyContractsVC.swift */; };
+		716730DB21481F6000B237F0 /* ExecutedContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716730DA21481F6000B237F0 /* ExecutedContractVC.swift */; };
 		716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900A2133CA35009CD6D9 /* CreateContractVC.swift */; };
 		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
 		71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C25212B23B600E99C3F /* AppDelegate.swift */; };
@@ -39,6 +41,8 @@
 		7150E8282146E295009CA176 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7150E82A21477338009CA176 /* ConfirmContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmContractVC.swift; sourceTree = "<group>"; };
 		7150E82D21478B90009CA176 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		7150E82F21482146009CA176 /* MyContractsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContractsVC.swift; sourceTree = "<group>"; };
+		716730DA21481F6000B237F0 /* ExecutedContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutedContractVC.swift; sourceTree = "<group>"; };
 		716D900A2133CA35009CD6D9 /* CreateContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContractVC.swift; sourceTree = "<group>"; };
 		716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicContractInfoVC.swift; sourceTree = "<group>"; };
 		71763C22212B23B600E99C3F /* Ice-Chain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ice-Chain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +78,15 @@
 				7150E82D21478B90009CA176 /* ViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		716730D921481F3300B237F0 /* ExistingContracts */ = {
+			isa = PBXGroup;
+			children = (
+				716730DA21481F6000B237F0 /* ExecutedContractVC.swift */,
+				7150E82F21482146009CA176 /* MyContractsVC.swift */,
+			);
+			path = ExistingContracts;
 			sourceTree = "<group>";
 		};
 		716D900D2134BF15009CD6D9 /* Create Contract */ = {
@@ -118,6 +131,7 @@
 				71DC6E422144D43000C58E60 /* Utility */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
+				716730D921481F3300B237F0 /* ExistingContracts */,
 				71763C27212B23B600E99C3F /* ProfileVC.swift */,
 				71763C31212B23B800E99C3F /* Info.plist */,
 			);
@@ -287,6 +301,7 @@
 				71DC6E4F21459F8D00C58E60 /* Buyer.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
 				71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */,
+				716730DB21481F6000B237F0 /* ExecutedContractVC.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				7150E82E21478B90009CA176 /* ViewExtension.swift in Sources */,
@@ -294,6 +309,7 @@
 				7150E82B21477338009CA176 /* ConfirmContractVC.swift in Sources */,
 				7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */,
 				71DC6E5121459FB700C58E60 /* Seller.swift in Sources */,
+				7150E83021482146009CA176 /* MyContractsVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
 				7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */,
