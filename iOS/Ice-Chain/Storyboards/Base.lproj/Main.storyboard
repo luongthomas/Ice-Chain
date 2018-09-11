@@ -427,33 +427,6 @@
             </objects>
             <point key="canvasLocation" x="2506.4000000000001" y="136.28185907046478"/>
         </scene>
-        <!--BlockchainVC-->
-        <scene sceneID="oPp-yX-3pI">
-            <objects>
-                <viewController id="6RU-FY-GVr" customClass="BlockchainVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qzH-Wz-sTL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhh-2A-qAU">
-                                <rect key="frame" x="88" y="266" width="235" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.31378706560000003" green="0.54736582629999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Blockchain"/>
-                                <connections>
-                                    <action selector="blockchainBtn:" destination="6RU-FY-GVr" eventType="touchUpInside" id="vLN-fl-66m"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.58643187649999995" green="0.6324555838" blue="0.5616353208" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="tintColor" red="1" green="0.97555460699999996" blue="0.97793581880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <viewLayoutGuide key="safeArea" id="cHw-6Z-w7d"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ymi-KR-R4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2040.8" y="-709.29535232383819"/>
-        </scene>
         <!--Temperature Range-->
         <scene sceneID="qsg-oB-tqV">
             <objects>
