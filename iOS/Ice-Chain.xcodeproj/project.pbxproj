@@ -13,10 +13,11 @@
 		7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E822214617BD009CA176 /* DeadlineVC.swift */; };
 		7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82421462FD9009CA176 /* CargoValueVC.swift */; };
 		7150E82721463C60009CA176 /* CargoDepositorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82621463C60009CA176 /* CargoDepositorVC.swift */; };
+		7150E8292146E296009CA176 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7150E8282146E295009CA176 /* Assets.xcassets */; };
+		7150E82B21477338009CA176 /* ConfirmContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82A21477338009CA176 /* ConfirmContractVC.swift */; };
 		716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D90082133B947009CD6D9 /* BlockchainVC.swift */; };
 		716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900A2133CA35009CD6D9 /* CreateContractVC.swift */; };
 		716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */; };
-		71735D72213749D6002A1F8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71735D71213749D6002A1F8F /* Assets.xcassets */; };
 		71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C25212B23B600E99C3F /* AppDelegate.swift */; };
 		71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71763C27212B23B600E99C3F /* ProfileVC.swift */; };
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
@@ -35,10 +36,11 @@
 		7150E822214617BD009CA176 /* DeadlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineVC.swift; sourceTree = "<group>"; };
 		7150E82421462FD9009CA176 /* CargoValueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoValueVC.swift; sourceTree = "<group>"; };
 		7150E82621463C60009CA176 /* CargoDepositorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoDepositorVC.swift; sourceTree = "<group>"; };
+		7150E8282146E295009CA176 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7150E82A21477338009CA176 /* ConfirmContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmContractVC.swift; sourceTree = "<group>"; };
 		716D90082133B947009CD6D9 /* BlockchainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainVC.swift; sourceTree = "<group>"; };
 		716D900A2133CA35009CD6D9 /* CreateContractVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContractVC.swift; sourceTree = "<group>"; };
 		716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicContractInfoVC.swift; sourceTree = "<group>"; };
-		71735D71213749D6002A1F8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71763C22212B23B600E99C3F /* Ice-Chain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ice-Chain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71763C25212B23B600E99C3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71763C27212B23B600E99C3F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				7150E822214617BD009CA176 /* DeadlineVC.swift */,
 				7150E82421462FD9009CA176 /* CargoValueVC.swift */,
 				7150E82621463C60009CA176 /* CargoDepositorVC.swift */,
+				7150E82A21477338009CA176 /* ConfirmContractVC.swift */,
 			);
 			path = "Create Contract";
 			sourceTree = "<group>";
@@ -100,11 +103,11 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				7150E8282146E295009CA176 /* Assets.xcassets */,
 				71DC6E4D214596CD00C58E60 /* Storyboards */,
 				71DC6E4C214596BE00C58E60 /* BlockchainVC */,
 				71DC6E45214587B300C58E60 /* Model */,
 				71DC6E422144D43000C58E60 /* Utility */,
-				71735D71213749D6002A1F8F /* Assets.xcassets */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				71763C25212B23B600E99C3F /* AppDelegate.swift */,
 				71763C27212B23B600E99C3F /* ProfileVC.swift */,
@@ -228,7 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71735D72213749D6002A1F8F /* Assets.xcassets in Resources */,
+				7150E8292146E296009CA176 /* Assets.xcassets in Resources */,
 				71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */,
 				71763C2B212B23B600E99C3F /* Main.storyboard in Resources */,
 			);
@@ -287,6 +290,7 @@
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				7150E81F2145A5DF009CA176 /* Contract.swift in Sources */,
+				7150E82B21477338009CA176 /* ConfirmContractVC.swift in Sources */,
 				7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */,
 				71DC6E5121459FB700C58E60 /* Seller.swift in Sources */,
 				716D90092133B947009CD6D9 /* BlockchainVC.swift in Sources */,
