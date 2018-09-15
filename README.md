@@ -19,4 +19,4 @@ We found out a several points we intend to improve at the market of sensitive ca
 ## Solution
 Ice Chain offers the solution based on Qtum smart contract, which is based on traditional LC scheme but also rectifies its common deficiencies. 
 
-![Smart contract 1 solution](http://icechain.tilda.ws/qtum#rec66323650)
+![Smart contract 1 solution](https://static.tildacdn.com/tild3130-3963-4261-b530-336264333332/__2018-09-10__182541.png)
