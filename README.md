@@ -1,4 +1,4 @@
-# Ice-Chain
+# Ice Chain
 Ice Chain is the IoT dApp project aimed to simplify cooperation between operators of the sensitive cargoes. The project offers the all-purpose financial instrument to replace cargo insurance or bank letter of credit and provide the close tie between transportation service quality and effecting payments. 
 
 This should be provided by the interaction between measuring Temperature Data Logger (TDL) device and Qtum-based smart contract.
