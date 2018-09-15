@@ -26,7 +26,7 @@ The TDL consists of:
 * Battery (>1000 mAh)
 
 **TDL circuit**
-![TDL circuit](https://drive.google.com/file/d/1DZV7ycju12l-qXjBOc22ml0aGKJNHKIv/view?usp=sharing)
+![TDL circuit](https://lh5.googleusercontent.com/jWKHJkZW-Is-YtcMeSHIolIW3XQilu5-pHXmg12frSlHkEtGSd1-A85htrGr6GXoFa9F35889xbO9OczECjD=w1440-h803-rw)
 
 # Solving problems
 We found out a several points we intend to improve at the market of sensitive cargo logistics.
