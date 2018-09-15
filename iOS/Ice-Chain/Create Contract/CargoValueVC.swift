@@ -18,7 +18,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var depositRateLabel: UILabel!
     
     // Temp variable to set the text and calculate values
-    var savedCargoValue = 10000.0
+    var savedCargoValue = 100.0
     var savedDepositRate = 67.0
 
     
