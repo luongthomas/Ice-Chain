@@ -7,7 +7,7 @@ target 'Ice-Chain' do
 
   # Pods for Ice-Chain
   pod 'Alamofire', '~> 4.7'
-  
+  pod 'Charts'
 end
 
 
