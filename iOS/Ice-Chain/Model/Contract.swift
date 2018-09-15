@@ -45,12 +45,12 @@ class Contract  {
             self.tempMax = 21
             self.tempMin = 2
             self.deadline = Date(timeInterval: 1213112, since: Date())
-            self.cargoValue = 100000
+            self.cargoValue = 142
             self.depositor = .BUYER
             self.depositRate = 67
             self.owner = .SELLER
             self.status = .RUNNING
-            self.deposit = 67000
+            self.deposit = 95.14
             
         } else if type == "executed" {
             self.buyerEmail = "buyer@gmail.com"
@@ -58,12 +58,12 @@ class Contract  {
             self.tempMax = 2
             self.tempMin = -2
             self.deadline = Date(timeInterval: 12312231, since: Date())
-            self.cargoValue = 100000
+            self.cargoValue = 112
             self.depositor = .BUYER
             self.depositRate = 33
             self.owner = .SELLER
             self.status = .EXECUTED
-            self.deposit = 33000
+            self.deposit = 36.96
         }
 
     }

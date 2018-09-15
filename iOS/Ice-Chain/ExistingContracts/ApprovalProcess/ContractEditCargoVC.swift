@@ -32,7 +32,7 @@ class ContractEditCargoVC: UIViewController {
         rateSlider.value = Float(contract.depositRate)
         rate.text = "Deposit Rate is \(contract.depositRate)%"
         
-        
+        setCargoValueFromTextField()
         calculateDepositRateAndSetText()
     }
     

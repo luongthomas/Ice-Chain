@@ -35,6 +35,7 @@
 		71DEEC77214CE32500C62380 /* ContractEditCargoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEEC76214CE32500C62380 /* ContractEditCargoVC.swift */; };
 		71DEEC79214D4B7300C62380 /* ContractEditDeadlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEEC78214D4B7300C62380 /* ContractEditDeadlineVC.swift */; };
 		71DEEC7B214D4BD600C62380 /* ContractEditTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEEC7A214D4BD600C62380 /* ContractEditTempVC.swift */; };
+		71DEEC7D214D55B100C62380 /* ContractEditDeployVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEEC7C214D55B100C62380 /* ContractEditDeployVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		71DEEC76214CE32500C62380 /* ContractEditCargoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEditCargoVC.swift; sourceTree = "<group>"; };
 		71DEEC78214D4B7300C62380 /* ContractEditDeadlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEditDeadlineVC.swift; sourceTree = "<group>"; };
 		71DEEC7A214D4BD600C62380 /* ContractEditTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEditTempVC.swift; sourceTree = "<group>"; };
+		71DEEC7C214D55B100C62380 /* ContractEditDeployVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEditDeployVC.swift; sourceTree = "<group>"; };
 		B004B21723304BD8D07C086C /* Pods-Ice-Chain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ice-Chain.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain.release.xcconfig"; sourceTree = "<group>"; };
 		BF3BD36CB37C7C876B207ACC /* Pods_Ice_Chain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ice_Chain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 				71DEEC7A214D4BD600C62380 /* ContractEditTempVC.swift */,
 				71DEEC78214D4B7300C62380 /* ContractEditDeadlineVC.swift */,
 				71DEEC76214CE32500C62380 /* ContractEditCargoVC.swift */,
+				71DEEC7C214D55B100C62380 /* ContractEditDeployVC.swift */,
 			);
 			path = ApprovalProcess;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				7150E82B21477338009CA176 /* DisplayContractVC.swift in Sources */,
 				7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */,
 				7150E83021482146009CA176 /* MyContractsVC.swift in Sources */,
+				71DEEC7D214D55B100C62380 /* ContractEditDeployVC.swift in Sources */,
 				716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
 				7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */,
