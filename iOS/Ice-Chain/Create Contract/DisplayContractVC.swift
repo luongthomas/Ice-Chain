@@ -49,7 +49,7 @@ class DisplayContractVC: UIViewController {
     }
     
     @IBAction func confirmContract(_ sender: Any) {
-        
+        contract.status = .OFFERED
         print("Confirming Contract")
     }
     

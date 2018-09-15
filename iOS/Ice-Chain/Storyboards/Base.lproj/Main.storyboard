@@ -333,7 +333,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="SmithJ@gmail.com" borderStyle="bezel" placeholder="SmithJ@gmail.com" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kpm-aM-T34" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="buyer@gmail.com" borderStyle="bezel" placeholder="SmithJ@gmail.com" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kpm-aM-T34" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="20" y="265" width="338" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -343,8 +343,11 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfA-Mo-9Z7" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="119" y="529" width="139" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Continue"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" red="0.98846382389999998" green="0.98117973979999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -435,15 +438,47 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-PL-P0f" userLabel="ProfileView">
                                 <rect key="frame" x="0.0" y="64" width="200" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="buyer@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-Fa-25R">
-                                        <rect key="frame" x="13" y="207" width="109" height="21"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Buyer" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-1E-0xI">
+                                        <rect key="frame" x="50" y="67" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="1f6-K0-6Gp"/>
+                                            <constraint firstAttribute="height" constant="100" id="FkC-gv-lFM"/>
+                                            <constraint firstAttribute="width" constant="100" id="cK8-mL-RFs"/>
                                         </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="seller@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-Fa-25R">
+                                        <rect key="frame" x="13" y="207" width="109" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Rlh-1o-aFZ">
+                                        <rect key="frame" x="15" y="220.5" width="185" height="51"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rs7-hG-5ga">
+                                                <rect key="frame" x="0.0" y="0.0" width="156.5" height="27"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH6-Mm-dBl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="46.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjdhfakhsdfkhaskdhfakshfd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d82-dj-rjx">
+                                                        <rect key="frame" x="0.0" y="13.5" width="156.5" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="__ QTUM" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxI-xi-jZh">
+                                                <rect key="frame" x="0.0" y="33" width="61" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXe-wS-sBB">
                                         <rect key="frame" x="49" y="412" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -470,44 +505,11 @@
                                             <action selector="handleButtonPress:" destination="fq0-3n-zfj" eventType="touchUpInside" id="FdZ-m5-2AV"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Rlh-1o-aFZ">
-                                        <rect key="frame" x="15" y="218" width="185" height="84"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH6-Mm-dBl">
-                                                <rect key="frame" x="0.0" y="0.0" width="46.5" height="52.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="askjdhfakhsdfkhaskdhfakshfd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d82-dj-rjx">
-                                                <rect key="frame" x="0.0" y="52.5" width="156.5" height="13.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="__ QTUM" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxI-xi-jZh">
-                                                <rect key="frame" x="0.0" y="66" width="61" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="wCh-6G-uAU"/>
-                                        </constraints>
-                                    </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Buyer" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-1E-0xI">
-                                        <rect key="frame" x="50" y="67" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="FkC-gv-lFM"/>
-                                            <constraint firstAttribute="width" constant="100" id="cK8-mL-RFs"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.63034339350000002" green="0.78616879490000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="ICf-Fa-25R" firstAttribute="centerX" secondItem="0Y7-PL-P0f" secondAttribute="centerX" id="78J-sK-NMv"/>
-                                    <constraint firstItem="Rlh-1o-aFZ" firstAttribute="top" secondItem="ICf-Fa-25R" secondAttribute="bottom" constant="15" id="BN1-yB-4CD"/>
+                                    <constraint firstItem="ICf-Fa-25R" firstAttribute="centerX" secondItem="gpo-1E-0xI" secondAttribute="centerX" id="78J-sK-NMv"/>
+                                    <constraint firstItem="Rlh-1o-aFZ" firstAttribute="top" secondItem="ICf-Fa-25R" secondAttribute="bottom" constant="25" id="BN1-yB-4CD"/>
                                     <constraint firstItem="ICf-Fa-25R" firstAttribute="top" secondItem="gpo-1E-0xI" secondAttribute="bottom" constant="15" id="Eia-Px-go3"/>
                                     <constraint firstItem="gpo-1E-0xI" firstAttribute="centerX" secondItem="0Y7-PL-P0f" secondAttribute="centerX" id="OuU-nz-Id6"/>
                                     <constraint firstItem="gpo-1E-0xI" firstAttribute="top" secondItem="0Y7-PL-P0f" secondAttribute="top" constant="67" id="SSO-LB-1s2"/>
@@ -614,6 +616,7 @@
                         <outlet property="qtumAddress" destination="d82-dj-rjx" id="Fqb-zC-dC6"/>
                         <outlet property="qtumAmount" destination="kxI-xi-jZh" id="3SM-da-YCw"/>
                         <outlet property="refreshBtn" destination="sgn-cw-Sal" id="Vfb-2W-9KH"/>
+                        <outlet property="sellerBtn" destination="WhK-ia-WY0" id="qDa-KH-kgS"/>
                         <outlet property="trailingHamburger" destination="75f-Of-W48" id="loT-J3-t9Z"/>
                         <outlet property="userEmail" destination="ICf-Fa-25R" id="cBQ-Yi-IRo"/>
                         <outlet property="userImage" destination="gpo-1E-0xI" id="zDT-eY-6pO"/>
@@ -868,7 +871,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZBx-AR-sP9"/>
                     <connections>
-                        <outlet property="contractStatusIcon" destination="Yjz-cV-UiU" id="JR7-Qh-jax"/>
+                        <outlet property="vaccineStack" destination="Nff-HW-ojf" id="ZKl-ub-zYD"/>
+                        <outlet property="vaccineStatusImg" destination="Yjz-cV-UiU" id="FuK-wy-rpo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJd-QA-yXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1555,8 +1559,11 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sk7-6E-r3b" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="16" y="562" width="343" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Offer Contract"/>
+                                <state key="normal" title="Offer Contract">
+                                    <color key="titleColor" red="0.98846382389999998" green="0.98117973979999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1763,7 +1770,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-K1-Xeb">
                                         <rect key="frame" x="91" y="12" width="194" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Buyer is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0c-Mo-FqB" userLabel="Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyer Email is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0c-Mo-FqB" userLabel="Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="22"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -2135,11 +2142,14 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6e-3H-ZKX" userLabel="Unload" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="16" y="587" width="343" height="55"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="X9v-hO-kQr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Unload"/>
+                                <state key="normal" title="Unload">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2288,7 +2298,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kuq-Kj-1aZ">
                                         <rect key="frame" x="91" y="12" width="194" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Buyer is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLU-bM-JaO" userLabel="Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyer Email is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLU-bM-JaO" userLabel="Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="22"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -2660,11 +2670,14 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNW-xM-Rwd" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                 <rect key="frame" x="16" y="587" width="343" height="55"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="ba6-rv-iEf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Download Report"/>
+                                <state key="normal" title="Download Report">
+                                    <color key="titleColor" red="0.98846382389999998" green="0.98117973979999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2721,6 +2734,7 @@
                         <outlet property="deadline" destination="TgA-fE-lld" id="tEM-xN-WgF"/>
                         <outlet property="deposit" destination="Fb7-Y9-ED2" id="pL2-pN-X7R"/>
                         <outlet property="email" destination="2Ro-3l-0Rg" id="whO-1R-4uU"/>
+                        <outlet property="emailTitle" destination="XLU-bM-JaO" id="fKv-PW-2E5"/>
                         <outlet property="role" destination="gKE-XL-7i0" id="QY4-JC-U6w"/>
                         <outlet property="status" destination="suE-yg-l03" id="GYf-Uc-hPU"/>
                         <outlet property="tempRange" destination="Onc-d6-K33" id="c9V-Ad-mLR"/>
@@ -2865,8 +2879,11 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vJ-ef-ZPU" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="97.5" height="45"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <state key="normal" title="Edit"/>
+                                        <state key="normal" title="Edit">
+                                            <color key="titleColor" red="0.93660940125553327" green="0.93868499994277954" blue="0.93169758611048203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2881,8 +2898,11 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2s-Ef-4Ed" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                         <rect key="frame" x="147.5" y="0.0" width="97.5" height="45"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <state key="normal" title="Approve"/>
+                                        <state key="normal" title="Approve">
+                                            <color key="titleColor" red="0.93660940125553327" green="0.93868499994277954" blue="0.93169758611048203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2950,10 +2970,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBt-bW-KkV">
-                                <rect key="frame" x="20" y="569" width="348" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBt-bW-KkV">
+                                <rect key="frame" x="25" y="567" width="325" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="i2Z-Uj-17a"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.98846382391597154" green="0.98117973979342477" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3003,8 +3028,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="qBt-bW-KkV" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" constant="25" id="2oy-0B-gIo"/>
                             <constraint firstItem="5RW-2E-P1v" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" constant="75" id="A0W-eQ-O2K"/>
                             <constraint firstItem="5RW-2E-P1v" firstAttribute="top" secondItem="8yb-DG-onG" secondAttribute="top" constant="250" id="AF1-0R-s0d"/>
+                            <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="qBt-bW-KkV" secondAttribute="trailing" constant="25" id="AfT-vw-hSu"/>
+                            <constraint firstItem="8yb-DG-onG" firstAttribute="bottom" secondItem="qBt-bW-KkV" secondAttribute="bottom" constant="50" id="Wx5-lh-dpc"/>
                             <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="5RW-2E-P1v" secondAttribute="trailing" constant="75" id="kow-a1-kQE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8yb-DG-onG"/>
@@ -3097,7 +3125,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tXd-40-wvz">
                                         <rect key="frame" x="91" y="12" width="194" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Buyer is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPU-xg-d7Q" userLabel="Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyer Email is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPU-xg-d7Q" userLabel="Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="194" height="22"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -3459,6 +3487,6 @@
         <image name="refresh" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cKu-72-fpc"/>
+        <segue reference="MXH-mg-yzt"/>
     </inferredMetricsTieBreakers>
 </document>

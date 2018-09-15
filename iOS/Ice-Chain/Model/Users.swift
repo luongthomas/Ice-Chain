@@ -16,7 +16,7 @@ struct Users {
     var buyerBalance = 0.0
     var sellerBalance = 0.0
     
-    var currentUser = "buyer"
+    var currentUser = "Buyer"
     var currentBalance = 0.0
     var currentAddress = ""
     

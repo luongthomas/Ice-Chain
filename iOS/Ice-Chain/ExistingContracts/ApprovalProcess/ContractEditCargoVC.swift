@@ -17,7 +17,7 @@ class ContractEditCargoVC: UIViewController {
     @IBOutlet weak var rate: UILabel!
     @IBOutlet weak var deposit: Button!
     
-    let contract = Contract.running
+    let contract = Contract.shared
     // Temp variable to set the text and calculate values
     var savedCargoValue = 100.0
     var savedDepositRate = 67.0

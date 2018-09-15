@@ -23,7 +23,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var qtumAddress: UILabel!
     
     @IBOutlet weak var buyerBtn: UIButton!
-    
+    @IBOutlet weak var sellerBtn: UIButton!
     
     var hamburgerMenuIsVisible = false
     
@@ -39,7 +39,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         networkUtility.getAddressGroupings()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // change 2 to desired number of seconds
             
-            self.buyerBtn.sendActions(for: .touchUpInside)
+            self.sellerBtn.sendActions(for: .touchUpInside)
         }
         Users.shared.setSellerAsCurrentUser()
         

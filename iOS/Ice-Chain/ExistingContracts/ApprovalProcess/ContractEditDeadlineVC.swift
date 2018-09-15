@@ -14,7 +14,7 @@ class ContractEditDeadlineVC: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    let contract = Contract.running
+    let contract = Contract.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
