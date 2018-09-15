@@ -12,16 +12,17 @@ import Charts
 class LineChart1ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
-    @IBOutlet var sliderX: UISlider!
-    @IBOutlet var sliderY: UISlider!
-    @IBOutlet var sliderTextX: UITextField!
-    @IBOutlet var sliderTextY: UITextField!
+    
+    
+    var timer = Timer()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.title = "Line Chart 1"
+        self.title = "Unload"
         
         chartView.delegate = self
         
@@ -75,32 +76,34 @@ class LineChart1ViewController: DemoBaseViewController {
         chartView.marker = marker
         
         chartView.legend.form = .line
-        
-        sliderX.value = 45
-        sliderY.value = 100
-        slidersValueChanged(nil)
-        
         chartView.animate(xAxisDuration: 2.5)
         
-        scheduledTimerWithTimeInterval()
+
     }
     
-    var timer = Timer()
+    override func viewDidAppear(_ animated: Bool) {
+            scheduledTimerWithTimeInterval()
+    }
+    
+    
     
     
     func scheduledTimerWithTimeInterval(){
-        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector(("updateChartData")), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
+    @objc func update() {
+        self.updateChartData()
+    }
     
     override func updateChartData() {
         if self.shouldHideData {
             chartView.data = nil
             return
         }
-                
-        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
+        self.setDataCount(Int(50), range: UInt32(100))
+
+//        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
@@ -137,14 +140,5 @@ class LineChart1ViewController: DemoBaseViewController {
         let data = LineChartData(dataSet: set1)
         
         chartView.data = data
-    }
-    
-
-    
-    @IBAction func slidersValueChanged(_ sender: Any?) {
-        sliderTextX.text = "\(Int(sliderX.value))"
-        sliderTextY.text = "\(Int(sliderY.value))"
-        
-        self.updateChartData()
     }
 }

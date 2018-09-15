@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pt3-Ov-7IP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2163,6 +2163,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmContract:" destination="hap-0x-8oz" eventType="touchUpInside" id="iCq-QI-7vc"/>
+                                    <segue destination="XRG-Aa-kVj" kind="push" id="mCd-Ed-lTD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2745,6 +2746,49 @@
             </objects>
             <point key="canvasLocation" x="2973" y="588"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="gNf-8P-i49">
+            <objects>
+                <viewController id="Kfu-8D-XH2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Qn-Xw-39Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bad_graph" translatesAutoresizingMaskIntoConstraints="NO" id="P0j-dN-FsH">
+                                <rect key="frame" x="42" y="127" width="234" height="162"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ye0-S1-deB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yrs-Ja-xkx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3512.5" y="591.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Oug-a5-iBo">
+            <objects>
+                <viewController id="XRG-Aa-kVj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="znj-fv-4Ht">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="good_graph" translatesAutoresizingMaskIntoConstraints="NO" id="TTh-IJ-Ffk">
+                                <rect key="frame" x="63" y="221" width="259" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="csz-6v-86V"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7WT-p2-1AZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vYl-WN-FHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3503.5" y="-258.5"/>
+        </scene>
         <!--ChartVC-->
         <scene sceneID="n18-Yd-Deh">
             <objects>
@@ -2758,7 +2802,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLD-6Z-1hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3562" y="-260"/>
+            <point key="canvasLocation" x="3943" y="-245"/>
         </scene>
         <!--Contract Edit BasicVC-->
         <scene sceneID="nf4-CJ-goI">
@@ -3497,7 +3541,9 @@
         <image name="Check Button" width="100" height="100"/>
         <image name="Check Mark" width="100" height="100"/>
         <image name="arrow" width="100" height="100"/>
+        <image name="bad_graph" width="988" height="844"/>
         <image name="filled_circle" width="100" height="100"/>
+        <image name="good_graph" width="962" height="802"/>
         <image name="hamburger" width="50" height="50"/>
         <image name="refresh" width="90" height="90"/>
     </resources>
