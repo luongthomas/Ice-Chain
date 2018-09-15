@@ -1,6 +1,6 @@
 
 //=======================================
-//  Beta_v2 TDL
+// TDL source flow
 //=====================================
 #include <OneWire.h>
 #include <SoftwareSerial.h>
