@@ -122,6 +122,10 @@ public class TextField: UITextField, UITextFieldDelegate {
         self.resignFirstResponder()
     }
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         delegate = self

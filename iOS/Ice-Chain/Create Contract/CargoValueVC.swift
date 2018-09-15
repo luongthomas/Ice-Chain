@@ -24,6 +24,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func SliderValueChanged(_ sender: UISlider) {
         savedDepositRate = Double(Int(sender.value))
+        Contract.shared.depositRate = savedDepositRate
         calculateDepositRateAndSetText()
     }
 
@@ -61,8 +62,8 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     func setCargoValueFromTextField() {
         guard let valueText = cargoValueTextField.text else { return }
         guard let cargoValue = Double(valueText) else { return }
-        Contract.shared.cargoValue = cargoValue
         savedCargoValue = cargoValue
+        Contract.shared.cargoValue = savedCargoValue
     }
     
     @objc func setAmountDismissKeyboard(sender: Any) {
@@ -93,8 +94,6 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         depositRateLabel.text = depositRateText
         depositRateDialog.setTitle(infoText, for: .normal)
     }
-    
-    
 
 }
 
