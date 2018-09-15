@@ -44,9 +44,12 @@ class CargoDepositorVC: UIViewController {
         switch button.tag {
         case 0:
             Contract.shared.depositor = .SELLER
+            // Post a notification
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
         case 1:
             Contract.shared.depositor = .BUYER
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
             
         default:

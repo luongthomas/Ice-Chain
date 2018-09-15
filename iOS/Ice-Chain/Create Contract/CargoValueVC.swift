@@ -24,24 +24,15 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func SliderValueChanged(_ sender: UISlider) {
         savedDepositRate = Double(Int(sender.value))
-        
-        guard let titleLabel = depositRateDialog.titleLabel else { return }
-        guard var _ = titleLabel.text else { return }
-        
-        let percentage = String(format: "The value is:%i",Int(sender.value))
-        guard let _ = Double(percentage) else { return }
-        
-        depositRateDialog.setTitle(percentage, for: .normal)
-        
         calculateDepositRateAndSetText()
-    }
-    
-    @IBAction func ringVolumeSliderChange(_ sender: UISlider) {
-        print(Int(sender.value))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Register to receive notification in your class
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDepositPartyLabel(notification:)), name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(setAmountDismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
@@ -57,6 +48,15 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         Contract.shared.depositRate = 67.0
         
     }
+    
+    @objc func updateDepositPartyLabel(notification: NSNotification) {
+        if Contract.shared.depositor != .NONE {
+            let depositor = Contract.shared.depositor.rawValue
+            depositorPartyButton.setTitle(depositor, for: .normal)
+        }
+    }
+    
+    
     
     func setCargoValueFromTextField() {
         guard let valueText = cargoValueTextField.text else { return }

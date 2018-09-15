@@ -1252,7 +1252,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Iml-tI-nlv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
-                                <state key="normal" title="Depositor Party"/>
+                                <state key="normal" title="Set Depositor Party"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1276,7 +1276,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="SliderValueChanged:" destination="EzG-dI-4or" eventType="valueChanged" id="xsy-aJ-eN0"/>
-                                    <action selector="ringVolumeSliderChange:" destination="EzG-dI-4or" eventType="valueChanged" id="LCu-xa-laW"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deposit Rate is __%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eq3-zn-AKO">
@@ -1298,7 +1297,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="7"/>
