@@ -172,60 +172,7 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    @IBAction func optionsButtonTapped(_ sender: Any) {
-        if let optionsTableView = self.optionsTableView {
-            optionsTableView.removeFromSuperview()
-            self.optionsTableView = nil
-            return
-        }
-        
-        let optionsTableView = UITableView()
-        optionsTableView.backgroundColor = UIColor(white: 0, alpha: 0.9)
-        optionsTableView.delegate = self
-        optionsTableView.dataSource = self
-        
-        optionsTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.optionsTableView = optionsTableView
-        
-        var constraints = [NSLayoutConstraint]()
-        
-        constraints.append(NSLayoutConstraint(item: optionsTableView,
-                                              attribute: .leading,
-                                              relatedBy: .equal,
-                                              toItem: self.view,
-                                              attribute: .leading,
-                                              multiplier: 1,
-                                              constant: 40))
-        
-        constraints.append(NSLayoutConstraint(item: optionsTableView,
-                                              attribute: .trailing,
-                                              relatedBy: .equal,
-                                              toItem: sender as! UIView,
-                                              attribute: .trailing,
-                                              multiplier: 1,
-                                              constant: 0))
-        
-        constraints.append(NSLayoutConstraint(item: optionsTableView,
-                                              attribute: .top,
-                                              relatedBy: .equal,
-                                              toItem: sender,
-                                              attribute: .bottom,
-                                              multiplier: 1,
-                                              constant: 5))
-        
-        self.view.addSubview(optionsTableView)
-        constraints.forEach { $0.isActive = true }
-        
-        let constraint = NSLayoutConstraint(item: optionsTableView,
-                                            attribute: .height,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .height,
-                                            multiplier: 1,
-                                            constant: 220)
-        constraint.isActive = true
-    }
+    
     
     func updateChartData() {
         fatalError("updateChartData not overridden")

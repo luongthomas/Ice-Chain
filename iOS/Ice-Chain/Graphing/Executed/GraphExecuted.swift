@@ -1,5 +1,5 @@
 //
-//  GraphVC.swift
+//  GraphExecuted.swift
 //  Ice-Chain
 //
 //  Created by Thomas Luong on 9/15/18.
@@ -9,19 +9,18 @@
 import UIKit
 import Charts
 
-class LineChart1ViewController: DemoBaseViewController {
+class LineChart2ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
-    @IBOutlet var sliderX: UISlider!
-    @IBOutlet var sliderY: UISlider!
-    @IBOutlet var sliderTextX: UITextField!
-    @IBOutlet var sliderTextY: UITextField!
+    
+    
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.title = "Line Chart 1"
+        self.title = "Unload"
         
         chartView.delegate = self
         
@@ -56,8 +55,8 @@ class LineChart1ViewController: DemoBaseViewController {
         leftAxis.removeAllLimitLines()
         leftAxis.addLimitLine(ll1)
         leftAxis.addLimitLine(ll2)
-        leftAxis.axisMaximum = 200
-        leftAxis.axisMinimum = -50
+        leftAxis.axisMaximum = 3
+        leftAxis.axisMinimum = -2
         leftAxis.gridLineDashLengths = [5, 5]
         leftAxis.drawLimitLinesBehindDataEnabled = true
         
@@ -75,39 +74,44 @@ class LineChart1ViewController: DemoBaseViewController {
         chartView.marker = marker
         
         chartView.legend.form = .line
-        
-        sliderX.value = 45
-        sliderY.value = 100
-        slidersValueChanged(nil)
-        
         chartView.animate(xAxisDuration: 2.5)
         
-        scheduledTimerWithTimeInterval()
+        self.updateChartData()
     }
     
-    var timer = Timer()
-    
-    
-    func scheduledTimerWithTimeInterval(){
-        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector(("updateChartData")), userInfo: nil, repeats: true)
+    override func viewDidAppear(_ animated: Bool) {
+//        scheduledTimerWithTimeInterval()
     }
     
+    
+//    func scheduledTimerWithTimeInterval(){
+//        // Change delay in seconds here
+//        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+//    }
+    
+    @objc func update() {
+        self.updateChartData()
+    }
     
     override func updateChartData() {
         if self.shouldHideData {
             chartView.data = nil
             return
         }
-                
-        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
+        self.setDataCount(Int(10), range: UInt32(10))
+        
+        
     }
     
+    
+    
     func setDataCount(_ count: Int, range: UInt32) {
+        
+        
         let values = (0..<count).map { (i) -> ChartDataEntry in
-            let val = Double(arc4random_uniform(range) + 3)
-            
             // TODO: GET DATA HERE
+            let val  = Double.random(min: 1.9, max: 2.1)
+            
             return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
         }
         
@@ -138,13 +142,6 @@ class LineChart1ViewController: DemoBaseViewController {
         
         chartView.data = data
     }
-    
-
-    
-    @IBAction func slidersValueChanged(_ sender: Any?) {
-        sliderTextX.text = "\(Int(sliderX.value))"
-        sliderTextY.text = "\(Int(sliderY.value))"
-        
-        self.updateChartData()
-    }
 }
+
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pjy-Ud-8cF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2163,6 +2163,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="confirmContract:" destination="hap-0x-8oz" eventType="touchUpInside" id="iCq-QI-7vc"/>
+                                    <segue destination="pt3-Ov-7IP" kind="push" id="oUx-7L-qxz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2691,6 +2692,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="downloadReport:" destination="yrT-B9-lgJ" eventType="touchUpInside" id="sTw-2F-8uD"/>
+                                    <segue destination="lER-bQ-0GM" kind="push" id="wum-cc-C9K"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2745,6 +2747,62 @@
             </objects>
             <point key="canvasLocation" x="2973" y="588"/>
         </scene>
+        <!--Chart Executed-->
+        <scene sceneID="EpM-jN-hlE">
+            <objects>
+                <viewController id="lER-bQ-0GM" customClass="ChartExecuted" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TBE-Df-8aj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQf-eu-0WY">
+                                <rect key="frame" x="168.5" y="318.5" width="38" height="30"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="showGraph:" destination="lER-bQ-0GM" eventType="touchUpInside" id="s9X-TS-nFy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LQf-eu-0WY" firstAttribute="centerY" secondItem="TBE-Df-8aj" secondAttribute="centerY" id="4C0-bA-KNM"/>
+                            <constraint firstItem="LQf-eu-0WY" firstAttribute="centerX" secondItem="TBE-Df-8aj" secondAttribute="centerX" id="hMk-5e-zw1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aaJ-Xw-iZa"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6zb-jS-w2q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BQA-qf-yH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3584" y="584"/>
+        </scene>
+        <!--Temp SensorVC-->
+        <scene sceneID="eqc-ux-VDO">
+            <objects>
+                <viewController id="Cm9-UM-ggR" customClass="TempSensorVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1mf-MP-tTN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nr-3M-LKm">
+                                <rect key="frame" x="165" y="122" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xbp-l3-2fx"/>
+                    </view>
+                    <connections>
+                        <outlet property="temp" destination="2nr-3M-LKm" id="GRZ-Sr-gaH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3oz-Mq-RTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4006" y="601"/>
+        </scene>
         <!--ChartVC-->
         <scene sceneID="n18-Yd-Deh">
             <objects>
@@ -2752,13 +2810,27 @@
                     <view key="view" contentMode="scaleToFill" id="6dy-xe-RfP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRT-14-ZZo">
+                                <rect key="frame" x="168.5" y="318.5" width="38" height="30"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="showGraph:" destination="pt3-Ov-7IP" eventType="touchUpInside" id="nbe-3D-tSr"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fRT-14-ZZo" firstAttribute="centerX" secondItem="6dy-xe-RfP" secondAttribute="centerX" id="E2H-mm-GIb"/>
+                            <constraint firstItem="fRT-14-ZZo" firstAttribute="centerY" secondItem="6dy-xe-RfP" secondAttribute="centerY" id="e4m-G1-OP5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gt1-aq-BZf"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xrf-3Z-e5c"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLD-6Z-1hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3562" y="-260"/>
+            <point key="canvasLocation" x="3586" y="-257"/>
         </scene>
         <!--Contract Edit BasicVC-->
         <scene sceneID="nf4-CJ-goI">
@@ -3006,6 +3078,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="deploy:" destination="NdM-0c-22d" eventType="touchUpInside" id="QJn-Jw-Zql"/>
                                     <segue destination="pjy-Ud-8cF" kind="modal" id="MXH-mg-yzt"/>
                                 </connections>
                             </button>
@@ -3053,6 +3126,10 @@
                         <viewLayoutGuide key="safeArea" id="8yb-DG-onG"/>
                     </view>
                     <navigationItem key="navigationItem" id="U0I-Pf-Vwr"/>
+                    <connections>
+                        <outlet property="spinner" destination="HQ7-B2-96u" id="4S4-X0-8wM"/>
+                        <outlet property="status" destination="5lW-dL-Xwc" id="nfp-rn-2ij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s32-Tu-1dC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3502,6 +3579,6 @@
         <image name="refresh" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Tg-ob-xV2"/>
+        <segue reference="MXH-mg-yzt"/>
     </inferredMetricsTieBreakers>
 </document>

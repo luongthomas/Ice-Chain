@@ -13,6 +13,9 @@
 		71486664214D723B001BC288 /* DemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486663214D723A001BC288 /* DemoBaseViewController.swift */; };
 		71486666214D72CD001BC288 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486665214D72CD001BC288 /* BalloonMarker.swift */; };
 		71486668214D73FF001BC288 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486667214D73FF001BC288 /* ChartVC.swift */; };
+		7148666C214D98DD001BC288 /* GraphExecuted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148666B214D98DD001BC288 /* GraphExecuted.swift */; };
+		7148666E214D98E7001BC288 /* ChartExecuted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148666D214D98E7001BC288 /* ChartExecuted.swift */; };
+		71486670214D9950001BC288 /* LineChart2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7148666F214D9950001BC288 /* LineChart2ViewController.xib */; };
 		7150E81F2145A5DF009CA176 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E81E2145A5DF009CA176 /* Contract.swift */; };
 		7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82021460D54009CA176 /* TemperatureRangeVC.swift */; };
 		7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E822214617BD009CA176 /* DeadlineVC.swift */; };
@@ -50,6 +53,9 @@
 		71486663214D723A001BC288 /* DemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoBaseViewController.swift; sourceTree = "<group>"; };
 		71486665214D72CD001BC288 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		71486667214D73FF001BC288 /* ChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
+		7148666B214D98DD001BC288 /* GraphExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphExecuted.swift; sourceTree = "<group>"; };
+		7148666D214D98E7001BC288 /* ChartExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartExecuted.swift; sourceTree = "<group>"; };
+		7148666F214D9950001BC288 /* LineChart2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineChart2ViewController.xib; sourceTree = "<group>"; };
 		7150E81E2145A5DF009CA176 /* Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
 		7150E82021460D54009CA176 /* TemperatureRangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureRangeVC.swift; sourceTree = "<group>"; };
 		7150E822214617BD009CA176 /* DeadlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineVC.swift; sourceTree = "<group>"; };
@@ -99,13 +105,32 @@
 		7148665E214D71D9001BC288 /* Graphing */ = {
 			isa = PBXGroup;
 			children = (
+				7148666A214D98CA001BC288 /* Executed */,
+				71486669214D98AB001BC288 /* Running */,
 				71486665214D72CD001BC288 /* BalloonMarker.swift */,
 				71486663214D723A001BC288 /* DemoBaseViewController.swift */,
+			);
+			path = Graphing;
+			sourceTree = "<group>";
+		};
+		71486669214D98AB001BC288 /* Running */ = {
+			isa = PBXGroup;
+			children = (
 				71486661214D7210001BC288 /* LineChart1ViewController.xib */,
 				71486667214D73FF001BC288 /* ChartVC.swift */,
 				7148665F214D71E6001BC288 /* GraphVC.swift */,
 			);
-			path = Graphing;
+			path = Running;
+			sourceTree = "<group>";
+		};
+		7148666A214D98CA001BC288 /* Executed */ = {
+			isa = PBXGroup;
+			children = (
+				7148666F214D9950001BC288 /* LineChart2ViewController.xib */,
+				7148666B214D98DD001BC288 /* GraphExecuted.swift */,
+				7148666D214D98E7001BC288 /* ChartExecuted.swift */,
+			);
+			path = Executed;
 			sourceTree = "<group>";
 		};
 		7150E82C21478B7C009CA176 /* Extensions */ = {
@@ -308,6 +333,7 @@
 				7150E8292146E296009CA176 /* Assets.xcassets in Resources */,
 				71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */,
 				71763C2B212B23B600E99C3F /* Main.storyboard in Resources */,
+				71486670214D9950001BC288 /* LineChart2ViewController.xib in Resources */,
 				71486662214D7210001BC288 /* LineChart1ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,11 +368,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Ice-Chain/Pods-Ice-Chain-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBluetoothKit/RxBluetoothKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBluetoothKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -362,6 +392,7 @@
 			files = (
 				71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */,
 				71DEEC77214CE32500C62380 /* ContractEditCargoVC.swift in Sources */,
+				7148666E214D98E7001BC288 /* ChartExecuted.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
 				716ABAE3214CD78700B51F89 /* TempSensorVC.swift in Sources */,
 				71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */,
@@ -385,6 +416,7 @@
 				716D900B2133CA35009CD6D9 /* CreateContractVC.swift in Sources */,
 				71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */,
 				7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */,
+				7148666C214D98DD001BC288 /* GraphExecuted.swift in Sources */,
 				71486664214D723B001BC288 /* DemoBaseViewController.swift in Sources */,
 				7150E82721463C60009CA176 /* CargoDepositorVC.swift in Sources */,
 				7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */,
