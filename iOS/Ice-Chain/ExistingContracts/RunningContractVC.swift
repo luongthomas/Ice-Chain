@@ -1,14 +1,14 @@
 //
-//  ExecutedContractVC.swift
+//  ConfirmContractVC.swift
 //  Ice-Chain
 //
-//  Created by Thomas Luong on 9/11/18.
+//  Created by Thomas Luong on 9/14/18.
 //  Copyright © 2018 Thomas Luong. All rights reserved.
 //
 
 import UIKit
 
-class ExecutedContractVC: UIViewController {
+class RunningContractVC: UIViewController {
     
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var role: UILabel!
@@ -19,16 +19,16 @@ class ExecutedContractVC: UIViewController {
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var deposit: UILabel!
     
-    var contract = Contract.executed
+    var contract = Contract.running
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+
         let dateString = dateFormatter.string(from: contract.deadline)
-        
+
         let formattedDate = dateFormatter.date(from: dateString)
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: formattedDate!)
@@ -36,8 +36,8 @@ class ExecutedContractVC: UIViewController {
         let depositDollars = NumberFormatter.localizedString(from: NSNumber(value: contract.deposit), number: NumberFormatter.Style.decimal)
         
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract.cargoValue), number: NumberFormatter.Style.decimal)
-        
-        
+            
+
         status.text = contract.status.rawValue
         role.text = "You Are \(contract.owner.rawValue)"
         email.text = contract.buyerEmail
@@ -49,10 +49,18 @@ class ExecutedContractVC: UIViewController {
         deposit.text = "\(depositDollars) USD"
     }
     
-    
-    @IBAction func downloadReport(_ sender: Any) {
-        print("Download Report")
-    
-    
+    @IBAction func confirmContract(_ sender: Any) {
+        
+        print("Confirming Contract")
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfirmContractVC: UIViewController {
+class DisplayContractVC: UIViewController {
     
     @IBOutlet weak var contractName: UILabel!
     @IBOutlet weak var buyerEmail: UILabel!
@@ -22,27 +22,30 @@ class ConfirmContractVC: UIViewController {
     @IBOutlet weak var owner: UILabel!
     
     
+    var contract = Contract.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let dateString = dateFormatter.string(from: Contract.shared.deadline)
-        
+
+        let dateString = dateFormatter.string(from: contract.deadline)
+
         let formattedDate = dateFormatter.date(from: dateString)
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: formattedDate!)
-        
-        contractName.text = Contract.shared.name
-        buyerEmail.text = Contract.shared.buyerEmail
-        cargoType.text = Contract.shared.cargoType
-        minTemp.text = "\(Contract.shared.tempMin) C"
-        maxTemp.text = "\(Contract.shared.tempMax) C"
+
+        contractName.text = contract.name
+        buyerEmail.text = contract.buyerEmail
+        cargoType.text = contract.cargoType
+        minTemp.text = "\(contract.tempMin) C"
+        maxTemp.text = "\(contract.tempMax) C"
         deadlineDate.text = "\(dateFormatString)"
-        cargoValue.text = "\(Contract.shared.cargoValue) USD"
-        depositor.text = Contract.shared.depositor.rawValue
-        depositRate.text = "\(Contract.shared.depositRate)"
-        owner.text = Contract.shared.owner.rawValue
+        cargoValue.text = "\(contract.cargoValue) USD"
+        depositor.text = contract.depositor.rawValue
+        depositRate.text = "\(contract.depositRate)"
+        owner.text = contract.owner.rawValue
     }
     
     @IBAction func confirmContract(_ sender: Any) {

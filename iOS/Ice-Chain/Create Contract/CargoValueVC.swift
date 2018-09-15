@@ -91,6 +91,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         
         let infoText = "Deposit is equal to \(roundedUSD) USD or\n\(roundedQtum) QTUM"
         
+        Contract.shared.deposit = depositAmountUSD
         depositRateLabel.text = depositRateText
         depositRateDialog.setTitle(infoText, for: .normal)
     }

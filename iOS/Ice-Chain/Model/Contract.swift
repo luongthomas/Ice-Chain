@@ -22,9 +22,10 @@ class Contract  {
     var depositor: CustomerType
     var depositRate: Double
     var owner: CustomerType
-    var status: AgreementStatus
+    var status: Status
+    var deposit: Double
     
-    private init() {
+    private init(type: String) {
         self.name = ""
         self.buyerEmail = ""
         self.cargoType = ""
@@ -35,7 +36,36 @@ class Contract  {
         self.depositor = CustomerType.NONE
         self.depositRate = 0.0
         self.owner = CustomerType.NONE
-        self.status = AgreementStatus.NONE
+        self.status = .NONE
+        self.deposit = 0.0
+        
+        if type == "running" {
+            self.buyerEmail = "buyer@gmail.com"
+            self.cargoType = "Bananas"
+            self.tempMax = 21
+            self.tempMin = 2
+            self.deadline = Date(timeInterval: 1213112, since: Date())
+            self.cargoValue = 100000
+            self.depositor = .BUYER
+            self.depositRate = 67
+            self.owner = .SELLER
+            self.status = .RUNNING
+            self.deposit = 67000
+            
+        } else if type == "executed" {
+            self.buyerEmail = "buyer@gmail.com"
+            self.cargoType = "Cakes"
+            self.tempMax = 2
+            self.tempMin = -2
+            self.deadline = Date(timeInterval: 12312231, since: Date())
+            self.cargoValue = 100000
+            self.depositor = .BUYER
+            self.depositRate = 33
+            self.owner = .SELLER
+            self.status = .EXECUTED
+            self.deposit = 33000
+        }
+
     }
     
     func resetContract() {
@@ -50,19 +80,23 @@ class Contract  {
         self.depositor = CustomerType.NONE
         self.depositRate = 0.0
         self.owner = CustomerType.NONE
-        self.status = AgreementStatus.NONE
+        self.status = .NONE
     }
     
-    static let shared = Contract()
+    static let shared = Contract(type: "shared")
+    static let running = Contract(type: "running")
+    static let executed = Contract(type: "executed")
     
-    
+
 }
 
-enum AgreementStatus: String {
+enum Status: String {
     case AGREED
     case DECLINED
     case OFFERED
     case NONE
+    case RUNNING
+    case EXECUTED
 }
 
 enum CustomerType: String {
