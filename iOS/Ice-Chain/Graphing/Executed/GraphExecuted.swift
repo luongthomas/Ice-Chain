@@ -1,5 +1,5 @@
 //
-//  GraphVC.swift
+//  GraphExecuted.swift
 //  Ice-Chain
 //
 //  Created by Thomas Luong on 9/15/18.
@@ -9,14 +9,12 @@
 import UIKit
 import Charts
 
-class LineChart1ViewController: DemoBaseViewController {
+class LineChart2ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
     
     
     var timer = Timer()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +55,8 @@ class LineChart1ViewController: DemoBaseViewController {
         leftAxis.removeAllLimitLines()
         leftAxis.addLimitLine(ll1)
         leftAxis.addLimitLine(ll2)
-        leftAxis.axisMaximum = 200
-        leftAxis.axisMinimum = -50
+        leftAxis.axisMaximum = 3
+        leftAxis.axisMinimum = -2
         leftAxis.gridLineDashLengths = [5, 5]
         leftAxis.drawLimitLinesBehindDataEnabled = true
         
@@ -78,19 +76,18 @@ class LineChart1ViewController: DemoBaseViewController {
         chartView.legend.form = .line
         chartView.animate(xAxisDuration: 2.5)
         
-
+        self.updateChartData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-            scheduledTimerWithTimeInterval()
+//        scheduledTimerWithTimeInterval()
     }
     
     
-    
-    
-    func scheduledTimerWithTimeInterval(){
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-    }
+//    func scheduledTimerWithTimeInterval(){
+//        // Change delay in seconds here
+//        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+//    }
     
     @objc func update() {
         self.updateChartData()
@@ -101,16 +98,20 @@ class LineChart1ViewController: DemoBaseViewController {
             chartView.data = nil
             return
         }
-        self.setDataCount(Int(50), range: UInt32(100))
-
-//        self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
+        self.setDataCount(Int(10), range: UInt32(10))
+        
+        
     }
     
+    
+    
     func setDataCount(_ count: Int, range: UInt32) {
+        
+        
         let values = (0..<count).map { (i) -> ChartDataEntry in
-            let val = Double(arc4random_uniform(range) + 3)
-            
             // TODO: GET DATA HERE
+            let val  = Double.random(min: 1.9, max: 2.1)
+            
             return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
         }
         
@@ -142,3 +143,5 @@ class LineChart1ViewController: DemoBaseViewController {
         chartView.data = data
     }
 }
+
+

@@ -1,5 +1,5 @@
 //
-//  LineChart1ViewController.swift
+//  ChartVC.swift
 //  Ice-Chain
 //
 //  Created by Thomas Luong on 9/15/18.
@@ -9,8 +9,9 @@
 import UIKit
 class ChartVC: UIViewController {
     
-    override func viewDidAppear(_ animated: Bool) {
+    
+    @IBAction func showGraph(_ sender: Any) {
         let myViewController = LineChart1ViewController(nibName: "LineChart1ViewController", bundle: nil)
-        self.present(myViewController, animated: true, completion: nil)
+        self.navigationController!.pushViewController(myViewController, animated: true)
     }
 }
