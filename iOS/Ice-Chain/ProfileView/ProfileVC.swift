@@ -41,7 +41,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             
             self.buyerBtn.sendActions(for: .touchUpInside)
         }
-        Users.shared.setBuyerAsCurrentUser()
+        Users.shared.setSellerAsCurrentUser()
         
     }
 

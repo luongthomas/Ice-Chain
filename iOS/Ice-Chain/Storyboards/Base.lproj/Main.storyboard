@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OQF-IT-wYt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,7 +40,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="buyer@gmail.com" borderStyle="bezel" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="z0e-IZ-xdb" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="seller@gmail.com" borderStyle="bezel" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="z0e-IZ-xdb" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="20.5" width="335" height="53"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="53" id="dsg-5w-j7D"/>
@@ -176,7 +176,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="buyer@gmail.com" borderStyle="bezel" placeholder="buyer@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lBZ-ch-rDP" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="seller@gmail.com" borderStyle="bezel" placeholder="buyer@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lBZ-ch-rDP" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="26.5" width="345" height="53"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="53" id="Ffg-pM-KOn"/>
@@ -236,7 +236,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Buyer" borderStyle="bezel" placeholder="Buyer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLU-uI-HJP" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Seller" borderStyle="bezel" placeholder="Buyer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLU-uI-HJP" customClass="TextField" customModule="Ice_Chain" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="20.5" width="345" height="53"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="53" id="wYv-qm-rGS"/>
@@ -423,30 +423,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MtT-G4-Jnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076.875" y="-285.69833333333332"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="guz-lq-qHp">
-            <objects>
-                <viewController id="o8Y-1m-7Ys" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Sc0-BU-ef4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxI-WC-3a9">
-                                <rect key="frame" x="83" y="201" width="261" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="EXQ-4P-OVD"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qR6-YO-j3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1514.5" y="-1103.5"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="uHv-tq-fZ1">
@@ -1643,7 +1619,7 @@
                                 <rect key="frame" x="16" y="160" width="343" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="27"/>
-                                <state key="normal" title="Vendor"/>
+                                <state key="normal" title="Seller"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3483,6 +3459,6 @@
         <image name="refresh" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MXH-mg-yzt"/>
+        <segue reference="cKu-72-fpc"/>
     </inferredMetricsTieBreakers>
 </document>
