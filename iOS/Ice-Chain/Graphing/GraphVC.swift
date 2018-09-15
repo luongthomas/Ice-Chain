@@ -22,21 +22,6 @@ class LineChart1ViewController: DemoBaseViewController {
         
         // Do any additional setup after loading the view.
         self.title = "Line Chart 1"
-        self.options = [.toggleValues,
-                        .toggleFilled,
-                        .toggleCircles,
-                        .toggleCubic,
-                        .toggleHorizontalCubic,
-                        .toggleIcons,
-                        .toggleStepped,
-                        .toggleHighlight,
-                        .animateX,
-                        .animateY,
-                        .animateXY,
-                        .saveToGallery,
-                        .togglePinchZoom,
-                        .toggleAutoScaleMinMax,
-                        .toggleData]
         
         chartView.delegate = self
         
@@ -96,23 +81,34 @@ class LineChart1ViewController: DemoBaseViewController {
         slidersValueChanged(nil)
         
         chartView.animate(xAxisDuration: 2.5)
+        
+        scheduledTimerWithTimeInterval()
     }
+    
+    var timer = Timer()
+    
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector(("updateChartData")), userInfo: nil, repeats: true)
+    }
+    
     
     override func updateChartData() {
         if self.shouldHideData {
             chartView.data = nil
             return
         }
-        
+                
         self.setDataCount(Int(sliderX.value), range: UInt32(sliderY.value))
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
         let values = (0..<count).map { (i) -> ChartDataEntry in
             let val = Double(arc4random_uniform(range) + 3)
-            return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "Check Mark"))
-
-//            return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
+            
+            // TODO: GET DATA HERE
+            return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
         }
         
         let set1 = LineChartDataSet(values: values, label: "DataSet 1")
@@ -143,42 +139,7 @@ class LineChart1ViewController: DemoBaseViewController {
         chartView.data = data
     }
     
-    override func optionTapped(_ option: Option) {
-        switch option {
-        case .toggleFilled:
-            for set in chartView.data!.dataSets as! [LineChartDataSet] {
-                set.drawFilledEnabled = !set.drawFilledEnabled
-            }
-            chartView.setNeedsDisplay()
-            
-        case .toggleCircles:
-            for set in chartView.data!.dataSets as! [LineChartDataSet] {
-                set.drawCirclesEnabled = !set.drawCirclesEnabled
-            }
-            chartView.setNeedsDisplay()
-            
-        case .toggleCubic:
-            for set in chartView.data!.dataSets as! [LineChartDataSet] {
-                set.mode = (set.mode == .cubicBezier) ? .linear : .cubicBezier
-            }
-            chartView.setNeedsDisplay()
-            
-        case .toggleStepped:
-            for set in chartView.data!.dataSets as! [LineChartDataSet] {
-                set.mode = (set.mode == .stepped) ? .linear : .stepped
-            }
-            chartView.setNeedsDisplay()
-            
-        case .toggleHorizontalCubic:
-            for set in chartView.data!.dataSets as! [LineChartDataSet] {
-                set.mode = (set.mode == .cubicBezier) ? .horizontalBezier : .cubicBezier
-            }
-            chartView.setNeedsDisplay()
-            
-        default:
-            super.handleOption(option, forChartView: chartView)
-        }
-    }
+
     
     @IBAction func slidersValueChanged(_ sender: Any?) {
         sliderTextX.text = "\(Int(sliderX.value))"
