@@ -43,8 +43,17 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         calculateDepositRateAndSetText()
         
         
-        // Default values
-        Contract.shared.owner = .BUYER
+        // Set owner
+        let currentUser = Users.shared.currentUser
+        if currentUser == "Seller" {
+            Contract.shared.owner = .SELLER
+        } else if currentUser == "Buyer" {
+            Contract.shared.owner = .BUYER
+        } else {
+            print("Unknown current user")
+        }
+        
+        // Set initial values
         Contract.shared.depositor = .SELLER
         Contract.shared.depositRate = 67.0
         
