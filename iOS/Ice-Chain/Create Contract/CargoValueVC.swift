@@ -95,7 +95,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         depositRateLabel.text = depositRateText
         depositRateDialog.setTitle(infoText, for: .normal)
     }
-
+    
 }
 
 

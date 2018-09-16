@@ -11,6 +11,9 @@ import Alamofire
 
 class NetworkUtility {
     
+    let constants = Constants()
+    
+    
     func sampleNetwork() {
         Alamofire.request("https://httpbin.varvar/get").responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
@@ -26,21 +29,6 @@ class NetworkUtility {
             }
         }
     }
-    
-    
-        //        let parameters: [String: Any] = [
-        //            "jsonrpc": "1.0",
-        //            "id":"iOS",
-        //            "method": "sendtocontract",
-        //            "params": [
-        //                "00bd14e55565638ea1c85fdb8d501ba99a791975",
-        //                "3ccfd60b",
-        //                0,
-        //                190000,
-        //                0.0000004,
-        //                "qHkSLraGVW1PqYSizqJDLGT8GSwSKc7Gaf"
-        //            ]
-        //        ]
 
     
     let jsonDecoder = JSONDecoder()
@@ -98,6 +86,103 @@ class NetworkUtility {
             }
         )
     }
+
+    
+    func deployContract() {
+        
+        let contractCode = constants.byteCode
+        let gasLimit = constants.gasLimit
+        let gasPrice = constants.gasPrice
+//        let senderAddress = Users.shared.currentAddress
+        let senderAddress = "qcYXHtB2v6i2aScPf2SQc44AhF2JmSKj1K"
+        
+        sendRpcCommand(command: "createcontract", parameters: [contractCode, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
+            
+            if let data = data {
+                do {
+                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
+                    
+                    print("Transaction ID: \(response.result.txid)")
+                    if let address = response.result.address {
+                        print("Address: \(address)")
+                        Deployed.shared.contractAddresses.append(address)
+                    }
+                    Deployed.shared.transactionIds.append(response.result.txid)
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            if let err = err {
+                print("\(err)")
+            }
+            
+        })
+    }
+    
+    func depositMoney() {
+        
+        let depositABI = constants.sendPaymentABI
+        guard let contractAddress = Deployed.shared.contractAddresses.last else { return }
+        let gasLimit = constants.gasLimit
+        let gasPrice = constants.gasPrice
+        let deposit = Contract.running.deposit / constants.qtumPricePerUSD
+        let amountToSend = (deposit * 100).rounded() / 100
+//        let senderAddress = Users.shared.currentAddress
+        let senderAddress = "qcYXHtB2v6i2aScPf2SQc44AhF2JmSKj1K"
+        
+        sendRpcCommand(command: "sendtocontract", parameters: [contractAddress, depositABI, amountToSend, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
+            
+            if let data = data {
+                do {
+                    
+                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
+                    
+                    print("Transaction ID: \(response.result.txid)")
+                    if let address = response.result.address {
+                        print("Address: \(address)")
+                        Deployed.shared.contractAddresses.append(address)
+                    }
+                    Deployed.shared.transactionIds.append(response.result.txid)
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            if let err = err {
+                print("\(err)")
+            }
+            
+        })
+    }
+    
+    
+    func checkConfirmation(txid: String, completion: @escaping(Bool)->()) {
+        sendRpcCommand(command: "gettransaction", parameters: [txid], completionHandler: { (data, err) in
+            
+            if let data = data {
+                do {
+                    let response = try self.jsonDecoder.decode(Txid.self, from: data)
+                    
+                    let confirmations = response.result.confirmations
+                    if confirmations > 0 {
+                        print("Confirmations greater than 0")
+                        completion(true)
+                    } else {
+                        print("No confirmations yet")
+                        completion(false)
+                    }
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            if let err = err {
+                print("\(err)")
+            }
+            
+        })
+    }
     
     // Sends back data and it must be encoded based on which data structure is expected
     func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (Data?, Error?) -> ()) {
@@ -120,12 +205,15 @@ class NetworkUtility {
             
             switch response.result {
             case .success( _):
-                
+                print(response.value)
                 completionHandler(response.data, nil)
             case .failure(let error):
                 completionHandler(nil, error)
             }
         }
     }
+    
+    
+    
     
 }

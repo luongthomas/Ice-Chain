@@ -61,9 +61,8 @@ class CargoDepositorVC: UIViewController {
     
     
     @IBAction func popOffVC() {
-        if let navController = self.navigationController {
-            navController.popViewController(animated: true)
-        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {

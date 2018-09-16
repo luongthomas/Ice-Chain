@@ -16,6 +16,10 @@
 		7148666C214D98DD001BC288 /* GraphExecuted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148666B214D98DD001BC288 /* GraphExecuted.swift */; };
 		7148666E214D98E7001BC288 /* ChartExecuted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148666D214D98E7001BC288 /* ChartExecuted.swift */; };
 		71486670214D9950001BC288 /* LineChart2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7148666F214D9950001BC288 /* LineChart2ViewController.xib */; };
+		71486672214DAB81001BC288 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486671214DAB81001BC288 /* Constants.swift */; };
+		71486674214DB6FC001BC288 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486673214DB6FC001BC288 /* Transaction.swift */; };
+		71486676214DBDA0001BC288 /* Deployed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486675214DBDA0001BC288 /* Deployed.swift */; };
+		71486678214EAA5B001BC288 /* Txid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71486677214EAA5B001BC288 /* Txid.swift */; };
 		7150E81F2145A5DF009CA176 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E81E2145A5DF009CA176 /* Contract.swift */; };
 		7150E82121460D54009CA176 /* TemperatureRangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E82021460D54009CA176 /* TemperatureRangeVC.swift */; };
 		7150E823214617BD009CA176 /* DeadlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7150E822214617BD009CA176 /* DeadlineVC.swift */; };
@@ -56,6 +60,10 @@
 		7148666B214D98DD001BC288 /* GraphExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphExecuted.swift; sourceTree = "<group>"; };
 		7148666D214D98E7001BC288 /* ChartExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartExecuted.swift; sourceTree = "<group>"; };
 		7148666F214D9950001BC288 /* LineChart2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineChart2ViewController.xib; sourceTree = "<group>"; };
+		71486671214DAB81001BC288 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		71486673214DB6FC001BC288 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		71486675214DBDA0001BC288 /* Deployed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deployed.swift; sourceTree = "<group>"; };
+		71486677214EAA5B001BC288 /* Txid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Txid.swift; sourceTree = "<group>"; };
 		7150E81E2145A5DF009CA176 /* Contract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
 		7150E82021460D54009CA176 /* TemperatureRangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureRangeVC.swift; sourceTree = "<group>"; };
 		7150E822214617BD009CA176 /* DeadlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineVC.swift; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				71DC6E432144D45200C58E60 /* NetworkUtility.swift */,
+				71486671214DAB81001BC288 /* Constants.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -239,6 +248,9 @@
 				71DC6E4A2145918500C58E60 /* Addresses.swift */,
 				7150E81E2145A5DF009CA176 /* Contract.swift */,
 				7176FAE821485A4A0033D557 /* Users.swift */,
+				71486673214DB6FC001BC288 /* Transaction.swift */,
+				71486675214DBDA0001BC288 /* Deployed.swift */,
+				71486677214EAA5B001BC288 /* Txid.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,16 +405,20 @@
 				71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */,
 				71DEEC77214CE32500C62380 /* ContractEditCargoVC.swift in Sources */,
 				7148666E214D98E7001BC288 /* ChartExecuted.swift in Sources */,
+				71486676214DBDA0001BC288 /* Deployed.swift in Sources */,
 				71DC6E47214587F600C58E60 /* Accounts.swift in Sources */,
 				716ABAE3214CD78700B51F89 /* TempSensorVC.swift in Sources */,
 				71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */,
 				7176FAE921485A4A0033D557 /* Users.swift in Sources */,
+				71486672214DAB81001BC288 /* Constants.swift in Sources */,
 				716730DB21481F6000B237F0 /* ExecutedContractVC.swift in Sources */,
 				71763C26212B23B600E99C3F /* AppDelegate.swift in Sources */,
 				716ABADE214CC04800B51F89 /* OfferedContractVC.swift in Sources */,
+				71486674214DB6FC001BC288 /* Transaction.swift in Sources */,
 				716D900F2134BF76009CD6D9 /* BasicContractInfoVC.swift in Sources */,
 				7150E82E21478B90009CA176 /* ViewExtension.swift in Sources */,
 				716ABADC214CC03600B51F89 /* RunningContractVC.swift in Sources */,
+				71486678214EAA5B001BC288 /* Txid.swift in Sources */,
 				7150E81F2145A5DF009CA176 /* Contract.swift in Sources */,
 				71DEEC79214D4B7300C62380 /* ContractEditDeadlineVC.swift in Sources */,
 				71DEEC7B214D4BD600C62380 /* ContractEditTempVC.swift in Sources */,

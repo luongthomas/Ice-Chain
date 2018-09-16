@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pjy-Ud-8cF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NdM-0c-22d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1277,7 +1277,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="jZE-Fq-DGY" kind="modal" id="w41-tK-5tJ"/>
+                                    <segue destination="jZE-Fq-DGY" kind="modal" id="88K-bH-fGs"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="67" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-A9-HJL">
@@ -1611,7 +1611,7 @@
         <!--Depositor Party-->
         <scene sceneID="07o-cj-mss">
             <objects>
-                <viewController storyboardIdentifier="DepositorParty" id="jZE-Fq-DGY" userLabel="Depositor Party" customClass="CargoDepositorVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DepositorParty" storyboardIdentifier="DepositorParty" id="jZE-Fq-DGY" userLabel="Depositor Party" customClass="CargoDepositorVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hQn-I2-QLG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1662,13 +1662,12 @@
                                     <action selector="selectDepositor:" destination="jZE-Fq-DGY" eventType="touchUpInside" id="Yf1-Kv-0aJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vo-hx-8Vn">
-                                <rect key="frame" x="146" y="387" width="82" height="82"/>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLn-jh-CjJ">
+                                <rect key="frame" x="149" y="400" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Check Button"/>
                                 <connections>
-                                    <action selector="popOffVC" destination="jZE-Fq-DGY" eventType="touchUpInside" id="Th6-JU-hb2"/>
-                                    <segue destination="AGE-jv-TWv" kind="unwind" unwindAction="unwindToGlobalWithSegue:" id="LWD-6a-15u"/>
+                                    <action selector="popOffVC" destination="jZE-Fq-DGY" eventType="touchUpInside" id="5sv-Xj-tEU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1679,12 +1678,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="isg-tK-2kK"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tW9-NJ-Gte"/>
                     <connections>
                         <outlet property="vendorBtn" destination="vww-dA-6J4" id="56o-ya-cmy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGq-gh-g5T" sceneMemberID="firstResponder"/>
-                <exit id="AGE-jv-TWv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1905.625" y="2057.6949999999997"/>
         </scene>
@@ -3078,7 +3077,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="deploy:" destination="NdM-0c-22d" eventType="touchUpInside" id="QJn-Jw-Zql"/>
                                     <segue destination="pjy-Ud-8cF" kind="modal" id="MXH-mg-yzt"/>
                                 </connections>
                             </button>
@@ -3113,22 +3111,70 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJn-bX-dsQ">
+                                <rect key="frame" x="25" y="482" width="325" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="X9l-Oi-ajY"/>
+                                </constraints>
+                                <state key="normal" title="Deposit">
+                                    <color key="titleColor" red="0.98846382389999998" green="0.98117973979999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="depositMoney:" destination="NdM-0c-22d" eventType="touchUpInside" id="lb9-WS-wYv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transaction Id:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8a3-qY-phM">
+                                <rect key="frame" x="0.0" y="97" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-txid-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-gK-2jo">
+                                <rect key="frame" x="0.0" y="132.5" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qBt-bW-KkV" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" constant="25" id="2oy-0B-gIo"/>
+                            <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="8a3-qY-phM" secondAttribute="trailing" id="4nD-tV-dxO"/>
                             <constraint firstItem="5RW-2E-P1v" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" constant="75" id="A0W-eQ-O2K"/>
                             <constraint firstItem="5RW-2E-P1v" firstAttribute="top" secondItem="8yb-DG-onG" secondAttribute="top" constant="250" id="AF1-0R-s0d"/>
                             <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="qBt-bW-KkV" secondAttribute="trailing" constant="25" id="AfT-vw-hSu"/>
+                            <constraint firstItem="8a3-qY-phM" firstAttribute="top" secondItem="8yb-DG-onG" secondAttribute="top" constant="77" id="D9I-3H-e1v"/>
+                            <constraint firstItem="6jm-gK-2jo" firstAttribute="top" secondItem="8a3-qY-phM" secondAttribute="bottom" constant="15" id="DGJ-rc-OSW"/>
+                            <constraint firstItem="8a3-qY-phM" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" id="Ho3-A8-p5K"/>
+                            <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="jJn-bX-dsQ" secondAttribute="trailing" constant="25" id="JCE-Zd-IpR"/>
+                            <constraint firstItem="qBt-bW-KkV" firstAttribute="top" secondItem="jJn-bX-dsQ" secondAttribute="bottom" constant="35" id="Vrl-AN-AdA"/>
                             <constraint firstItem="8yb-DG-onG" firstAttribute="bottom" secondItem="qBt-bW-KkV" secondAttribute="bottom" constant="50" id="Wx5-lh-dpc"/>
+                            <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="6jm-gK-2jo" secondAttribute="trailing" id="eSn-nb-1Ed"/>
                             <constraint firstItem="8yb-DG-onG" firstAttribute="trailing" secondItem="5RW-2E-P1v" secondAttribute="trailing" constant="75" id="kow-a1-kQE"/>
+                            <constraint firstItem="jJn-bX-dsQ" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" constant="25" id="ncB-ea-hV7"/>
+                            <constraint firstItem="6jm-gK-2jo" firstAttribute="leading" secondItem="8yb-DG-onG" secondAttribute="leading" id="o6s-z5-0UU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8yb-DG-onG"/>
                     </view>
                     <navigationItem key="navigationItem" id="U0I-Pf-Vwr"/>
                     <connections>
+                        <outlet property="depositButton" destination="jJn-bX-dsQ" id="cwK-kT-ECW"/>
+                        <outlet property="doneButton" destination="qBt-bW-KkV" id="O7J-Cg-raf"/>
                         <outlet property="spinner" destination="HQ7-B2-96u" id="4S4-X0-8wM"/>
                         <outlet property="status" destination="5lW-dL-Xwc" id="nfp-rn-2ij"/>
+                        <outlet property="txidLabel" destination="6jm-gK-2jo" id="elP-PA-oGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s32-Tu-1dC" userLabel="First Responder" sceneMemberID="firstResponder"/>
