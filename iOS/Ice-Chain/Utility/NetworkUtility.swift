@@ -93,8 +93,7 @@ class NetworkUtility {
         let contractCode = constants.byteCode
         let gasLimit = constants.gasLimit
         let gasPrice = constants.gasPrice
-//        let senderAddress = Users.shared.currentAddress
-        let senderAddress = "qcYXHtB2v6i2aScPf2SQc44AhF2JmSKj1K"
+        var senderAddress = Users.shared.currentAddress
         
         sendRpcCommand(command: "createcontract", parameters: [contractCode, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
             
@@ -128,8 +127,15 @@ class NetworkUtility {
         let gasPrice = constants.gasPrice
         let deposit = Contract.running.deposit / constants.qtumPricePerUSD
         let amountToSend = (deposit * 100).rounded() / 100
-//        let senderAddress = Users.shared.currentAddress
-        let senderAddress = "qcYXHtB2v6i2aScPf2SQc44AhF2JmSKj1K"
+        var senderAddress = Users.shared.currentAddress
+        
+        if Contract.shared.depositor.rawValue == "SELLER" {
+            senderAddress = Users.shared.sellerAddresses.last!
+        } else if Contract.shared.depositor.rawValue == "BUYER" {
+            senderAddress = Users.shared.buyerAddresses.last!
+        } else {
+            print("UNKNOWN SENDER ADDRESS")
+        }
         
         sendRpcCommand(command: "sendtocontract", parameters: [contractAddress, depositABI, amountToSend, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
             
