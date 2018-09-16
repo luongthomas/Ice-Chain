@@ -2,7 +2,7 @@
 ## Summary 
 Ice Chain is the IoT dApp project aimed to simplify cooperation between operators of the sensitive cargoes. The project offers the all-purpose financial instrument to replace cargo insurance or bank letter of credit and provide the close tie between transportation service quality and effecting payments. 
 
-This should be provided by the interaction between measuring Temperature Data Logger (TDL) device and **Qtum-based smart contract**.
+This should be provided by the interaction between measuring Temperature Data Logger (TDL) device and **Qtum-based smart contract**. 
 
 See our [Business plan](https://drive.google.com/file/d/17s6qXawPR3rnK8C85eox69PzEkbdI73v/view?usp=sharing) to get full description of the project and its detailed business dimension.
 Also, visit pur [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
@@ -48,7 +48,7 @@ Ice Chain offers the solution based on Qtum smart contract, which is based on tr
 **Step 3.** When the goods come to the buyer's warehouse, a warehouse worker uses special mobile application to automatically get the logs and send them to blockchain. Smart contract checks the temperature logs and searches for deviations. If there is no deviations found, smart contract transfers the payment to the account of the seller. Otherwise, the payment goes back to the buyer. 
 
 ## Smart contract: 2 solution
-According to Institute Cargo Clauses rules, temperature risks shouldn't be insured, as they lie close to force majeure circumstances. Therefore, there are serious obstacles for those companies who operate with temperature-sensitive cargoes. To solve this problem, Ice Chain offers another use of its smart contract 
+According to London Underwriters Institute Cargo Clauses rules, temperature risks shouldn't be insured, as they lie close to force majeure circumstances. Therefore, there are serious obstacles for those companies who operate with temperature-sensitive cargoes. To solve this problem, Ice Chain offers another use of its smart contract 
 
 ![Smart contract 2 solution](https://static.tildacdn.com/tild3634-6539-4935-b739-353666333530/__2018-09-10__182821.png)
 
