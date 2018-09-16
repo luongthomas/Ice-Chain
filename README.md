@@ -5,7 +5,7 @@ Ice Chain is the IoT dApp project aimed to simplify cooperation between operator
 This should be provided by the interaction between measuring Temperature Data Logger (TDL) device and **Qtum-based smart contract**. 
 
 See our [Business plan](https://drive.google.com/file/d/17s6qXawPR3rnK8C85eox69PzEkbdI73v/view?usp=sharing) to get full description of the project and its detailed business dimension.
-Also, visit pur [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
+Also, visit our [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
 
 # Technologies applied
 ## Smart Contract 
