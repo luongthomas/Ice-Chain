@@ -18,6 +18,9 @@ The second is that QTUM can utilize the Simple Payment Verification (SPV) protoc
 ## Temperature Data (TDL) Logger device 
 To deal with the field of cold chain Ice Chain implements Temperature Data Logger Device (TDL) which can measure temperature while transportation and send the temperature log to the mobile app via Bluetooth. 
 
+**Ice Chain TDL**
+![Ice Chain TDL](https://cdn-images-1.medium.com/max/800/1*ibqzbaM1mMv8z9CFOcBKYQ.jpeg)
+
 The TDL consists of:
 * Prefabricated plastic (or caprolon A-type) round case (⍉60x13 mm) with the holes for the device enable button and micro USB connector for charging the battery (isolated from the crystal logic)
 * Two-layer electrical board on fiberglass with microchip Atmega328
