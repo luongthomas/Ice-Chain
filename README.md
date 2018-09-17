@@ -38,7 +38,7 @@ The TDL consists of:
 # Solving problems
 We found out a several points we intend to improve at the market of sensitive cargo logistics.
 
-* Hard to find out who is responsible for the cargo damage among multiple intermediaries in the cold chain.
+* Hard to find out who is responsible for the cargo damage. Among multiple intermediaries in the cold chain, it is difficult to trace the exact time and place where the cargo perished.
 * The company's' working capital gets trapped on accounts of their partners for the time of legal proceedings. If something went wrong, processes of financial deals execution are too slow in the field of sensitive cargoes transportation.
 * Mistrust on the markets which, on top of everything else, makes barriers for SME-companies. The roots of mistrust come from two basic commercial risks: the risk of non-payment or payment delay, and the risk of defective goods supply
   
