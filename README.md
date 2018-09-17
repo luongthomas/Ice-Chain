@@ -7,7 +7,8 @@ This should be provided by the interaction between measuring Temperature Data Lo
 See our [Business plan](https://drive.google.com/file/d/17s6qXawPR3rnK8C85eox69PzEkbdI73v/view?usp=sharing) to get full description of the project and its detailed business dimension.
 Also, visit our [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
 
-Check the demo video of Ice Chain project
+Check the demo video of Ice Chain project below
+
 [![Alt text](https://img.youtube.com/vi/4n5POTLpsX8/0.jpg)](https://www.youtube.com/watch?v=4n5POTLpsX8)
 
 # Technologies applied
