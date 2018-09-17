@@ -7,6 +7,9 @@ This should be provided by the interaction between measuring Temperature Data Lo
 See our [Business plan](https://drive.google.com/file/d/17s6qXawPR3rnK8C85eox69PzEkbdI73v/view?usp=sharing) to get full description of the project and its detailed business dimension.
 Also, visit our [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
 
+Check the demo video of Ice Chain project
+[![Alt text](https://www.youtube.com/watch?v=4n5POTLpsX8&t=7s)
+
 # Technologies applied
 ## Smart Contract 
 Ice Chain makes use of the mobile platform to allow users to create and validate smart contracts on the blockchain. We required a blockchain technology that allows for smart contract capabilities. Another qualification is that since the mobile platform does not have a lot of memory, it is important that we have a platform that does not require downloading the entire blockchain for running a whole node to operate a smart contract.
