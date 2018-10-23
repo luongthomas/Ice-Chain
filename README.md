@@ -4,9 +4,6 @@ Ice Chain is the IoT dApp project aimed to simplify cooperation between operator
 
 This should be provided by the interaction between measuring Temperature Data Logger (TDL) device and **Qtum-based smart contract**. 
 
-See our [Business plan](https://drive.google.com/file/d/17s6qXawPR3rnK8C85eox69PzEkbdI73v/view?usp=sharing) to get full description of the project and its detailed business dimension.
-Also, visit our [website](http://icechain.tilda.ws/qtum#rec66323650) and live [Medium](https://medium.com/@icechain) blog.
-
 Check the demo video of Ice Chain project below
 
 [![Alt text](https://img.youtube.com/vi/4n5POTLpsX8/0.jpg)](https://www.youtube.com/watch?v=4n5POTLpsX8)
@@ -60,8 +57,3 @@ According to London Underwriters Institute Cargo Clauses rules, temperature risk
 ![Smart contract 2 solution](https://static.tildacdn.com/tild3634-6539-4935-b739-353666333530/__2018-09-10__182821.png)
 
 **Solution.** The transport operator (A) places the insurance deposit to the account. Then, the process goes as described before. Finally, in case of success, the deposit goes back to A. Otherwise, it goes to B (Buyer, or Cargo owner) as a compensation. 
-
-# Authors
-* **[Dan Kalinichenko](https://www.linkedin.com/in/kalinichenkoda/)** - Project Leader. Leads Business Plan developing. 
-* **[Romano Potechin](https://www.linkedin.com/in/romano-potechin-b3203415a/)** - Head of Technology. Leads Temperature Data Logger (TDL) device development.
-* **[Thomas Luong](https://www.linkedin.com/in/luongthomas/)** - Lead Developer. Leads Ice Chain app development.
