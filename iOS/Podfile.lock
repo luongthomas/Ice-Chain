@@ -1,11 +1,11 @@
 PODS:
   - Alamofire (4.7.3)
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
-  - RxBluetoothKit (5.1.3):
+  - Charts (3.2.1):
+    - Charts/Core (= 3.2.1)
+  - Charts/Core (3.2.1)
+  - RxBluetoothKit (5.1.4):
     - RxSwift (~> 4.0)
-  - RxSwift (4.2.0)
+  - RxSwift (4.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -21,9 +21,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  RxBluetoothKit: e52096832249c8fbb25b6bd1ad0b9cc2d619b0bd
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
+  RxBluetoothKit: d18f7beb5fd4d2b24659d57548e38d5d2fac885b
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
 
 PODFILE CHECKSUM: 82dc3ee5624cd72a15bc53b05c07c67b51b6eaf0
 
