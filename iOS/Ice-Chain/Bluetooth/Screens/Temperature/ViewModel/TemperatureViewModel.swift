@@ -70,6 +70,7 @@ class TemperatureViewModel: TemperatureViewModelType {
         
         guard let stringData: Data = value.data(using: .ascii) else { return }
         bluetoothService.writeValueTo(characteristic: characteristic, data: stringData)
+        
     }
     
     // If user sets notification on for the selected characteristic, we subscribe for notifications, otherwise
