@@ -49,35 +49,7 @@ final class CharacteristicsViewController: UIViewController, CustomView {
     }
 
     private func bindViewModel() {
-        subscribeViewModelOutputs()
         dataSource.bindItemsObserver(to: viewModel.characteristicsOutput)
-    }
-
-    private func subscribeViewModelOutputs() {
-        subscribeCharacteristicActionOutput(viewModel.characteristicReadOutput) { [weak self] in
-            self?.customView.refreshTableView()
-        }
-
-        subscribeCharacteristicActionOutput(viewModel.updatedValueAndNotificationOutput) { [weak self] in
-            self?.customView.refreshTableView()
-        }
-
-        subscribeCharacteristicActionOutput(viewModel.characteristicWriteOutput)
-    }
-
-    private func subscribeCharacteristicActionOutput(_ outputStream: Observable<Result<Characteristic, Error>>,
-                                                     additionalAction: (() -> Void)? = nil) {
-        outputStream.subscribe(onNext: { [unowned self] result in
-            switch result {
-            case .success:
-                self.showAlert(title: Constant.Strings.titleSuccess)
-                additionalAction?()
-            case .error(let error):
-                let bluetoothError = error as? BluetoothError
-                let message = bluetoothError?.description ?? error.localizedDescription
-                self.showAlert(title: Constant.Strings.titleError, message: message)
-            }
-        }).disposed(by: disposeBag)
     }
 
     private func registerCells() {
