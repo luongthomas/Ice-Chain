@@ -163,6 +163,12 @@ extension CharacteristicsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewModel = TemperatureViewModel(with: self.viewModel.bluetoothService, service: self.viewModel.selectedService, peripheral: self.viewModel.selectedPeripheral)
+        
+        guard let characteristic = dataSource.takeItemAt(index: indexPath.row) as? Characteristic else {
+            return
+        }
+
+        viewModel.setSelected(characteristic: characteristic)
         let viewController = TemperatureViewController(with: viewModel)
         
         show(viewController, sender: self)

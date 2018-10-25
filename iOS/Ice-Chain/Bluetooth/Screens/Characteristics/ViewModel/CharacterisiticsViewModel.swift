@@ -4,7 +4,6 @@ import RxBluetoothKit
 import RxSwift
 
 class CharacteristicsViewModel: CharacteristicsViewModelType {
-
     // MARK: - Public outputs
 
     var characteristicsOutput: Observable<Result<Characteristic, Error>> {
@@ -25,7 +24,7 @@ class CharacteristicsViewModel: CharacteristicsViewModelType {
 
     // MARK: - Private fields
 
-    weak private var selectedCharacteristic: Characteristic?
+    weak var selectedCharacteristic: Characteristic?
 
     let bluetoothService: RxBluetoothKitService
 
