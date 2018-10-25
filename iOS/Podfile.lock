@@ -5,26 +5,31 @@ PODS:
   - Charts/Core (3.2.1)
   - RxBluetoothKit (5.1.4):
     - RxSwift (~> 4.0)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - Charts
   - RxBluetoothKit
+  - RxCocoa (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Charts
     - RxBluetoothKit
+    - RxCocoa
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   RxBluetoothKit: d18f7beb5fd4d2b24659d57548e38d5d2fac885b
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
 
-PODFILE CHECKSUM: 82dc3ee5624cd72a15bc53b05c07c67b51b6eaf0
+PODFILE CHECKSUM: 31a6fd7914e080dbfd70e23cfe0c159d384aedcd
 
 COCOAPODS: 1.5.3

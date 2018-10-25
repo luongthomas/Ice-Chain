@@ -9,6 +9,7 @@ target 'Ice-Chain' do
   pod 'Alamofire', '~> 4.7'
   pod 'Charts'
   pod 'RxBluetoothKit'
+  pod 'RxCocoa', '~> 4.0'
 end
 
 
