@@ -49,35 +49,7 @@ final class CharacteristicsViewController: UIViewController, CustomView {
     }
 
     private func bindViewModel() {
-        subscribeViewModelOutputs()
         dataSource.bindItemsObserver(to: viewModel.characteristicsOutput)
-    }
-
-    private func subscribeViewModelOutputs() {
-        subscribeCharacteristicActionOutput(viewModel.characteristicReadOutput) { [weak self] in
-            self?.customView.refreshTableView()
-        }
-
-        subscribeCharacteristicActionOutput(viewModel.updatedValueAndNotificationOutput) { [weak self] in
-            self?.customView.refreshTableView()
-        }
-
-        subscribeCharacteristicActionOutput(viewModel.characteristicWriteOutput)
-    }
-
-    private func subscribeCharacteristicActionOutput(_ outputStream: Observable<Result<Characteristic, Error>>,
-                                                     additionalAction: (() -> Void)? = nil) {
-        outputStream.subscribe(onNext: { [unowned self] result in
-            switch result {
-            case .success:
-                self.showAlert(title: Constant.Strings.titleSuccess)
-                additionalAction?()
-            case .error(let error):
-                let bluetoothError = error as? BluetoothError
-                let message = bluetoothError?.description ?? error.localizedDescription
-                self.showAlert(title: Constant.Strings.titleError, message: message)
-            }
-        }).disposed(by: disposeBag)
     }
 
     private func registerCells() {
@@ -162,30 +134,43 @@ extension CharacteristicsViewController: UITableViewDelegate {
         return 140
     }
 
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let characteristic = dataSource.takeItemAt(index: indexPath.row) as? Characteristic else {
+//            return
+//        }
+//
+//        viewModel.setSelected(characteristic: characteristic)
+//
+//        let actionSheet = UIAlertController(title: Constant.Strings.titleChooseAction,
+//                message: nil,
+//                preferredStyle: .actionSheet)
+//
+//        if characteristic.properties.contains(.notify) {
+//            addNotificationActions(to: actionSheet)
+//        }
+//
+//        if characteristic.properties.contains(.read) {
+//            addReadActions(to: actionSheet)
+//        }
+//
+//        if characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse) {
+//            addWriteActions(to: actionSheet)
+//        }
+//
+//        addDismissAction(to: actionSheet)
+//        present(actionSheet, animated: true, completion: nil)
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = TemperatureViewModel(with: self.viewModel.bluetoothService, service: self.viewModel.selectedService, peripheral: self.viewModel.selectedPeripheral)
+        
         guard let characteristic = dataSource.takeItemAt(index: indexPath.row) as? Characteristic else {
             return
         }
 
         viewModel.setSelected(characteristic: characteristic)
-
-        let actionSheet = UIAlertController(title: Constant.Strings.titleChooseAction,
-                message: nil,
-                preferredStyle: .actionSheet)
-
-        if characteristic.properties.contains(.notify) {
-            addNotificationActions(to: actionSheet)
-        }
-
-        if characteristic.properties.contains(.read) {
-            addReadActions(to: actionSheet)
-        }
-
-        if characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse) {
-            addWriteActions(to: actionSheet)
-        }
-
-        addDismissAction(to: actionSheet)
-        present(actionSheet, animated: true, completion: nil)
+        let viewController = TemperatureViewController(with: viewModel)
+        
+        show(viewController, sender: self)
     }
 }
