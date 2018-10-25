@@ -27,11 +27,11 @@ class CharacteristicsViewModel: CharacteristicsViewModelType {
 
     weak private var selectedCharacteristic: Characteristic?
 
-    private let bluetoothService: RxBluetoothKitService
+    let bluetoothService: RxBluetoothKitService
 
-    private let selectedService: Service
+    let selectedService: Service
 
-    private let selectedPeripheral: Peripheral
+    let selectedPeripheral: Peripheral
 
     private let discoveredCharacteristicsSubject = PublishSubject<Result<Characteristic, Error>>()
 

@@ -162,30 +162,37 @@ extension CharacteristicsViewController: UITableViewDelegate {
         return 140
     }
 
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let characteristic = dataSource.takeItemAt(index: indexPath.row) as? Characteristic else {
+//            return
+//        }
+//
+//        viewModel.setSelected(characteristic: characteristic)
+//
+//        let actionSheet = UIAlertController(title: Constant.Strings.titleChooseAction,
+//                message: nil,
+//                preferredStyle: .actionSheet)
+//
+//        if characteristic.properties.contains(.notify) {
+//            addNotificationActions(to: actionSheet)
+//        }
+//
+//        if characteristic.properties.contains(.read) {
+//            addReadActions(to: actionSheet)
+//        }
+//
+//        if characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse) {
+//            addWriteActions(to: actionSheet)
+//        }
+//
+//        addDismissAction(to: actionSheet)
+//        present(actionSheet, animated: true, completion: nil)
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let characteristic = dataSource.takeItemAt(index: indexPath.row) as? Characteristic else {
-            return
-        }
-
-        viewModel.setSelected(characteristic: characteristic)
-
-        let actionSheet = UIAlertController(title: Constant.Strings.titleChooseAction,
-                message: nil,
-                preferredStyle: .actionSheet)
-
-        if characteristic.properties.contains(.notify) {
-            addNotificationActions(to: actionSheet)
-        }
-
-        if characteristic.properties.contains(.read) {
-            addReadActions(to: actionSheet)
-        }
-
-        if characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse) {
-            addWriteActions(to: actionSheet)
-        }
-
-        addDismissAction(to: actionSheet)
-        present(actionSheet, animated: true, completion: nil)
+        let viewModel = TemperatureViewModel(with: self.viewModel.bluetoothService, service: self.viewModel.selectedService, peripheral: self.viewModel.selectedPeripheral)
+        let viewController = TemperatureViewController(with: viewModel)
+        
+        show(viewController, sender: self)
     }
 }

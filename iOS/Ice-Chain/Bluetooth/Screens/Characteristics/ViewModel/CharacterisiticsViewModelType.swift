@@ -21,4 +21,9 @@ protocol CharacteristicsViewModelType {
 
     func setNotificationsState(enabled: Bool)
 
+    var selectedPeripheral: Peripheral { get }
+    
+    var bluetoothService: RxBluetoothKitService { get }
+    
+    var selectedService: Service { get }
 }
