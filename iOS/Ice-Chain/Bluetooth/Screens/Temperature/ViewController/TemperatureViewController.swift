@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import RxBluetoothKit
+import RxSwift
+import RxCocoa
 
 class TemperatureViewController: UIViewController {
     
     private let viewModel: TemperatureViewModelType
+    
+    private let disposeBag = DisposeBag()
     
     init(with viewModel: TemperatureViewModelType) {
         self.viewModel = viewModel
@@ -24,7 +29,7 @@ class TemperatureViewController: UIViewController {
     var temperatureLabel: UILabel = {
         let textView = UILabel()
         textView.text = "Temperature"
-        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        textView.font = UIFont.boldSystemFont(ofSize: 26)
         textView.textAlignment = .center
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -43,10 +48,71 @@ class TemperatureViewController: UIViewController {
 
     @objc func handleTempBtnPress() {
         print("Pressed Temperature Btn")
+        
+        // 0 will signify returning one temperature
+        self.viewModel.writeToCharacteristic(value: "0")
+
+        
     }
+    
+    private func bindViewModel() {
+        subscribeViewModelOutputs()
+    }
+    
+    private func subscribeViewModelOutputs() {
+        subscribeCharacteristicActionOutput(viewModel.characteristicReadOutput)
+        subscribeCharacteristicActionOutput(viewModel.updatedValueAndNotificationOutput) { output in
+            let filteredOutput = output.digits
+            guard let tempDouble = Double(filteredOutput) else { return }
+            var tempText = ""
+            if tempDouble >= 0.0 {
+                tempText = "+\(tempDouble)\u{00B0} Celcius"
+            } else {
+                tempText = "-\(tempDouble)\u{00B0} Celcius"
+            }
+            
+            self.temperatureLabel.text = tempText
+            
+        }
+        subscribeCharacteristicActionOutput(viewModel.characteristicWriteOutput)
+
+    }
+    
+    private func subscribeCharacteristicOutput(_ outputStream: Observable<Characteristic>) {
+        outputStream.subscribe(onNext: { [unowned self] output in
+            if let data = output.value {
+                self.temperatureLabel.text = String(data: data, encoding: .ascii)
+            }
+            
+            
+        }).disposed(by: disposeBag)
+    }
+    
+    private func subscribeCharacteristicActionOutput(_ outputStream: Observable<Result<Characteristic, Error>>,
+                                                     additionalAction: ((String) -> Void)? = nil) {
+        outputStream.subscribe(onNext: { [unowned self] result in
+            switch result {
+            case .success(let value):
+                if let data = value.characteristic.value {
+                    let output = String(data: data, encoding: .ascii) ?? ""
+                    print(output)
+                    additionalAction?(output)
+                }
+                
+            case .error(let error):
+                let bluetoothError = error as? BluetoothError
+                let message = bluetoothError?.description ?? error.localizedDescription
+                self.showAlert(title: Constant.Strings.titleError, message: message)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.setNotificationsState(enabled: true)
+        bindViewModel()
         view.backgroundColor = .white
         
         view.addSubview(temperatureLabel)
@@ -65,5 +131,15 @@ class TemperatureViewController: UIViewController {
         temperatureButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         temperatureButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         temperatureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    private func showAlert(title: String, message: String? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.Strings.titleOk, style: .default) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        alertController.addAction(action)
+        present(alertController, animated: true)
     }
 }

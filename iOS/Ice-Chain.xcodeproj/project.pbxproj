@@ -74,6 +74,7 @@
 		71C88F882181608900364377 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F872181608900364377 /* TemperatureViewController.swift */; };
 		71C88F8A2181623900364377 /* TemperatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F892181623900364377 /* TemperatureViewModel.swift */; };
 		71C88F8C2181625B00364377 /* TemperatureViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F8B2181625B00364377 /* TemperatureViewModelType.swift */; };
+		71C88F91218218EA00364377 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F90218218EA00364377 /* String.swift */; };
 		71DC6E442144D45200C58E60 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E432144D45200C58E60 /* NetworkUtility.swift */; };
 		71DC6E47214587F600C58E60 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E46214587F600C58E60 /* Accounts.swift */; };
 		71DC6E4B2145918500C58E60 /* Addresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC6E4A2145918500C58E60 /* Addresses.swift */; };
@@ -153,6 +154,7 @@
 		71C88F872181608900364377 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		71C88F892181623900364377 /* TemperatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewModel.swift; sourceTree = "<group>"; };
 		71C88F8B2181625B00364377 /* TemperatureViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewModelType.swift; sourceTree = "<group>"; };
+		71C88F90218218EA00364377 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		71DC6E432144D45200C58E60 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		71DC6E46214587F600C58E60 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		71DC6E4A2145918500C58E60 /* Addresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addresses.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				7150E82D21478B90009CA176 /* ViewExtension.swift */,
+				71C88F90218218EA00364377 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				71C88F6F218155A200364377 /* ScanResultsTableViewCell.swift in Sources */,
 				71DEEC7D214D55B100C62380 /* ContractEditDeployVC.swift in Sources */,
 				71C88F71218155A200364377 /* CellUpdatable.swift in Sources */,
+				71C88F91218218EA00364377 /* String.swift in Sources */,
 				71C88F77218155A200364377 /* UIView+Style.swift in Sources */,
 				71C88F75218155A200364377 /* Characterist+CBCharacteristicWriteType.swift in Sources */,
 				71C88F76218155A200364377 /* Characteristic+Hashable.swift in Sources */,
