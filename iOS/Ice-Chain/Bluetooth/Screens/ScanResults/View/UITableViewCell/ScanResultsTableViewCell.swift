@@ -5,8 +5,6 @@ final class ScanResultTableViewCell: UITableViewCell {
 
     private let peripheralNameLabel = UILabel(style: Stylesheet.Commons.titleLabel)
 
-    private let advertisementDataLabel = UILabel(style: Stylesheet.Commons.descriptionLabel)
-
     private let rssiLabel = UILabel(style: Stylesheet.Commons.descriptionLabel)
 
     private let bluetoothImageView = UIImageView(image: Constant.ImageRepo.bluetooth)
@@ -18,7 +16,7 @@ final class ScanResultTableViewCell: UITableViewCell {
         applyStyles()
         setConstraints()
         backgroundColor = .white
-        selectionStyle = .none
+        selectionStyle = .blue
         connectButton.setTitle("Connect", for: .normal)
     }
 
@@ -30,7 +28,6 @@ final class ScanResultTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         peripheralNameLabel.text = nil
-        advertisementDataLabel.text = nil
         rssiLabel.text = nil
     }
 
@@ -45,7 +42,7 @@ final class ScanResultTableViewCell: UITableViewCell {
     }
 
     private func setConstraints() {
-        [peripheralNameLabel, advertisementDataLabel, bluetoothImageView, rssiLabel, connectButton].forEach { view in
+        [peripheralNameLabel, bluetoothImageView, rssiLabel, connectButton].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
         }
@@ -58,11 +55,7 @@ final class ScanResultTableViewCell: UITableViewCell {
         peripheralNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constant.Constraints.verticalDefault).isActive = true
         peripheralNameLabel.leftAnchor.constraint(equalTo: bluetoothImageView.rightAnchor, constant: Constant.Constraints.horizontalDefault).isActive = true
 
-        advertisementDataLabel.topAnchor.constraint(equalTo: peripheralNameLabel.bottomAnchor, constant: Constant.Constraints.verticalDefault).isActive = true
-        advertisementDataLabel.leftAnchor.constraint(equalTo: bluetoothImageView.rightAnchor, constant: Constant.Constraints.horizontalDefault).isActive = true
-        advertisementDataLabel.rightAnchor.constraint(equalTo: connectButton.leftAnchor, constant: -Constant.Constraints.horizontalDefault).isActive = true
-
-        rssiLabel.topAnchor.constraint(equalTo: advertisementDataLabel.bottomAnchor, constant: Constant.Constraints.verticalDefault).isActive = true
+        rssiLabel.topAnchor.constraint(equalTo: peripheralNameLabel.bottomAnchor, constant: Constant.Constraints.verticalDefault).isActive = true
         rssiLabel.leftAnchor.constraint(equalTo: bluetoothImageView.rightAnchor, constant: Constant.Constraints.horizontalDefault).isActive = true
         rssiLabel.rightAnchor.constraint(equalTo: connectButton.leftAnchor, constant: -Constant.Constraints.horizontalDefault).isActive = true
 
@@ -77,8 +70,7 @@ extension ScanResultTableViewCell: UpdatableCell {
 
     func update(with item: ScannedPeripheral) {
         peripheralNameLabel.text = item.advertisementData.localName ?? item.peripheral.identifier.uuidString
-        advertisementDataLabel.text = "\(item.advertisementData.advertisementData)"
-        rssiLabel.text = "RSSI: \(item.rssi)"
+        rssiLabel.text = "Signal Strength: \(item.rssi)"
         let style = item.peripheral.isConnected ? Stylesheet.Commons.connectedButton : Stylesheet.Commons.connectButton
         connectButton.apply(style)
     }
