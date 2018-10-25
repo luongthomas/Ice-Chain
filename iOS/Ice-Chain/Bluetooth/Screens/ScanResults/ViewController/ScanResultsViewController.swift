@@ -21,17 +21,20 @@ class ScanResultsViewController: UIViewController, CustomView {
         super.init(nibName: nil, bundle: nil)
     }
 
-    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let dataItem = ScanResultsViewModelItem(Constant.Strings.scanResultSectionTitle)
+        self.dataSource = TableViewDataSource<ScanResultsViewModelItem>(dataItem: dataItem)
+        self.viewModel = ScanResultsViewModel(with: RxBluetoothKitService())
+        super.init(coder: aDecoder)
     }
-
+    
     override func loadView() {
         view = ViewClass()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
         setupTableView()
         setNavigationBar()
         bindViewModel()
@@ -111,6 +114,10 @@ class ScanResultsViewController: UIViewController, CustomView {
         let viewController = PeripheralServicesViewController(with: dataSource, viewModel: viewModel)
 
         show(viewController, sender: self)
+    }
+    
+    @IBAction func popOffVC() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

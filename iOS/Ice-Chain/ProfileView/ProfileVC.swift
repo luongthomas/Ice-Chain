@@ -9,7 +9,6 @@
 import UIKit
 
 class ProfileVC: UIViewController, UITextFieldDelegate {
-
     
     @IBOutlet weak var hamburgerView: UIView!
     @IBOutlet weak var trailingHamburger: NSLayoutConstraint!
@@ -91,6 +90,12 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         qtumAmount.text = "\(Users.shared.sellerBalance) QTUM"
         Users.shared.setSellerAsCurrentUser()
         
+    }
+    
+    @IBAction func transportationBtn(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
+        self.navigationController?.present(newViewController, animated: true, completion: nil)
     }
 }
 

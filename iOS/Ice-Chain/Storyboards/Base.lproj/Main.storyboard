@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cm9-UM-ggR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -541,7 +541,7 @@
                                             <segue destination="hPy-UJ-hVF" kind="push" id="6es-by-ltF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B69-St-suO" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B69-St-suO" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                         <rect key="frame" x="21" y="322" width="332" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
@@ -557,6 +557,10 @@
                                                 <real key="value" value="7"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="transportationBtn:" destination="fq0-3n-zfj" eventType="touchUpInside" id="A7p-z2-Jk5"/>
+                                            <segue destination="kbA-Ea-wUG" kind="modal" id="5X6-c0-nRp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-ZQ-1pS" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
                                         <rect key="frame" x="21" y="251" width="332" height="55"/>
@@ -2775,32 +2779,27 @@
             </objects>
             <point key="canvasLocation" x="5734.3999999999996" y="525.33733133433293"/>
         </scene>
-        <!--Temp SensorVC-->
+        <!--Scan Results View Controller-->
         <scene sceneID="eqc-ux-VDO">
             <objects>
-                <viewController id="Cm9-UM-ggR" customClass="TempSensorVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scanResultsVC" id="Cm9-UM-ggR" customClass="ScanResultsViewController" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1mf-MP-tTN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nr-3M-LKm">
-                                <rect key="frame" x="165" y="122" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xbp-l3-2fx"/>
                     </view>
-                    <connections>
-                        <outlet property="temp" destination="2nr-3M-LKm" id="GRZ-Sr-gaH"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="s0R-fc-vcp">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Ej8-OH-GdJ">
+                            <connections>
+                                <action selector="popOffVC" destination="Cm9-UM-ggR" id="Adg-w6-4W0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oz-Mq-RTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6916" y="541"/>
+            <point key="canvasLocation" x="4455" y="-1171"/>
         </scene>
         <!--ChartVC-->
         <scene sceneID="n18-Yd-Deh">
@@ -2839,7 +2838,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTH-a7-rfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4761.6000000000004" y="-1141.529235382309"/>
+            <point key="canvasLocation" x="5700" y="-1141.9790104947526"/>
         </scene>
         <!--Cargo Value-->
         <scene sceneID="f6g-FP-efM">
@@ -3046,7 +3045,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1X-Qz-EuH" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7648.8000000000002" y="-1167.1664167916042"/>
+            <point key="canvasLocation" x="8588" y="-1167.1664167916042"/>
         </scene>
         <!--Contract Edit DeployVC-->
         <scene sceneID="c74-18-bVi">
@@ -3179,7 +3178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s32-Tu-1dC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8761.6000000000004" y="-1170.3148425787108"/>
+            <point key="canvasLocation" x="9700" y="-1170.7646176911546"/>
         </scene>
         <!--Vaccine - Created-->
         <scene sceneID="PBr-ah-sln">
@@ -3391,7 +3390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bkb-v2-uE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5622.3999999999996" y="-1146.9265367316343"/>
+            <point key="canvasLocation" x="6560.8000000000002" y="-1147.3763118440781"/>
         </scene>
         <!--Deadline-->
         <scene sceneID="oLJ-b8-WMI">
@@ -3442,7 +3441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwQ-UO-ETG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7009.6000000000004" y="-1159.52023988006"/>
+            <point key="canvasLocation" x="7948" y="-1159.9700149925038"/>
         </scene>
         <!--Temperature Range-->
         <scene sceneID="3Rq-eN-JhF">
@@ -3612,7 +3611,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuV-rr-Phv" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6296" y="-1156.8215892053975"/>
+            <point key="canvasLocation" x="7234.3999999999996" y="-1157.2713643178411"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qyJ-UW-jnT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kbA-Ea-wUG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hoZ-xF-AfW">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Cm9-UM-ggR" kind="relationship" relationship="rootViewController" id="DHg-58-xaJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pkd-Ze-QT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3408.8000000000002" y="-1200.4497751124438"/>
         </scene>
     </scenes>
     <resources>
@@ -3625,6 +3642,6 @@
         <image name="refresh" width="67.5" height="67.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3rR-Yi-dJ1"/>
+        <segue reference="cKu-72-fpc"/>
     </inferredMetricsTieBreakers>
 </document>
