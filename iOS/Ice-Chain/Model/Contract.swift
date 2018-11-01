@@ -11,6 +11,7 @@ import Foundation
 
 
 class Contract  {
+    
     var name: String
     var buyerEmail: String
     var cargoType: String
@@ -24,11 +25,7 @@ class Contract  {
     var status: Status
     var deposit: Double
     
-    //MARK: Archiving Paths
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("contracts")
-    
-    init(type: String) {
+    private init(type: String) {
         self.name = ""
         self.buyerEmail = ""
         self.cargoType = ""
@@ -43,7 +40,6 @@ class Contract  {
         self.deposit = 0.0
         
         if type == "running" {
-            self.name = "Banana Contract"
             self.buyerEmail = "buyer@gmail.com"
             self.cargoType = "Bananas"
             self.tempMax = 21
@@ -57,7 +53,6 @@ class Contract  {
             self.deposit = 95.14
             
         } else if type == "executed" {
-            self.name = "Cake Contract"
             self.buyerEmail = "buyer@gmail.com"
             self.cargoType = "Cakes"
             self.tempMax = 2
@@ -92,32 +87,6 @@ class Contract  {
     static let running = Contract(type: "running")
     static let executed = Contract(type: "executed")
     
-    
-    //MARK: NSCoding
-    
-//    func encode(with aCoder: NSCoder) {
-//        aCoder.encode(name, forKey: PropertyKey.name)
-//        aCoder.encode(photo, forKey: PropertyKey.photo)
-//        aCoder.encode(rating, forKey: PropertyKey.rating)
-//    }
-//    
-//    required convenience init?(coder aDecoder: NSCoder) {
-//        
-//        // The name is required. If we cannot decode a name string, the initializer should fail.
-//        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
-//            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
-//            return nil
-//        }
-//        
-//        // Because photo is an optional property of Meal, just use conditional cast.
-//        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-//        
-//        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
-//        
-//        // Must call designated initializer.
-//        self.init(name: name, photo: photo, rating: rating)
-//        
-//    }
 
 }
 

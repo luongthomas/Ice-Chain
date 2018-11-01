@@ -39,8 +39,6 @@
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
 		71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */; };
 		7176FAE921485A4A0033D557 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176FAE821485A4A0033D557 /* Users.swift */; };
-		71C29224218AAAD100191271 /* ContractsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29223218AAAD100191271 /* ContractsTableViewController.swift */; };
-		71C29227218AAB3300191271 /* ContractsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29226218AAB3300191271 /* ContractsTableViewCell.swift */; };
 		71C88F62218155A200364377 /* PeripheralServicesViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */; };
 		71C88F63218155A200364377 /* PeripheralServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */; };
 		71C88F64218155A200364377 /* PeripheralServicesViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */; };
@@ -121,8 +119,6 @@
 		71763C2F212B23B800E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71763C31212B23B800E99C3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7176FAE821485A4A0033D557 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		71C29223218AAAD100191271 /* ContractsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewController.swift; sourceTree = "<group>"; };
-		71C29226218AAB3300191271 /* ContractsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewCell.swift; sourceTree = "<group>"; };
 		71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelItem.swift; sourceTree = "<group>"; };
 		71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModel.swift; sourceTree = "<group>"; };
 		71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelType.swift; sourceTree = "<group>"; };
@@ -281,7 +277,6 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
-				71C29222218AAAB900191271 /* ContractList */,
 				71C88F0A2181500C00364377 /* Bluetooth */,
 				7148665E214D71D9001BC288 /* Graphing */,
 				7176FAEA21485E2D0033D557 /* ProfileView */,
@@ -304,23 +299,6 @@
 				71763C27212B23B600E99C3F /* ProfileVC.swift */,
 			);
 			path = ProfileView;
-			sourceTree = "<group>";
-		};
-		71C29222218AAAB900191271 /* ContractList */ = {
-			isa = PBXGroup;
-			children = (
-				71C29225218AAB2200191271 /* Cells */,
-				71C29223218AAAD100191271 /* ContractsTableViewController.swift */,
-			);
-			path = ContractList;
-			sourceTree = "<group>";
-		};
-		71C29225218AAB2200191271 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				71C29226218AAB3300191271 /* ContractsTableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		71C88F0A2181500C00364377 /* Bluetooth */ = {
@@ -842,7 +820,6 @@
 				71C88F6E218155A200364377 /* ScanResultsViewModel.swift in Sources */,
 				71C88F6A218155A200364377 /* CharacteristicsTableViewCell.swift in Sources */,
 				71763C28212B23B600E99C3F /* ProfileVC.swift in Sources */,
-				71C29227218AAB3300191271 /* ContractsTableViewCell.swift in Sources */,
 				71C88F66218155A200364377 /* PeripheralServicesViewController.swift in Sources */,
 				71C88F80218155A200364377 /* RxBluetoothKitService.swift in Sources */,
 				71C88F8A2181623900364377 /* TemperatureViewModel.swift in Sources */,
@@ -875,7 +852,6 @@
 				716ABAE1214CCD3800B51F89 /* ContractEditBasicVC.swift in Sources */,
 				71C88F65218155A200364377 /* PeripheralServiceCell.swift in Sources */,
 				7150E82B21477338009CA176 /* DisplayContractVC.swift in Sources */,
-				71C29224218AAAD100191271 /* ContractsTableViewController.swift in Sources */,
 				7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */,
 				7150E83021482146009CA176 /* MyContractsVC.swift in Sources */,
 				71C88F67218155A200364377 /* CharacteristicsViewModelItem.swift in Sources */,
