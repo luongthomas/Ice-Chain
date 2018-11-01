@@ -629,6 +629,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buyerBtn" destination="TXe-wS-sBB" id="Mbb-DZ-YuS"/>
+                        <outlet property="createContractBtn" destination="pdP-wb-EQl" id="Rea-fF-0Ye"/>
                         <outlet property="hamburgerView" destination="0KI-b4-ku9" id="9qa-eA-dQn"/>
                         <outlet property="leadingHamburger" destination="Sjb-HB-6EW" id="QUb-4a-MV6"/>
                         <outlet property="loggedInUserLbl" destination="984-dn-NEb" id="pWN-Mb-H1t"/>
