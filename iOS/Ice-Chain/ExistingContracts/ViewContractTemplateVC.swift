@@ -41,14 +41,29 @@ class ViewContractTemplateVC: UIViewController {
         } else {
             role.text = "You Are Buyer"
         }
+        let ON_APPROVAL = 0
+        let RUNNING = 1
+        let FAILED = 2
+        let COMPLETED = 3
         
-        status.text = String(contract!.status.hashValue)
+        switch contract!.status {
+        case ON_APPROVAL:
+            status.text = "On Approval"
+        case RUNNING:
+            status.text = "Running"
+        case FAILED:
+            status.text = "Failed"
+        case COMPLETED:
+            status.text = "Completed"
+        default:
+            status.text = "Unknown status"
+        }
+        
         email.text = contract!.depositorEmail
         cargoType.text = contract!.description
         tempRange.text = "From \(contract!.minTemperature) C to \(contract!.maxTemperature) C"
         deadline.text = dateFormatString
         value.text = "\(valueDollars) USD"
-        
         deposit.text = "\(depositDollars) USD"
     }
     

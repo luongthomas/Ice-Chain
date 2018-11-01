@@ -59,15 +59,15 @@ class ContractsTableViewController: UITableViewController {
         
         let contractStatus = contract.status
         
-        let NOT_RUNNING = 0
+        let ON_APPROVAL = 0
         let RUNNING = 1
         let FAILED = 2
         let COMPLETED = 3
         
         switch contractStatus {
-        case NOT_RUNNING:
-            cell.contractImageView.image = UIImage(named: "not_running")
-            cell.contractStatusLabel.text = "Not Running"
+        case ON_APPROVAL:
+            cell.contractImageView.image = UIImage(named: "on_approval")
+            cell.contractStatusLabel.text = "On Approval"
         case RUNNING:
             cell.contractImageView.image = UIImage(named: "running")
             cell.contractStatusLabel.text = "Running"
