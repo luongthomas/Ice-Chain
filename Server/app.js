@@ -48,7 +48,7 @@ app.get("/database-insert", (req, res, next) => {
 		var db = database.db()
 		var cursor = db.collection('Contracts').insertOne({
 			ContractId: 9,
-			ContractName: "Lotion Shipment"
+			ContractName: "Lotion Shipment",
 			Description: "Lotion",
 			DepositorName: "Buyer",
 			DepositorEmail: "Buyer@gmail.com"
