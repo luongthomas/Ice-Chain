@@ -33,6 +33,35 @@ class NetworkUtility {
     
     let jsonDecoder = JSONDecoder()
     
+    
+    // From EC2
+    func getContracts() {
+        let url = "http://35.165.80.135:5124/database-insert"
+        
+        Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
+            
+            switch response.result {
+            case .success( _):
+                do {
+                    print(response.value)
+                    print(response.data)
+                    print("jsonDecode")
+                    let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
+                    if let contract = contracts.items.first {
+                        print(contract.contractName)
+                        print(contract.status)
+                    }
+                    
+                } catch {
+                    print("Error \(error)")
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func getAccounts() {
         sendRpcCommand(command: "listaccounts", parameters: []) { data, err in
             if let data = data {
@@ -80,8 +109,8 @@ class NetworkUtility {
                 print("\(err)")
             }
             
-            print("Seller addresses are: \(Users.shared.sellerAddresses) with amount of \(Users.shared.sellerBalance)")
-            print("Buyer addresses are: \(Users.shared.buyerAddresses) with amount of \(Users.shared.buyerBalance)")
+//            print("Seller addresses are: \(Users.shared.sellerAddresses) with amount of \(Users.shared.sellerBalance)")
+//            print("Buyer addresses are: \(Users.shared.buyerAddresses) with amount of \(Users.shared.buyerBalance)")
             
             }
         )
@@ -101,9 +130,9 @@ class NetworkUtility {
                 do {
                     let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
                     
-                    print("Transaction ID: \(response.result.txid)")
+//                    print("Transaction ID: \(response.result.txid)")
                     if let address = response.result.address {
-                        print("Address: \(address)")
+//                        print("Address: \(address)")
                         Deployed.shared.contractAddresses.append(address)
                     }
                     Deployed.shared.transactionIds.append(response.result.txid)
@@ -211,7 +240,7 @@ class NetworkUtility {
             
             switch response.result {
             case .success( _):
-                print(response.value)
+//                print(response.value)
                 completionHandler(response.data, nil)
             case .failure(let error):
                 completionHandler(nil, error)

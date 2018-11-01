@@ -11,6 +11,10 @@ import Foundation
 
 
 class Contract  {
+    
+    
+    
+    
     var name: String
     var buyerEmail: String
     var cargoType: String

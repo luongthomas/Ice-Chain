@@ -42,6 +42,7 @@
 		71C29224218AAAD100191271 /* ContractsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29223218AAAD100191271 /* ContractsTableViewController.swift */; };
 		71C29227218AAB3300191271 /* ContractsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29226218AAB3300191271 /* ContractsTableViewCell.swift */; };
 		71C29229218AB92600191271 /* ViewContractTemplateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29228218AB92600191271 /* ViewContractTemplateVC.swift */; };
+		71C2922B218B7C8400191271 /* ContractDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2922A218B7C8400191271 /* ContractDB.swift */; };
 		71C88F62218155A200364377 /* PeripheralServicesViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */; };
 		71C88F63218155A200364377 /* PeripheralServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */; };
 		71C88F64218155A200364377 /* PeripheralServicesViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */; };
@@ -125,6 +126,7 @@
 		71C29223218AAAD100191271 /* ContractsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewController.swift; sourceTree = "<group>"; };
 		71C29226218AAB3300191271 /* ContractsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewCell.swift; sourceTree = "<group>"; };
 		71C29228218AB92600191271 /* ViewContractTemplateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContractTemplateVC.swift; sourceTree = "<group>"; };
+		71C2922A218B7C8400191271 /* ContractDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractDB.swift; sourceTree = "<group>"; };
 		71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelItem.swift; sourceTree = "<group>"; };
 		71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModel.swift; sourceTree = "<group>"; };
 		71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelType.swift; sourceTree = "<group>"; };
@@ -284,13 +286,13 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				71DC6E45214587B300C58E60 /* Model */,
 				71C29222218AAAB900191271 /* ContractList */,
 				71C88F0A2181500C00364377 /* Bluetooth */,
 				7148665E214D71D9001BC288 /* Graphing */,
 				7176FAEA21485E2D0033D557 /* ProfileView */,
 				7150E82C21478B7C009CA176 /* Extensions */,
 				71DC6E4D214596CD00C58E60 /* Storyboards */,
-				71DC6E45214587B300C58E60 /* Model */,
 				71DC6E422144D43000C58E60 /* Utility */,
 				716D900D2134BF15009CD6D9 /* Create Contract */,
 				716730D921481F3300B237F0 /* ExistingContracts */,
@@ -682,6 +684,7 @@
 				71486673214DB6FC001BC288 /* Transaction.swift */,
 				71486675214DBDA0001BC288 /* Deployed.swift */,
 				71486677214EAA5B001BC288 /* Txid.swift */,
+				71C2922A218B7C8400191271 /* ContractDB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				71C29229218AB92600191271 /* ViewContractTemplateVC.swift in Sources */,
 				7148666C214D98DD001BC288 /* GraphExecuted.swift in Sources */,
 				71C88F7A218155A200364377 /* BaseView.swift in Sources */,
+				71C2922B218B7C8400191271 /* ContractDB.swift in Sources */,
 				71486664214D723B001BC288 /* DemoBaseViewController.swift in Sources */,
 				71C88F882181608900364377 /* TemperatureViewController.swift in Sources */,
 				7150E82721463C60009CA176 /* CargoDepositorVC.swift in Sources */,

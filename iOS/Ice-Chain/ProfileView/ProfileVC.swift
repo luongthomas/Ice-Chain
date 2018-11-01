@@ -47,6 +47,8 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         }
         Users.shared.setSellerAsCurrentUser()
         
+        
+        networkUtility.getContracts()
     }
 
     @IBAction func openHamburger(_ sender: Any) {
