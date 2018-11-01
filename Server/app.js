@@ -3,7 +3,7 @@ var app = express();
 var qtum = require("qtumjs-wallet");
 
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost/ContractDB';
+var url = 'mongodb://localhost:27017/ContractDB';
 
 
 var sellerWIF = "cVUBPoxVEJan7bUSbwvsJeqFm6QkjDVuwxTuahL4YpSasggCimej"
@@ -55,10 +55,10 @@ app.get("/database-insert", (req, res, next) => {
 	})
 })
 
-app.listen(3000, () => {
+app.listen(5124, () => {
 	// main()
 	// walletInfo().catch((err) => console.log(err))
- 	console.log("Server running on port 3000");
+ 	console.log("Server running on port 5124");
 });
 
 
