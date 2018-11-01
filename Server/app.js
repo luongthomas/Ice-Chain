@@ -7,7 +7,9 @@ var url = 'mongodb://localhost:27017/ContractDB';
 
 
 var sellerWIF = "cVUBPoxVEJan7bUSbwvsJeqFm6QkjDVuwxTuahL4YpSasggCimej"
+var sellerAddr = "qfh6e3XVs7TKGHshf4ifLKh4uwSdLqrY1S"
 var buyerWIF = "cPk2yVbgH7ZbUhCaffKQUKzaw8CNspXW3byhAsNG7eicZ9qry9Gk"
+var buyerAddr = "qYnuZGG5z3zUfK71n5LMyvCJwjdqcpn5wy"
 var BUYER = "BUYER"
 var SELLER = "SELLER"
 
@@ -45,8 +47,19 @@ app.get("/database-insert", (req, res, next) => {
 
 		var db = database.db()
 		var cursor = db.collection('Contracts').insertOne({
-			ContractId: 8,
-			ContractName: "FreshContract"
+			ContractId: 9,
+			ContractName: "Lotion Shipment"
+			Description: "Lotion",
+			DepositorName: "Buyer",
+			DepositorEmail: "Buyer@gmail.com"
+			DepositorAddress: buyerAddr,
+			OtherPartyName: "Seller",
+			OtherPartyAddress: sellerAddr,
+			OtherPartyEmail: "Seller@gmail.com"
+			MinTemperature: 0,
+			MaxTemperature: 100,
+			Deadline: 1540773606,
+			DepositLimit: 1
 		})
 
 		db.collection('Contracts').find({ContractId: 8}).toArray(function(err, items) {
