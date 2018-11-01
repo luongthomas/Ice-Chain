@@ -15,6 +15,7 @@ class ContractsTableViewCell: UITableViewCell {
     @IBOutlet weak var contractImageView: UIImageView!
     @IBOutlet weak var contractNameLabel: UILabel!
     
+    @IBOutlet weak var contractStatusLabel: UILabel!
     
     
     
