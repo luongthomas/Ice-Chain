@@ -24,6 +24,8 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var buyerBtn: UIButton!
     @IBOutlet weak var sellerBtn: UIButton!
     
+    @IBOutlet weak var loggedInUserLbl: UILabel!
+    
     var hamburgerMenuIsVisible = false
     
     let networkUtility = NetworkUtility()
@@ -80,7 +82,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         qtumAddress.text = Users.shared.buyerAddresses.first
         qtumAmount.text = "\(Users.shared.buyerBalance) QTUM"
         Users.shared.setBuyerAsCurrentUser()
-        
+        loggedInUserLbl.text = "Buyer"
     }
     
     @IBAction func changeToSeller(_ sender: Any) {
@@ -89,7 +91,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         qtumAddress.text = Users.shared.sellerAddresses.first
         qtumAmount.text = "\(Users.shared.sellerBalance) QTUM"
         Users.shared.setSellerAsCurrentUser()
-        
+        loggedInUserLbl.text = "Seller"
     }
     
     @IBAction func transportationBtn(_ sender: Any) {
