@@ -39,7 +39,6 @@ class ContractsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("tableView contract count: \(contracts.count)")
         return self.contracts.count
     }
     
@@ -184,7 +183,6 @@ class ContractsTableViewController: UITableViewController {
     
     @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
-        print("Dismiss")
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -192,27 +190,12 @@ class ContractsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let contract = contracts[indexPath.row]
         switch (contract.status) {
         default:
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractTemplate") as? ViewContractTemplateVC else { return }
             vc.contract = contract
             navigationController?.pushViewController(vc, animated: true)
-            
-//        case 3:
-//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "executedVC") as? ExecutedContractVC else { return }
-//            vc.contract = contract
-//            navigationController?.pushViewController(vc, animated: true)
-//        case .RUNNING:
-//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
-//            vc.contract = contract
-//            navigationController?.pushViewController(vc, animated: true)
-//        default:
-//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
-//            vc.contract = contract
-//            navigationController?.pushViewController(vc, animated: true)
-//
         }
     }
     
