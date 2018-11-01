@@ -46,30 +46,24 @@ app.get("/database-insert", (req, res, next) => {
 		console.log("Connected");
 
 		var db = database.db()
-//		db.collection('Contracts').deleteOne({_id: 9})
-		var wrappedBuyerAddr =  "\"" + buyerAddr + "\""
-		var wrappedSellerAddr = "\"" + sellerAddr + "\""
-
 		var cursor = db.collection('Contracts').insertOne({
-			"_id": 9,
-			"contractName": "Lotion Shipment",
-			"description": "Lotion",
-			"depositorName": "Buyer",
-			"depositorEmail": "Buyer@gmail.com",
-			"depositorAddress":  wrappedBuyerAddr,
-			"otherPartyName": "Seller",
-			"otherPartyAddress":  wrappedSellerAddr,
-			"otherPartyEmail": "Seller@gmail.com",
-			"minTemperature": 0,
-			"maxTemperature": 100,
-			"deadline": 1540773606,
-			"depositLimit": 1,
-			"status": 0,
-			"cargoValue": 10
+			ContractId: 9,
+			ContractName: "Lotion Shipment",
+			Description: "Lotion",
+			DepositorName: "Buyer",
+			DepositorEmail: "Buyer@gmail.com",
+			DepositorAddress: buyerAddr,
+			OtherPartyName: "Seller",
+			OtherPartyAddress: sellerAddr,
+			OtherPartyEmail: "Seller@gmail.com",
+			MinTemperature: 0,
+			MaxTemperature: 100,
+			Deadline: 1540773606,
+			DepositLimit: 1
 		})
 
-		db.collection('Contracts').find({_id: 9}).toArray(function(err, items) {
-			res.send(JSON.stringify({items}))
+		db.collection('Contracts').find({ContractId: 8}).toArray(function(err, items) {
+			res.send(JSON.stringify({ "Entries": items}))
 		})
 	})
 })
