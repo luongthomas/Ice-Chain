@@ -39,7 +39,7 @@ class ExecutedContractVC: UIViewController {
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract.cargoValue), number: NumberFormatter.Style.decimal)
         
         if Users.shared.currentUser == "Seller" {
-            role.text = "You Are \(contract.owner.rawValue)"
+            role.text = "You Are Seller"
         } else {
             role.text = "You Are Buyer"
         }

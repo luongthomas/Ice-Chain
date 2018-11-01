@@ -177,21 +177,37 @@ class ContractsTableViewController: UITableViewController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let contract = contracts[indexPath.row]
+        switch (contract.status) {
+        case .EXECUTED:
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "executedVC") as? ExecutedContractVC else { return }
+            vc.contract = contract
+            navigationController?.pushViewController(vc, animated: true)
+        case .RUNNING:
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
+            vc.contract = contract
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
+            vc.contract = contract
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+    
+    
     //MARK: Private Methods
     
     private func loadSampleContracts() {
-
-//        let photo1 = UIImage(named: "meal1")
-//        let photo2 = UIImage(named: "meal2")
-//        let photo3 = UIImage(named: "meal3")
-
         let contract1 = Contract(type: "running")
-
         let contract2 = Contract(type: "executed")
+        let contract3 = Contract(type: "running")
 
-        contracts += [contract1, contract2]
+        contracts += [contract1, contract2, contract3]
     }
-//
+
 //    private func saveMeals() {
 //        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
 //        if isSuccessfulSave {
