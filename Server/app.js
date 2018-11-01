@@ -51,11 +51,11 @@ app.get("/database-insert", (req, res, next) => {
 			ContractName: "Lotion Shipment",
 			Description: "Lotion",
 			DepositorName: "Buyer",
-			DepositorEmail: "Buyer@gmail.com"
+			DepositorEmail: "Buyer@gmail.com",
 			DepositorAddress: buyerAddr,
 			OtherPartyName: "Seller",
 			OtherPartyAddress: sellerAddr,
-			OtherPartyEmail: "Seller@gmail.com"
+			OtherPartyEmail: "Seller@gmail.com",
 			MinTemperature: 0,
 			MaxTemperature: 100,
 			Deadline: 1540773606,
