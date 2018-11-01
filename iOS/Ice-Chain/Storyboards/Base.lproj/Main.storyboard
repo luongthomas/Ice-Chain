@@ -915,32 +915,48 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="751" text="Contract Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-M0-Bhj">
+                                            <rect key="frame" x="101" y="25" width="274" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="6zO-la-X9d"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlO-Rx-1XK">
-                                            <rect key="frame" x="26" y="25" width="50" height="50"/>
+                                            <rect key="frame" x="26" y="26" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="DHH-ec-Xrm"/>
                                                 <constraint firstAttribute="width" constant="50" id="PeP-4J-TdN"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contract Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-M0-Bhj">
-                                            <rect key="frame" x="101" y="0.0" width="274" height="99.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contract Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RL-Xv-tTq" userLabel="Status Label">
+                                            <rect key="frame" x="101" y="65" width="258" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="QPA-bL-WmB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="wlO-Rx-1XK" firstAttribute="leading" secondItem="3M2-RP-44B" secondAttribute="leadingMargin" constant="10" id="7Cv-su-p92"/>
-                                        <constraint firstItem="wlO-Rx-1XK" firstAttribute="centerY" secondItem="3M2-RP-44B" secondAttribute="centerY" id="DrM-Ir-9U0"/>
-                                        <constraint firstItem="D6a-M0-Bhj" firstAttribute="leading" secondItem="wlO-Rx-1XK" secondAttribute="trailing" constant="25" id="PJu-Ch-ZB6"/>
-                                        <constraint firstAttribute="trailing" secondItem="D6a-M0-Bhj" secondAttribute="trailing" id="jig-SV-H2A"/>
-                                        <constraint firstItem="D6a-M0-Bhj" firstAttribute="top" secondItem="3M2-RP-44B" secondAttribute="top" id="tcp-sE-ZTk"/>
-                                        <constraint firstAttribute="bottom" secondItem="D6a-M0-Bhj" secondAttribute="bottom" id="zCd-Fd-TC3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1RL-Xv-tTq" secondAttribute="trailing" id="M7K-GL-BF0"/>
+                                        <constraint firstItem="1RL-Xv-tTq" firstAttribute="leading" secondItem="wlO-Rx-1XK" secondAttribute="trailing" constant="25" id="Miv-j5-5EP"/>
+                                        <constraint firstItem="D6a-M0-Bhj" firstAttribute="top" secondItem="3M2-RP-44B" secondAttribute="top" constant="25" id="cKk-hf-tUV"/>
+                                        <constraint firstItem="wlO-Rx-1XK" firstAttribute="leading" secondItem="3M2-RP-44B" secondAttribute="leadingMargin" constant="10" id="chf-Mt-vpG"/>
+                                        <constraint firstItem="D6a-M0-Bhj" firstAttribute="leading" secondItem="wlO-Rx-1XK" secondAttribute="trailing" constant="25" id="d4j-Ie-o27"/>
+                                        <constraint firstAttribute="trailing" secondItem="D6a-M0-Bhj" secondAttribute="trailing" id="hAC-K5-Jcd"/>
+                                        <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="1RL-Xv-tTq" secondAttribute="bottom" constant="40" id="mnW-En-axC"/>
+                                        <constraint firstItem="1RL-Xv-tTq" firstAttribute="top" secondItem="D6a-M0-Bhj" secondAttribute="bottom" constant="5" id="wX4-a7-Ppy"/>
+                                        <constraint firstItem="wlO-Rx-1XK" firstAttribute="top" secondItem="3M2-RP-44B" secondAttribute="topMargin" constant="15" id="xJP-DF-Qv5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contractImageView" destination="wlO-Rx-1XK" id="wn1-df-rgk"/>
                                     <outlet property="contractNameLabel" destination="D6a-M0-Bhj" id="acJ-rn-CHJ"/>
+                                    <outlet property="contractStatusLabel" destination="1RL-Xv-tTq" id="eih-rS-zMa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -959,7 +975,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NbV-cr-Qr0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="-1080"/>
+            <point key="canvasLocation" x="2725.5999999999999" y="-1080.8095952023989"/>
         </scene>
         <!--Temperature Range-->
         <scene sceneID="qsg-oB-tqV">

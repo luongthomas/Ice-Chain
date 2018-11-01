@@ -58,6 +58,7 @@ class ContractsTableViewController: UITableViewController {
         let contract = contracts[indexPath.row]
         
         cell.contractNameLabel.text = contract.name
+        cell.contractStatusLabel.text = "\(contract.status)"
         
         let contractStatus = contract.status
         
