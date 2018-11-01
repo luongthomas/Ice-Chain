@@ -1,0 +1,26 @@
+{
+  "name": "Qtum-Node-Wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Thomas Luong",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "node-debug": "^0.1.0",
+    "nodemon": "^1.18.5",
+    "qtumjs-wallet": "^0.2.1"
+  }
+}
