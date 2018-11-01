@@ -11,7 +11,7 @@ import Foundation
 struct ContractDB: Decodable {
     var contractName: String
     var deadline: Int
-    var depositLimit: Int
+    var depositLimit: Double
     var depositorAddress: String
     var depositorEmail: String
     var depositorName: String
@@ -23,8 +23,16 @@ struct ContractDB: Decodable {
     var otherPartyName: String
     var _id: Int
     var status: Int
+    var cargoValue: Double
 }
 
 struct Contracts: Decodable {
     var items: [ContractDB]
+}
+
+enum ContractStatus {
+    case NOT_RUNNING
+    case RUNNING
+    case FAILED
+    case COMPLETED
 }

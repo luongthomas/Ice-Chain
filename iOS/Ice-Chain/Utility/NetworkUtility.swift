@@ -35,7 +35,7 @@ class NetworkUtility {
     
     
     // From EC2
-    func getContracts() {
+    func getContracts(completionHandler: @escaping (Contracts?, Error?) -> ()) {
         let url = "http://35.165.80.135:5124/database-insert"
         
         Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
@@ -43,21 +43,14 @@ class NetworkUtility {
             switch response.result {
             case .success( _):
                 do {
-                    print(response.value)
-                    print(response.data)
-                    print("jsonDecode")
                     let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
-                    if let contract = contracts.items.first {
-                        print(contract.contractName)
-                        print(contract.status)
-                    }
-                    
+                    completionHandler(contracts, nil)
                 } catch {
-                    print("Error \(error)")
+                    completionHandler(nil, error)
                 }
                 
             case .failure(let error):
-                print(error)
+                completionHandler(nil, error)
             }
         }
     }

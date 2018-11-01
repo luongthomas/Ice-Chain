@@ -45,10 +45,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             
             self.sellerBtn.sendActions(for: .touchUpInside)
         }
-        Users.shared.setSellerAsCurrentUser()
-        
-        
-        networkUtility.getContracts()
+        Users.shared.setSellerAsCurrentUser()        
     }
 
     @IBAction func openHamburger(_ sender: Any) {

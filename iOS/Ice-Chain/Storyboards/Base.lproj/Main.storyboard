@@ -3746,7 +3746,7 @@
         <!--Bananas - Running-->
         <scene sceneID="O1O-nM-u8w">
             <objects>
-                <viewController id="pbg-Bb-7ZF" userLabel="Bananas - Running" customClass="ViewContractTemplateVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contractTemplate" id="pbg-Bb-7ZF" userLabel="Bananas - Running" customClass="ViewContractTemplateVC" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2" contentMode="scaleToFill" id="LAF-6j-y1S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

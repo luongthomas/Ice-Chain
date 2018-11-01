@@ -13,25 +13,23 @@ class ContractsTableViewController: UITableViewController {
     
     //MARK: Properties
     
-    var contracts = [Contract]()
+    var contracts = [ContractDB]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 80
 
-//        // Use the edit button item provided by the table view controller.
-//        navigationItem.leftBarButtonItem = editButtonItem
-//
-        // Load any saved meals, otherwise load sample data.
-        if let savedContracts = loadContracts() {
-            contracts += savedContracts
-        }
-        else {
-            // Load the sample data.
-            loadSampleContracts()
-        }
+        loadRealContracts()
         
-        print("")
+//        if let savedContracts = loadContracts() {
+//            contracts += savedContracts
+//        }
+//        else {
+//            // Load the sample data.
+//            loadSampleContracts()
+//        }
+//
+//        print("")
     }
     
     //MARK: - Table view data source
@@ -41,7 +39,8 @@ class ContractsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contracts.count
+        print("tableView contract count: \(contracts.count)")
+        return self.contracts.count
     }
     
     
@@ -57,17 +56,31 @@ class ContractsTableViewController: UITableViewController {
         // Fetches the appropriate contract for the data source layout.
         let contract = contracts[indexPath.row]
         
-        cell.contractNameLabel.text = contract.name
-        cell.contractStatusLabel.text = "\(contract.status)"
+        cell.contractNameLabel.text = contract.contractName
         
         let contractStatus = contract.status
         
-        if contractStatus == .EXECUTED {
-            cell.contractImageView.image = #imageLiteral(resourceName: "Check Button")
-        } else if contract.status == .RUNNING {
-            cell.contractImageView.image = #imageLiteral(resourceName: "Check Mark")
-        } else {
-            cell.contractImageView.image = #imageLiteral(resourceName: "filled_circle")
+        let NOT_RUNNING = 0
+        let RUNNING = 1
+        let FAILED = 2
+        let COMPLETED = 3
+        
+        switch contractStatus {
+        case NOT_RUNNING:
+            cell.contractImageView.image = UIImage(named: "not_running")
+            cell.contractStatusLabel.text = "Not Running"
+        case RUNNING:
+            cell.contractImageView.image = UIImage(named: "running")
+            cell.contractStatusLabel.text = "Running"
+        case FAILED:
+            cell.contractImageView.image = UIImage(named: "failed")
+            cell.contractStatusLabel.text = "Failed"
+        case COMPLETED:
+            cell.contractImageView.image = UIImage(named: "completed")
+            cell.contractStatusLabel.text = "Completed"
+        default:
+            cell.contractImageView.image = UIImage(named: "not_running")
+            cell.contractStatusLabel.text = "Unknown status"
         }
         
         return cell
@@ -182,32 +195,56 @@ class ContractsTableViewController: UITableViewController {
         
         let contract = contracts[indexPath.row]
         switch (contract.status) {
-        case .EXECUTED:
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "executedVC") as? ExecutedContractVC else { return }
-            vc.contract = contract
-            navigationController?.pushViewController(vc, animated: true)
-        case .RUNNING:
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
-            vc.contract = contract
-            navigationController?.pushViewController(vc, animated: true)
         default:
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractTemplate") as? ViewContractTemplateVC else { return }
             vc.contract = contract
             navigationController?.pushViewController(vc, animated: true)
             
+//        case 3:
+//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "executedVC") as? ExecutedContractVC else { return }
+//            vc.contract = contract
+//            navigationController?.pushViewController(vc, animated: true)
+//        case .RUNNING:
+//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
+//            vc.contract = contract
+//            navigationController?.pushViewController(vc, animated: true)
+//        default:
+//            guard let vc = storyboard?.instantiateViewController(withIdentifier: "runningVC") as? RunningContractVC else { return }
+//            vc.contract = contract
+//            navigationController?.pushViewController(vc, animated: true)
+//
         }
+    }
+    
+    private func loadRealContracts() {
+        let networkUtility = NetworkUtility()
+        networkUtility.getContracts { (items, err) in
+            if let contractList = items {
+                for i in contractList.items {
+                    self.contracts.append(i)
+                }
+                self.tableView.reloadData()
+            }
+            print("Items in contracts: \(self.contracts.count)")
+            
+            if let err = err {
+                print("Error: \(err)")
+            }
+        }
+        
     }
     
     
     //MARK: Private Methods
     
-    private func loadSampleContracts() {
-        let contract1 = Contract(type: "running")
-        let contract2 = Contract(type: "executed")
-        let contract3 = Contract(type: "running")
-
-        contracts += [contract1, contract2, contract3]
-    }
+//    private func loadSampleContracts() {
+//        let contract1 = Contract(type: "running")
+//        let contract2 = Contract(type: "executed")
+//        let contract3 = Contract(type: "running")
+//
+//        contracts += [contract1, contract2, contract3]
+//        print("")
+//    }
 
 //    private func saveMeals() {
 //        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
@@ -218,12 +255,8 @@ class ContractsTableViewController: UITableViewController {
 //        }
 //    }
 
-    private func loadContracts() -> [Contract]?  {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Contract.ArchiveURL.path) as? [Contract]
-    }
+//    private func loadContracts() -> [Contract]?  {
+//        return NSKeyedUnarchiver.unarchiveObject(withFile: Contract.ArchiveURL.path) as? [Contract]
+//    }
 
-    
-    
-    
-    
 }

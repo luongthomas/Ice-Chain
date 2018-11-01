@@ -19,21 +19,20 @@ class ViewContractTemplateVC: UIViewController {
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var deposit: UILabel!
     
-    var contract: Contract?
+    var contract: ContractDB?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let dateString = dateFormatter.string(from: contract!.deadline)
+        let dateString = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(contract!.deadline)))
         
         let formattedDate = dateFormatter.date(from: dateString)
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: formattedDate!)
         
-        let depositDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.deposit), number: NumberFormatter.Style.decimal)
+        let depositDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.depositLimit), number: NumberFormatter.Style.decimal)
         
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.cargoValue), number: NumberFormatter.Style.decimal)
         
@@ -43,10 +42,10 @@ class ViewContractTemplateVC: UIViewController {
             role.text = "You Are Buyer"
         }
         
-        status.text = contract?.status.rawValue
-        email.text = contract?.buyerEmail
-        cargoType.text = contract?.cargoType
-        tempRange.text = "From \(contract!.tempMin) C to \(contract!.tempMax) C"
+        status.text = String(contract!.status.hashValue)
+        email.text = contract!.depositorEmail
+        cargoType.text = contract!.description
+        tempRange.text = "From \(contract!.minTemperature) C to \(contract!.maxTemperature) C"
         deadline.text = dateFormatString
         value.text = "\(valueDollars) USD"
         
