@@ -24,6 +24,7 @@ struct ContractDB: Decodable {
     var _id: Int
     var status: Int
     var cargoValue: Double
+    var contractAddress: String
 }
 
 struct Contracts: Decodable {
