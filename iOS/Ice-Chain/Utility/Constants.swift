@@ -21,4 +21,9 @@ struct Constants {
     let sendTempArrayABI = "91aef1c6"
     let returnFundsABI = "3ed06fb2"
     let createOrderABI = "068d3583"
+    
+    let ON_APPROVAL = 0
+    let RUNNING = 1
+    let FAILED = 2
+    let COMPLETED = 3
 }

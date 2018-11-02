@@ -15,12 +15,20 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var minTempRangeTextField: TextField!
     @IBOutlet weak var maxTempRangeTextField: TextField!
     @IBOutlet weak var prechosenOptions: UIStackView!
-    
     @IBOutlet weak var vaccinesBtn: Button!
     
     let niceBlue = UIColor(red: 66/255, green: 137/255, blue: 247/255, alpha: 1)
     
-    func resetAllBtnColors() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        if let btn = vaccinesBtn {
+            btn.sendActions(for: .touchUpInside)
+        }
+    }
+    
+    private func resetAllBtnColors() {
         for case let button as UIButton in self.prechosenOptions.subviews {
             button.backgroundColor = .white
             button.setTitleColor(niceBlue, for: .normal)
@@ -39,7 +47,6 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
             button.setTitleColor(.white, for: .normal)
         }
     
-        
         switch button.tag {
         case 0:
             // Flowers
@@ -72,60 +79,38 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
             print("Selection")
             return
         }
-        
     }
     
-    func customTempRangeSelected() {
+    private func customTempRangeSelected() {
         if let minText = minTempRangeTextField.text,
             let maxText = maxTempRangeTextField.text {
+            let dialogUtility = DialogUtility()
+            
             if minText.isEmpty {
-                displayMyAlertMessage(userMessage: "Enter value for minimum temperature.")
+                dialogUtility.displayMyAlertMessage(vc: self, userMessage: "Enter value for minimum temperature.")
             } else if maxText.isEmpty {
-                displayMyAlertMessage(userMessage: "Enter value for maximum temperature.")
+                dialogUtility.displayMyAlertMessage(vc: self, userMessage: "Enter value for maximum temperature.")
             } else {
                 if let min = Double(minText), let max = Double(maxText) {
                 
                     if (min > max) {
-                        displayMyAlertMessage(userMessage: "Minimum temperature must be smaller than Maximum")
+                        dialogUtility.displayMyAlertMessage(vc: self, userMessage: "Minimum temperature must be smaller than Maximum")
                     } else {
                         setTempRangeFor(min: min, max: max)
                     }
                 } else {
-                    displayMyAlertMessage(userMessage: "Enter only numerical values for temperatures")
+                    dialogUtility.displayMyAlertMessage(vc: self, userMessage: "Enter only numerical values for temperatures")
                 }
-                
-                
             }
         }
     }
     
-    
     func setTempRangeFor(min: Double, max: Double) {
-        Contract.shared.tempMin = min
-        Contract.shared.tempMax = max
-        
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        
-        if let btn = vaccinesBtn {
-            // select default value
-            btn.sendActions(for: .touchUpInside)
-        }
-        
+        CurrentContract.shared.maxTemperature = max
+        CurrentContract.shared.minTemperature = min
     }
     
-    func displayMyAlertMessage(userMessage:String){
-        let alert = UIAlertController(title: "Hold on there", message: userMessage, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
-    }
+    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {}
     
     @IBAction func handleContinue(_ sender: Any) {
         // get parent view controller
@@ -135,12 +120,4 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
         let nextPage = [parentVC.pages[2]]
         parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
     }
-    
-    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
-        
-    }
-    
-    
-    
-    
 }

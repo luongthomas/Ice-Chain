@@ -43,6 +43,7 @@
 		71C29227218AAB3300191271 /* ContractsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29226218AAB3300191271 /* ContractsTableViewCell.swift */; };
 		71C29229218AB92600191271 /* ViewContractTemplateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29228218AB92600191271 /* ViewContractTemplateVC.swift */; };
 		71C2922B218B7C8400191271 /* ContractDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2922A218B7C8400191271 /* ContractDB.swift */; };
+		71C29233218CDCB600191271 /* DialogUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29232218CDCB600191271 /* DialogUtility.swift */; };
 		71C88F62218155A200364377 /* PeripheralServicesViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */; };
 		71C88F63218155A200364377 /* PeripheralServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */; };
 		71C88F64218155A200364377 /* PeripheralServicesViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */; };
@@ -98,7 +99,7 @@
 		7148666B214D98DD001BC288 /* GraphExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphExecuted.swift; sourceTree = "<group>"; };
 		7148666D214D98E7001BC288 /* ChartExecuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartExecuted.swift; sourceTree = "<group>"; };
 		7148666F214D9950001BC288 /* LineChart2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineChart2ViewController.xib; sourceTree = "<group>"; };
-		71486671214DAB81001BC288 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		71486671214DAB81001BC288 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Utility/Constants.swift; sourceTree = "<group>"; };
 		71486673214DB6FC001BC288 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		71486675214DBDA0001BC288 /* Deployed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deployed.swift; sourceTree = "<group>"; };
 		71486677214EAA5B001BC288 /* Txid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Txid.swift; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		71C29226218AAB3300191271 /* ContractsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewCell.swift; sourceTree = "<group>"; };
 		71C29228218AB92600191271 /* ViewContractTemplateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContractTemplateVC.swift; sourceTree = "<group>"; };
 		71C2922A218B7C8400191271 /* ContractDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractDB.swift; sourceTree = "<group>"; };
+		71C29232218CDCB600191271 /* DialogUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUtility.swift; sourceTree = "<group>"; };
 		71C88F26218155A200364377 /* PeripheralServicesViewModelItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelItem.swift; sourceTree = "<group>"; };
 		71C88F27218155A200364377 /* PeripheralServicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModel.swift; sourceTree = "<group>"; };
 		71C88F28218155A200364377 /* PeripheralServicesViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralServicesViewModelType.swift; sourceTree = "<group>"; };
@@ -251,20 +253,6 @@
 			path = ApprovalProcess;
 			sourceTree = "<group>";
 		};
-		716D900D2134BF15009CD6D9 /* Create Contract */ = {
-			isa = PBXGroup;
-			children = (
-				716D900A2133CA35009CD6D9 /* CreateContractVC.swift */,
-				716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */,
-				7150E82021460D54009CA176 /* TemperatureRangeVC.swift */,
-				7150E822214617BD009CA176 /* DeadlineVC.swift */,
-				7150E82421462FD9009CA176 /* CargoValueVC.swift */,
-				7150E82621463C60009CA176 /* CargoDepositorVC.swift */,
-				7150E82A21477338009CA176 /* DisplayContractVC.swift */,
-			);
-			path = "Create Contract";
-			sourceTree = "<group>";
-		};
 		71763C19212B23B600E99C3F = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +274,8 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				71C2922D218CD4FF00191271 /* Constants */,
+				71C2922C218BC14500191271 /* ContractCreateEditFlow */,
 				71DC6E45214587B300C58E60 /* Model */,
 				71C29222218AAAB900191271 /* ContractList */,
 				71C88F0A2181500C00364377 /* Bluetooth */,
@@ -294,7 +284,6 @@
 				7150E82C21478B7C009CA176 /* Extensions */,
 				71DC6E4D214596CD00C58E60 /* Storyboards */,
 				71DC6E422144D43000C58E60 /* Utility */,
-				716D900D2134BF15009CD6D9 /* Create Contract */,
 				716730D921481F3300B237F0 /* ExistingContracts */,
 				7150E8282146E295009CA176 /* Assets.xcassets */,
 				71C88F81218156EF00364377 /* Images.xcassets */,
@@ -326,6 +315,28 @@
 				71C29226218AAB3300191271 /* ContractsTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		71C2922C218BC14500191271 /* ContractCreateEditFlow */ = {
+			isa = PBXGroup;
+			children = (
+				716D900A2133CA35009CD6D9 /* CreateContractVC.swift */,
+				716D900E2134BF76009CD6D9 /* BasicContractInfoVC.swift */,
+				7150E82021460D54009CA176 /* TemperatureRangeVC.swift */,
+				7150E822214617BD009CA176 /* DeadlineVC.swift */,
+				7150E82421462FD9009CA176 /* CargoValueVC.swift */,
+				7150E82621463C60009CA176 /* CargoDepositorVC.swift */,
+				7150E82A21477338009CA176 /* DisplayContractVC.swift */,
+			);
+			path = ContractCreateEditFlow;
+			sourceTree = "<group>";
+		};
+		71C2922D218CD4FF00191271 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				71486671214DAB81001BC288 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		71C88F0A2181500C00364377 /* Bluetooth */ = {
@@ -669,7 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				71DC6E432144D45200C58E60 /* NetworkUtility.swift */,
-				71486671214DAB81001BC288 /* Constants.swift */,
+				71C29232218CDCB600191271 /* DialogUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -889,6 +900,7 @@
 				71DEEC7D214D55B100C62380 /* ContractEditDeployVC.swift in Sources */,
 				71C88F71218155A200364377 /* CellUpdatable.swift in Sources */,
 				71C88F91218218EA00364377 /* String.swift in Sources */,
+				71C29233218CDCB600191271 /* DialogUtility.swift in Sources */,
 				71C88F77218155A200364377 /* UIView+Style.swift in Sources */,
 				71C88F75218155A200364377 /* Characterist+CBCharacteristicWriteType.swift in Sources */,
 				71C88F76218155A200364377 /* Characteristic+Hashable.swift in Sources */,

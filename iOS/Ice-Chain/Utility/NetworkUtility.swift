@@ -39,12 +39,32 @@ class NetworkUtility {
         let url = "http://35.165.80.135:5124/database-insert"
         
         Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
-            
             switch response.result {
             case .success( _):
                 do {
                     let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
                     completionHandler(contracts, nil)
+                } catch {
+                    completionHandler(nil, error)
+                }
+                
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+    
+    func sendNewContractToDatabase(contract: ContractDB, completionHandler: @escaping (String?, Error?) -> ()) {
+        print("Sending ContractDB to DB")
+        
+        let url = "http://35.165.80.135:5124/database-insert"
+        
+        Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
+                do {
+//                    let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
+                    completionHandler("Success", nil)
                 } catch {
                     completionHandler(nil, error)
                 }

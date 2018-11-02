@@ -18,6 +18,7 @@ class ViewContractTemplateVC: UIViewController {
     @IBOutlet weak var deadline: UILabel!
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var deposit: UILabel!
+    @IBOutlet weak var actionButton: Button!
     
     var contract: ContractDB?
     
@@ -36,7 +37,8 @@ class ViewContractTemplateVC: UIViewController {
         
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.cargoValue), number: NumberFormatter.Style.decimal)
         
-        if Users.shared.currentUser == "Seller" {
+        let currentUser = Users.shared.currentUser
+        if currentUser == "Seller" {
             role.text = "You Are Seller"
         } else {
             role.text = "You Are Buyer"
@@ -49,14 +51,30 @@ class ViewContractTemplateVC: UIViewController {
         switch contract!.status {
         case ON_APPROVAL:
             status.text = "On Approval"
+            if (currentUser == "Seller") {
+                actionButton.setTitle("On the Buyer Approval", for: .normal)
+                actionButton.isEnabled = false
+            } else {
+                actionButton.setTitle("Approve/Edit", for: .normal)
+                actionButton.isEnabled = true
+            }
         case RUNNING:
             status.text = "Running"
+            actionButton.setTitle("Unload", for: .normal)
+            if (currentUser == "Seller") {
+                actionButton.isEnabled = false
+            } else {
+                actionButton.isEnabled = true
+            }
         case FAILED:
             status.text = "Failed"
+            actionButton.setTitle("Download Report", for: .normal)
         case COMPLETED:
             status.text = "Completed"
+            actionButton.setTitle("Download Report", for: .normal)
         default:
             status.text = "Unknown status"
+            actionButton.setTitle("Unknown Action", for: .normal)
         }
         
         email.text = contract!.depositorEmail
@@ -71,14 +89,4 @@ class ViewContractTemplateVC: UIViewController {
         
         print("Confirming Contract")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

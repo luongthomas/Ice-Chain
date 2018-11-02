@@ -13,19 +13,16 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     var pageControl = UIPageControl()
     
     lazy var pages: [UIViewController] = {
-        return [self.newVc(viewController: "NewContract"),
+        return [self.newVc(viewController: "BasicInfo"),
                 self.newVc(viewController: "TempRange"),
                 self.newVc(viewController: "Deadline"),
-                self.newVc(viewController: "CargoValue")]
+                self.newVc(viewController: "CargoValue"),
+                self.newVc(viewController: "DisplayContract")
+                ]
     }()
     
-    
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
-        
         guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
-        
         let previousIndex = viewControllerIndex - 1
         
         // User is on first VC and swiped left to loop to last VC
@@ -68,9 +65,8 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         
         // Set up first view that will show up on page control
         if let firstViewController = pages.first {
-            
             // Everytime new contract screen appears, reset contract details to create new one
-            Contract.shared.resetContract()
+//            Contract.shared.resetContract()
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         
@@ -81,7 +77,6 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     
     // MARK: Delegate functions
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = pages.index(of: pageContentViewController)!
     }
@@ -90,19 +85,14 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController)
     }
     
-    
     func configurePageControl() {
         // The total number of pages avaialble is based on how many available colors we have
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         pageControl.tintColor = .black
         pageControl.pageIndicatorTintColor = .gray
         pageControl.currentPageIndicatorTintColor = .black
         self.view.addSubview(pageControl)
-        
-        
     }
-
 }

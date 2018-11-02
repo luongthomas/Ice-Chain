@@ -104,6 +104,13 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         let newViewController = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
         self.navigationController?.present(newViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func createContractBtn(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "contractFlowTemplate") as! CreateContractVC
+        self.navigationController?.present(newViewController, animated: true, completion: nil)
+    }
+    
 }
 
 @IBDesignable

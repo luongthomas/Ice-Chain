@@ -19,14 +19,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     // Temp variable to set the text and calculate values
     var savedCargoValue = 100.0
-    var savedDepositRate = 67.0
-
-    
-    @IBAction func SliderValueChanged(_ sender: UISlider) {
-        savedDepositRate = Double(Int(sender.value))
-        Contract.shared.depositRate = savedDepositRate
-        calculateDepositRateAndSetText()
-    }
+    var savedDepositRate = 65.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,46 +34,45 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         depositRateDialog.contentHorizontalAlignment = .center
         setCargoValueFromTextField()
         calculateDepositRateAndSetText()
-        
-        
-        // Set owner
+        setInitialValues()
+    }
+    
+    func setInitialValues() {
         let currentUser = Users.shared.currentUser
         if currentUser == "Seller" {
-            Contract.shared.owner = .SELLER
+            CurrentContract.shared.owner = "Seller"
         } else if currentUser == "Buyer" {
-            Contract.shared.owner = .BUYER
+            CurrentContract.shared.owner = "Buyer"
         } else {
             print("Unknown current user")
         }
         
-        // Set initial values
-        Contract.shared.depositor = .SELLER
-        Contract.shared.depositRate = 67.0
-        
+        CurrentContract.shared.depositRate = 65.0
+    }
+    
+    @IBAction func SliderValueChanged(_ sender: UISlider) {
+        savedDepositRate = Double(Int(sender.value))
+        CurrentContract.shared.depositRate = savedDepositRate
+        calculateDepositRateAndSetText()
     }
     
     @objc func updateDepositPartyLabel(notification: NSNotification) {
-        if Contract.shared.depositor != .NONE {
-            let depositor = Contract.shared.depositor.rawValue
+        if CurrentContract.shared.depositorName != "" {
+            let depositor = CurrentContract.shared.depositorName
             depositorPartyButton.setTitle(depositor, for: .normal)
         }
     }
-    
-    
     
     func setCargoValueFromTextField() {
         guard let valueText = cargoValueTextField.text else { return }
         guard let cargoValue = Double(valueText) else { return }
         savedCargoValue = cargoValue
-        Contract.shared.cargoValue = savedCargoValue
+        CurrentContract.shared.cargoValue = savedCargoValue
     }
     
     @objc func setAmountDismissKeyboard(sender: Any) {
         setCargoValueFromTextField()
         self.view.endEditing(true)
-        
-        print("Cargo Value is \(Contract.shared.cargoValue)")
-        
         calculateDepositRateAndSetText()
     }
 
@@ -97,14 +89,20 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         let depositAmountQtum = depositAmountUSD / qtumPrice
         let roundedQtum = (depositAmountQtum * 100).rounded() / 100
         
-        
         let infoText = "Deposit is equal to \(roundedUSD) USD or\n\(roundedQtum) QTUM"
         
-        Contract.shared.deposit = depositAmountUSD
+        CurrentContract.shared.depositLimit = roundedQtum
         depositRateLabel.text = depositRateText
         depositRateDialog.setTitle(infoText, for: .normal)
     }
     
+    @IBAction func handleContinue(_ sender: Any) {
+        if (CurrentContract.shared.depositorName != "" && CurrentContract.shared.cargoValue > 0) {
+            let parentVC = self.parent as! CreateContractVC
+            
+            // change page of PageViewController
+            let nextPage = [parentVC.pages[4]]
+            parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
+        }
+    }
 }
-
-

@@ -9,22 +9,68 @@
 import Foundation
 
 struct ContractDB: Decodable {
-    var contractName: String
-    var deadline: Int
-    var depositLimit: Double
-    var depositorAddress: String
-    var depositorEmail: String
-    var depositorName: String
-    var description: String
-    var maxTemperature: Double
-    var minTemperature: Double
-    var otherPartyAddress: String
-    var otherPartyEmail: String
-    var otherPartyName: String
-    var _id: Int
-    var status: Int
-    var cargoValue: Double
-    var contractAddress: String
+    var contractName: String = ""
+    var deadline: Double = 0
+    var depositLimit: Double = 0
+    var depositorAddress: String = ""
+    var depositorEmail: String = ""
+    var depositorName: String = ""
+    var description: String = ""
+    var maxTemperature: Double = 0
+    var minTemperature: Double = 0
+    var otherPartyAddress: String  = ""
+    var otherPartyEmail: String = ""
+    var otherPartyName: String = ""
+    var _id: Int = 0
+    var status: Int = 0
+    var cargoValue: Double = 0
+    var contractAddress: String  = ""
+    var owner: String? = ""
+    var depositRate: Double = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case contractName = "contractName"
+        case deadline = "deadline"
+        case depositLimit = "depositLimit"
+        case depositorAddress = "depositorAddress"
+        case depositorEmail = "depositorEmail"
+        case description = "description"
+        case maxTemperature = "maxTemperature"
+        case minTemperature = "minTemperature"
+        case otherPartyAddress = "otherPartyAddress"
+        case otherPartyName = "otherPartyName"
+        case _id = "_id"
+        case status = "status"
+        case cargoValue = "cargoValue"
+        case contractAddress = "contractAddress"
+        case owner = "owner"
+        case depositRate = "depositRate"
+    }
+    
+    init() {}
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.contractName = try values.decode(String.self, forKey: .contractName)
+        self.deadline = try values.decode(Double.self, forKey: .deadline)
+        self.depositLimit = try values.decode(Double.self, forKey: .depositLimit)
+        self.depositorEmail = try values.decode(String.self, forKey: .depositorEmail)
+        self.description = try values.decode(String.self, forKey: .description)
+        self.maxTemperature = try values.decode(Double.self, forKey: .maxTemperature)
+        self.minTemperature = try values.decode(Double.self, forKey: .minTemperature)
+        self.otherPartyAddress = try values.decode(String.self, forKey: .otherPartyAddress)
+        self.otherPartyName = try values.decode(String.self, forKey: .otherPartyName)
+        self._id = try values.decode(Int.self, forKey: ._id)
+        self.status = try values.decode(Int.self, forKey: .status)
+        self.cargoValue = try values.decode(Double.self, forKey: .cargoValue)
+        self.contractAddress = try values.decode(String.self, forKey: .contractAddress)
+        self.owner = try values.decode(String.self, forKey: .owner)
+        self.depositRate = try values.decode(Double.self, forKey: .depositRate)
+    }
+}
+
+class CurrentContract {
+    static var shared = ContractDB()
 }
 
 struct Contracts: Decodable {
