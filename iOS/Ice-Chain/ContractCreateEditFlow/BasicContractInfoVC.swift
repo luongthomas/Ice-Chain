@@ -19,11 +19,29 @@ class BasicContractInfoVC: UIViewController {
         setInitialValues()
     }
     
+    // Depending on if we are creating a new contract or not, either load up the values and show or fill in from pre-displayed text
     private func setInitialValues() {
-        CurrentContract.shared.owner = Users.shared.currentUser
-        CurrentContract.shared.contractName = contractNameTextField.text!
-        CurrentContract.shared.otherPartyEmail = buyerEmailTextField.text!
-        CurrentContract.shared.description = cargoTypeTextField.text!
+        if (CurrentContract.shared.owner == "") {
+            CurrentContract.shared.owner = Users.shared.currentUser
+        }
+        
+        if (CurrentContract.shared.contractName == "") {
+            CurrentContract.shared.contractName = contractNameTextField.text!
+        } else {
+            contractNameTextField.text! = CurrentContract.shared.contractName
+        }
+        
+        if (CurrentContract.shared.otherPartyEmail == "") {
+            CurrentContract.shared.otherPartyEmail = buyerEmailTextField.text!
+        } else {
+            buyerEmailTextField.text! = CurrentContract.shared.otherPartyEmail
+        }
+        
+        if (CurrentContract.shared.description == "") {
+            CurrentContract.shared.description = cargoTypeTextField.text!
+        } else {
+            cargoTypeTextField.text! = CurrentContract.shared.description
+        }
     }
     
     private func isTextFieldsEmpty() -> Bool {

@@ -24,20 +24,25 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register to receive notification in your class
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDepositPartyLabel(notification:)), name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(setAmountDismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
-        depositRateDialog.contentHorizontalAlignment = .center
+        registerNotifications()
+        
+//        depositRateDialog.contentHorizontalAlignment = .center
         setCargoValueFromTextField()
         calculateDepositRateAndSetText()
         setInitialValues()
     }
     
-    func setInitialValues() {
+    private func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDepositPartyLabel(notification:)), name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
+    }
+    
+    private func setInitialValues() {
+        
+        
         let currentUser = Users.shared.currentUser
         if currentUser == "Seller" {
             CurrentContract.shared.owner = "Seller"

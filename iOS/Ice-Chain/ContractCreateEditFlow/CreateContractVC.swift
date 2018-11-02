@@ -21,6 +21,21 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
                 ]
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set up first view that will show up on page control
+        if let firstViewController = pages.first {
+            // Everytime new contract screen appears, reset contract details to create new
+            CurrentContract.shared = ContractDB.init()
+            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        }
+        
+        // Set up page control
+        self.delegate = self
+        configurePageControl()
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
@@ -57,22 +72,6 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         }
         
         return pages[nextIndex]
-    }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Set up first view that will show up on page control
-        if let firstViewController = pages.first {
-            // Everytime new contract screen appears, reset contract details to create new one
-//            Contract.shared.resetContract()
-            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
-        }
-        
-        // Set up page control
-        self.delegate = self
-        configurePageControl()
     }
     
     // MARK: Delegate functions

@@ -12,6 +12,25 @@ class DeadlineVC: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setInitialValues()
+    }
+    
+    private func setInitialValues() {
+        let today = Date()
+        datePicker.minimumDate = today
+        
+        if (CurrentContract.shared.deadline == 0.0) {
+            datePicker.date = today
+        } else {
+            let unixTimestamp = CurrentContract.shared.deadline
+            let date = Date(timeIntervalSince1970: unixTimestamp)
+            datePicker.date = date
+        }
+    }
+    
     @IBAction func continueButton(_ sender: Any) {
         // Set contract Date
         CurrentContract.shared.deadline = Double(datePicker.date.timeIntervalSince1970)
@@ -22,12 +41,5 @@ class DeadlineVC: UIViewController {
         // change page of PageViewController
         let nextPage = [parentVC.pages[3]]
         parentVC.setViewControllers(nextPage, direction: .forward, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let currentDate = Date()
-        datePicker.minimumDate = currentDate
     }
 }

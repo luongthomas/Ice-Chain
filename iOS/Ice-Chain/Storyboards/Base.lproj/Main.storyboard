@@ -1178,6 +1178,7 @@
                         <viewLayoutGuide key="safeArea" id="IRb-HS-HBK"/>
                     </view>
                     <connections>
+                        <outlet property="otherRangeBtn" destination="aap-st-mrN" id="c7p-CG-o5d"/>
                         <outlet property="prechosenOptions" destination="EMV-DS-2GP" id="6bm-lf-Ngi"/>
                         <outlet property="vaccinesBtn" destination="km5-Uh-iWd" id="a2s-4Q-gIe"/>
                     </connections>

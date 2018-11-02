@@ -16,15 +16,33 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var maxTempRangeTextField: TextField!
     @IBOutlet weak var prechosenOptions: UIStackView!
     @IBOutlet weak var vaccinesBtn: Button!
+    @IBOutlet weak var otherRangeBtn: Button!
     
     let niceBlue = UIColor(red: 66/255, green: 137/255, blue: 247/255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        
-        if let btn = vaccinesBtn {
-            btn.sendActions(for: .touchUpInside)
+        setInitialValues()
+    }
+    
+    private func setInitialValues() {
+        if (CurrentContract.shared.maxTemperature == 0 && CurrentContract.shared.minTemperature == 0) {
+            if let btn = vaccinesBtn {
+                btn.sendActions(for: .touchUpInside)
+            }
+        } else {
+            if let btn = otherRangeBtn {
+                btn.sendActions(for: .touchUpInside)
+            }
+            
+            if let minTemp = minTempRangeTextField {
+                minTemp.text = "\(CurrentContract.shared.minTemperature)"
+            }
+            
+            if let maxTemp = maxTempRangeTextField {
+                maxTemp.text = "\(CurrentContract.shared.maxTemperature)"
+            }
         }
     }
     

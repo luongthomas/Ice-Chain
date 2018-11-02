@@ -25,7 +25,7 @@ struct ContractDB: Decodable {
     var status: Int = 0
     var cargoValue: Double = 0
     var contractAddress: String  = ""
-    var owner: String? = ""
+    var owner: String = ""
     var depositRate: Double = 0
     
     enum CodingKeys: String, CodingKey {
@@ -47,7 +47,26 @@ struct ContractDB: Decodable {
         case depositRate = "depositRate"
     }
     
-    init() {}
+    init() {
+        contractName = ""
+        deadline = 0
+        depositLimit = 0
+        depositorAddress = ""
+        depositorEmail = ""
+        depositorName = ""
+        description = ""
+        maxTemperature = 0
+        minTemperature = 0
+        otherPartyAddress  = ""
+        otherPartyEmail = ""
+        otherPartyName = ""
+        _id = 0
+        status = 0
+        cargoValue = 0
+        contractAddress  = ""
+        owner = ""
+        depositRate = 0
+    }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
