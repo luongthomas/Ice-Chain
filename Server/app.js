@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var qtum = require("qtumjs-wallet");
 var abi = require('ethereumjs-abi')
+app.use(express.json());
 
 
 var MongoClient = require('mongodb').MongoClient;
@@ -41,6 +42,27 @@ app.get("/database", (req, res, next) => {
 	})
 })
 
+app.get("/get-all-contracts", (req, res, next) => {
+	MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
+		if (err) throw err;
+		var db = database.db()
+
+		db.collection('Contracts').find({}).toArray(function(err, items) {
+			res.send(JSON.stringify({items}))
+		})
+	})
+})
+
+app.get("/delete-all", (req, res, next) => {
+	MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
+		if (err) throw err;
+		
+		var db = database.db()
+		db.collection('Contracts').deleteMany({})
+
+		res.sendStatus(200);
+	})
+})
 
 app.get("/database-insert", (req, res, next) => {
 	MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
@@ -48,90 +70,135 @@ app.get("/database-insert", (req, res, next) => {
 		console.log("Connected");
 
 		var db = database.db()
-//		db.collection('Contracts').deleteOne({_id: 9})
-		var wrappedBuyerAddr =  "\"" + buyerAddr + "\""
-		var wrappedSellerAddr = "\"" + sellerAddr + "\""
+		db.collection('Contracts').deleteMany({})
 
 		var cursor = db.collection('Contracts').insertMany([
 		{
-			"_id": 9,
 			"contractName": "Lotion Shipment",
 			"description": "Lotion",
 			"depositorName": "Buyer",
 			"depositorEmail": "Buyer@gmail.com",
-			"depositorAddress":  wrappedBuyerAddr,
+			"depositorAddress":  buyerAddr,
 			"otherPartyName": "Seller",
-			"otherPartyAddress":  wrappedSellerAddr,
+			"otherPartyAddress":  sellerAddr,
 			"otherPartyEmail": "Seller@gmail.com",
 			"minTemperature": 0,
 			"maxTemperature": 100,
 			"deadline": 1540773606,
 			"depositLimit": 1,
+			"depositRate": 67,
 			"status": 0,
 			"cargoValue": 10,
-			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee"
+			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee",
+			"owner": "Buyer"
 		},
 		{
-			"_id": 10,
 			"contractName": "Intel CPU Shipment",
 			"description": "Intel CPUs",
 			"depositorName": "Seller",
 			"depositorEmail": "Seller@gmail.com",
-			"depositorAddress":  wrappedSellerAddr,
+			"depositorAddress":  sellerAddr,
 			"otherPartyName": "Seller",
-			"otherPartyAddress":  wrappedBuyerAddr,
+			"otherPartyAddress":  buyerAddr,
 			"otherPartyEmail": "Seller@gmail.com",
 			"minTemperature": 10,
 			"maxTemperature": 90,
 			"deadline": 1540774000,
 			"depositLimit": 2,
+			"depositRate": 45,
 			"status": 1,
 			"cargoValue": 20,
-			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee"
+			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee",
+			"owner": "Buyer"
 		},
 		{
-			"_id": 11,
 			"contractName": "Ice Cream Shipment",
 			"description": "Ice Cream",
 			"depositorName": "Buyer",
 			"depositorEmail": "Buyer@gmail.com",
-			"depositorAddress":  wrappedBuyerAddr,
+			"depositorAddress":  buyerAddr,
 			"otherPartyName": "Seller",
-			"otherPartyAddress":  wrappedSellerAddr,
+			"otherPartyAddress":  sellerAddr,
 			"otherPartyEmail": "Seller@gmail.com",
 			"minTemperature": -10,
 			"maxTemperature": 10,
 			"deadline": 1540773808,
 			"depositLimit": 3,
+			"depositRate": 37,
 			"status": 2,
 			"cargoValue": 5,
-			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee"
+			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee",
+			"owner": "Buyer"
 		},
 		{
-			"_id": 12,
 			"contractName": "Hot Dog Shipment",
 			"description": "Hot Dog",
 			"depositorName": "Seller",
 			"depositorEmail": "Seller@gmail.com",
-			"depositorAddress":  wrappedSellerAddr,
+			"depositorAddress":  sellerAddr,
 			"otherPartyName": "Buyer",
-			"otherPartyAddress":  wrappedBuyerAddr,
+			"otherPartyAddress":  buyerAddr,
 			"otherPartyEmail": "Buyer@gmail.com",
 			"minTemperature": 20,
 			"maxTemperature": 60,
 			"deadline": 1540774098,
 			"depositLimit": 5,
+			"depositRate": 23,
 			"status": 3,
 			"cargoValue": 1,
-			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee"
+			"contractAddress": "bb3f3c1ca886eb988c1d4dc979def855d63f77ee",
+			"owner": "Seller"
 		}
 
 		])
 
-		db.collection('Contracts').find({_id: 9}).toArray(function(err, items) {
+		db.collection('Contracts').find({}).toArray(function(err, items) {
 			res.send(JSON.stringify({items}))
 		})
 	})
+})
+
+
+
+app.post("/contract-create", (request, response) => {
+	MongoClient.connect(url, { useNewUrlParser: true }, function(err, database) {
+		if (err) throw err;
+		var db = database.db()
+		var collection = db.collection('Contracts')
+
+		var objectToInsert = {
+			"contractName": request.body.contractName,
+			"description": request.body.description,
+			"depositorName": request.body.depositorName,
+			"depositorEmail": request.body.depositorEmail,
+			"depositorAddress":  request.body.depositorAddress,
+			"otherPartyName": request.body.otherPartyName,
+			"otherPartyAddress":  request.body.otherPartyAddress,
+			"otherPartyEmail": request.body.otherPartyEmail,
+			"minTemperature": request.body.minTemperature,
+			"maxTemperature": request.body.maxTemperature,
+			"deadline": request.body.deadline,
+			"depositLimit": request.body.depositLimit,
+			"depositRate": request.body.depositRate,
+			"status": request.body.status,
+			"cargoValue": request.body.cargoValue,
+			"contractAddress": request.body.contractAddress,
+			"owner": request.body.owner
+		}
+
+		collection.insertOne(objectToInsert, function(err) {
+			if (err) return;
+
+			var objectId = objectToInsert._id;
+			response.send(JSON.stringify({objectId}))
+		})
+
+		db.collection('Contracts').find({}).toArray(function(err, items) {
+			console.log(items)
+		})
+	})
+	// console.log(request.body)
+	// response.send(request.body)
 })
 
 app.listen(5124, () => {
