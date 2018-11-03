@@ -36,7 +36,7 @@ class NetworkUtility {
     
     // From EC2
     func getContracts(completionHandler: @escaping (Contracts?, Error?) -> ()) {
-        let url = "http://35.165.80.135:5124/database-insert"
+        let url = "http://35.165.80.135:5124/get-all-contracts"
         
         Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result {
@@ -54,21 +54,41 @@ class NetworkUtility {
         }
     }
     
-    func sendNewContractToDatabase(contract: ContractDB, completionHandler: @escaping (String?, Error?) -> ()) {
+    func sendNewContractToDatabase(contract: ContractDB, completionHandler: @escaping (ObjectId?, Error?) -> ()) {
+        let contract = CurrentContract.shared
         print("Sending ContractDB to DB")
+        let params: [String: Any] = [
+            "contractName" : contract.contractName,
+            "deadline" : contract.deadline,
+            "depositLimit" : contract.depositLimit,
+            "depositorAddress" : contract.depositorAddress,
+            "depositorEmail" : contract.depositorEmail,
+            "depositorName" : contract.depositorName,
+            "description" : contract.description,
+            "maxTemperature" : contract.maxTemperature,
+            "minTemperature" : contract.minTemperature,
+            "otherPartyAddress" : contract.otherPartyAddress,
+            "otherPartyEmail" : contract.otherPartyEmail,
+            "otherPartyName" : contract.otherPartyName,
+            "status" : contract.status,
+            "cargoValue" : contract.cargoValue,
+            "contractAddress" : contract.contractAddress,
+            "owner" : contract.owner,
+            "depositRate" : contract.depositRate
+        ]
         
-        let url = "http://35.165.80.135:5124/database-insert"
+        let url: String = "http://35.165.80.135:5124/contract-create"
         
-        Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            
             switch response.result {
             case .success( _):
                 do {
-//                    let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
-                    completionHandler("Success", nil)
+                    let objectId = try self.jsonDecoder.decode(ObjectId.self, from: response.data!) as ObjectId
+                    completionHandler(objectId, nil)
                 } catch {
                     completionHandler(nil, error)
                 }
-                
             case .failure(let error):
                 completionHandler(nil, error)
             }

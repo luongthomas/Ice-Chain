@@ -33,7 +33,7 @@ class ViewContractTemplateVC: UIViewController {
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: formattedDate!)
         
-        let depositDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.depositLimit), number: NumberFormatter.Style.decimal)
+        let depositQTUM = NumberFormatter.localizedString(from: NSNumber(value: contract!.depositLimit), number: NumberFormatter.Style.decimal)
         
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract!.cargoValue), number: NumberFormatter.Style.decimal)
         
@@ -82,11 +82,10 @@ class ViewContractTemplateVC: UIViewController {
         tempRange.text = "From \(contract!.minTemperature) C to \(contract!.maxTemperature) C"
         deadline.text = dateFormatString
         value.text = "\(valueDollars) USD"
-        deposit.text = "\(depositDollars) USD"
+        deposit.text = "\(depositQTUM) QTUM"
     }
     
     @IBAction func confirmContract(_ sender: Any) {
-        
         print("Confirming Contract")
     }
 }

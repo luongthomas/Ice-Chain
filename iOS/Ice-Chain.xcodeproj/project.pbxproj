@@ -236,7 +236,6 @@
 				7150E82F21482146009CA176 /* MyContractsVC.swift */,
 				716ABADB214CC03600B51F89 /* RunningContractVC.swift */,
 				716ABADD214CC04800B51F89 /* OfferedContractVC.swift */,
-				71C29228218AB92600191271 /* ViewContractTemplateVC.swift */,
 			);
 			path = ExistingContracts;
 			sourceTree = "<group>";
@@ -274,6 +273,7 @@
 		71763C24212B23B600E99C3F /* Ice-Chain */ = {
 			isa = PBXGroup;
 			children = (
+				71C29234218D322F00191271 /* ViewContractTemplate */,
 				71C2922D218CD4FF00191271 /* Constants */,
 				71C2922C218BC14500191271 /* ContractCreateEditFlow */,
 				71DC6E45214587B300C58E60 /* Model */,
@@ -337,6 +337,14 @@
 				71486671214DAB81001BC288 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		71C29234218D322F00191271 /* ViewContractTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				71C29228218AB92600191271 /* ViewContractTemplateVC.swift */,
+			);
+			path = ViewContractTemplate;
 			sourceTree = "<group>";
 		};
 		71C88F0A2181500C00364377 /* Bluetooth */ = {

@@ -21,7 +21,7 @@ struct ContractDB: Decodable {
     var otherPartyAddress: String  = ""
     var otherPartyEmail: String = ""
     var otherPartyName: String = ""
-    var _id: Int = 0
+    var _id: String = ""
     var status: Int = 0
     var cargoValue: Double = 0
     var contractAddress: String  = ""
@@ -60,7 +60,7 @@ struct ContractDB: Decodable {
         otherPartyAddress  = ""
         otherPartyEmail = ""
         otherPartyName = ""
-        _id = 0
+        _id = ""
         status = 0
         cargoValue = 0
         contractAddress  = ""
@@ -79,7 +79,7 @@ struct ContractDB: Decodable {
         self.minTemperature = try values.decode(Double.self, forKey: .minTemperature)
         self.otherPartyAddress = try values.decode(String.self, forKey: .otherPartyAddress)
         self.otherPartyName = try values.decode(String.self, forKey: .otherPartyName)
-        self._id = try values.decode(Int.self, forKey: ._id)
+        self._id = try values.decode(String.self, forKey: ._id)
         self.status = try values.decode(Int.self, forKey: .status)
         self.cargoValue = try values.decode(Double.self, forKey: .cargoValue)
         self.contractAddress = try values.decode(String.self, forKey: .contractAddress)
@@ -101,4 +101,8 @@ enum ContractStatus {
     case RUNNING
     case FAILED
     case COMPLETED
+}
+
+struct ObjectId: Decodable {
+    var objectId: String = ""
 }

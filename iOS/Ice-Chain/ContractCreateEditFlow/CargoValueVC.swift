@@ -41,8 +41,6 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     }
     
     private func setInitialValues() {
-        
-        
         let currentUser = Users.shared.currentUser
         if currentUser == "Seller" {
             CurrentContract.shared.owner = "Seller"

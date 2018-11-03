@@ -46,11 +46,17 @@ class CargoDepositorVC: UIViewController {
         switch button.tag {
         case 0:
             CurrentContract.shared.depositorName = "Seller"
+            CurrentContract.shared.depositorEmail = "Seller@gmail.com"
+            CurrentContract.shared.otherPartyName = "Seller"
+            CurrentContract.shared.otherPartyEmail = "Seller@gmail.com"
             // Post a notification
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
         case 1:
             CurrentContract.shared.depositorName = "Buyer"
+            CurrentContract.shared.depositorEmail = "Buyer@gmail.com"
+            CurrentContract.shared.otherPartyName = "Buyer"
+            CurrentContract.shared.otherPartyEmail = "Buyer@gmail.com"
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
         default:

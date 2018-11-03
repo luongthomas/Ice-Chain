@@ -41,7 +41,7 @@ class DisplayContractVC: UIViewController {
         cargoValue.text = "\(CurrentContract.shared.cargoValue) USD"
         depositor.text = CurrentContract.shared.depositorName
         depositRate.text = "\(CurrentContract.shared.depositRate) %"
-        depositValueQtum.text = "\(CurrentContract.shared.depositLimit)"
+        depositValueQtum.text = "\(CurrentContract.shared.depositLimit) QTUM"
         owner.text = CurrentContract.shared.owner
     }
     
@@ -50,9 +50,13 @@ class DisplayContractVC: UIViewController {
         print("Confirming Contract")
         
         // TODO: Send all information to database
-        NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (dataStr, err) in
-            if let data = dataStr {
-                print(data)
+        NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (objId, err) in
+            if let err = err {
+                print(err)
+                DialogUtility().displayMyAlertMessage(vc: self, userMessage: err as! String)
+            }
+            if let id = objId {
+                print(id)
             }
             self.dismiss(animated: true, completion: nil)
         }
