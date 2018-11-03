@@ -1734,6 +1734,7 @@
                         <viewLayoutGuide key="safeArea" id="2KS-cm-d4Z"/>
                     </view>
                     <connections>
+                        <outlet property="actionBtn" destination="Sk7-6E-r3b" id="iXo-vE-Hzc"/>
                         <outlet property="buyerEmail" destination="TMn-GF-09g" id="fvx-wb-Iz3"/>
                         <outlet property="cargoType" destination="T3g-G1-7M4" id="I3X-ct-fhg"/>
                         <outlet property="cargoValue" destination="djA-lc-sIF" id="ItE-FJ-80l"/>

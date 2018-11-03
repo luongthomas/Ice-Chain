@@ -22,6 +22,8 @@ class DisplayContractVC: UIViewController {
     @IBOutlet weak var owner: UILabel!
     @IBOutlet weak var depositValueQtum: UILabel!
     
+    @IBOutlet weak var actionBtn: Button!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -43,22 +45,57 @@ class DisplayContractVC: UIViewController {
         depositRate.text = "\(CurrentContract.shared.depositRate) %"
         depositValueQtum.text = "\(CurrentContract.shared.depositLimit) QTUM"
         owner.text = CurrentContract.shared.owner
+        
+        if (Users.shared.currentUser == CurrentContract.shared.depositorName) {
+            actionBtn.setTitle("Deposit \(CurrentContract.shared.depositLimit) QTUM", for:  .normal)
+        } else {
+            actionBtn.setTitle("Done", for:  .normal)
+        }
+        
     }
     
     @IBAction func confirmContract(_ sender: Any) {
-        CurrentContract.shared.status = Constants().ON_APPROVAL
-        print("Confirming Contract")
+        if (actionBtn.titleLabel!.text == "Done" || actionBtn.titleLabel!.text == "Go Back") {
+            dismiss(animated: true, completion: nil)
+            return
+        }
         
-        // TODO: Send all information to database
-        NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (objId, err) in
-            if let err = err {
-                print(err)
-                DialogUtility().displayMyAlertMessage(vc: self, userMessage: err as! String)
+        if (CurrentContract.shared._id != "") {
+            // Contract in DB but not on Blockchain yet
+            var balance = 0.0
+            if (Users.shared.currentUser == "Buyer") {
+                balance = Users.shared.buyerBalance
+            } else {
+                balance = Users.shared.sellerBalance
             }
-            if let id = objId {
-                print(id)
+            if (balance > CurrentContract.shared.depositLimit) {
+                DialogUtility().displayMyAlertMessage(vc: self, userMessage: "Your balance \(balance) QTUM is not enough to cover the deposit")
+                actionBtn.setTitle("Go Back", for: .normal)
+            } else {
+                // TODO: Send off to blockchain
+                
+                // TODO: Update database on status
+                
+                dismiss(animated: true, completion: nil)
+                print("Deposit and Send to blockchain")
+                return
             }
-            self.dismiss(animated: true, completion: nil)
+        } else {
+            // Creating new Contract and submitting to DB
+            CurrentContract.shared.status = Constants().ON_APPROVAL
+            print("Confirming Contract")
+            
+            // TODO: Send all information to database
+            NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (objId, err) in
+                if let err = err {
+                    print(err)
+                    DialogUtility().displayMyAlertMessage(vc: self, userMessage: err as! String)
+                }
+                if let id = objId {
+                    print(id)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
