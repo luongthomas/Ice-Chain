@@ -10,6 +10,7 @@ import UIKit
 
 class BasicContractInfoVC: UIViewController {
 
+    @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var contractNameTextField: TextField!
     @IBOutlet weak var buyerEmailTextField: TextField!
     @IBOutlet weak var cargoTypeTextField: TextField!
@@ -27,8 +28,10 @@ class BasicContractInfoVC: UIViewController {
         
         if (CurrentContract.shared.contractName == "") {
             CurrentContract.shared.contractName = contractNameTextField.text!
+            screenTitle.text = "New Contract"
         } else {
             contractNameTextField.text! = CurrentContract.shared.contractName
+            screenTitle.text = "Verify/Edit Contract"
         }
         
         if (CurrentContract.shared.otherPartyEmail == "") {

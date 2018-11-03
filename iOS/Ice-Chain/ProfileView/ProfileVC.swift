@@ -28,7 +28,6 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var createContractBtn: Button!
     
-    
     var hamburgerMenuIsVisible = false
     
     let networkUtility = NetworkUtility()
@@ -68,15 +67,12 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             hamburgerMenuIsVisible = false
         }
         
-        
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.layoutIfNeeded()
         }) { (animationComplete) in
             print("The animation is complete!")
         }
     }
-    
-    
     
     @IBAction func changeToBuyer(_ sender: Any) {
         userImage.image = UIImage(named: "Buyer")
@@ -106,11 +102,12 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func createContractBtn(_ sender: Any) {
+        // Reset Contract (notification is in CreateContractVC)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCurrentContract"), object: nil)
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyboard.instantiateViewController(withIdentifier: "contractFlowTemplate") as! CreateContractVC
         self.navigationController?.present(newViewController, animated: true, completion: nil)
     }
-    
 }
 
 @IBDesignable
@@ -150,5 +147,3 @@ public class TextField: UITextField, UITextFieldDelegate {
         delegate = self
     }
 }
-
-

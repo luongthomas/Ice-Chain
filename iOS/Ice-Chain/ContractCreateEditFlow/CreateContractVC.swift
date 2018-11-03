@@ -24,16 +24,24 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerResetNotification()
+        
         // Set up first view that will show up on page control
         if let firstViewController = pages.first {
-            // Everytime new contract screen appears, reset contract details to create new
-            CurrentContract.shared = ContractDB.init()
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
         
         // Set up page control
         self.delegate = self
         configurePageControl()
+    }
+    
+    private func registerResetNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resetContract(notification:)), name: NSNotification.Name(rawValue: "resetCurrentContract"), object: nil)
+    }
+    
+    @objc func resetContract(notification: NSNotification) {
+        CurrentContract.shared = ContractDB.init()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

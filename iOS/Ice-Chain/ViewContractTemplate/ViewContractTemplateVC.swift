@@ -86,6 +86,23 @@ class ViewContractTemplateVC: UIViewController {
     }
     
     @IBAction func confirmContract(_ sender: Any) {
+        // Different button texts will take the user to different screens
+        
+        // TODO: Approve/Edit
+        if (actionButton.titleLabel?.text == "Approve/Edit") {
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractFlowTemplate") as? CreateContractVC else { return }
+
+            CurrentContract.shared = contract!
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
+        // TODO: Unload
+        
+        // TODO: Download Report
+        
+        
+        
         print("Confirming Contract")
     }
 }

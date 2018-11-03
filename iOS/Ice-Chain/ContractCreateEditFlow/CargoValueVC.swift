@@ -29,15 +29,19 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tap)
         
         registerNotifications()
-        
-//        depositRateDialog.contentHorizontalAlignment = .center
-        setCargoValueFromTextField()
         calculateDepositRateAndSetText()
-        setInitialValues()
     }
     
     private func registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateDepositPartyLabel(notification:)), name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (CurrentContract.shared.depositorName != "") {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
+        }
+        
+        setInitialValues()
     }
     
     private func setInitialValues() {
@@ -50,7 +54,17 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
             print("Unknown current user")
         }
         
-        CurrentContract.shared.depositRate = 65.0
+        if (CurrentContract.shared.depositRate != 0.0) {
+            savedDepositRate = CurrentContract.shared.depositRate
+            depositRateLabel.text = "\(CurrentContract.shared.depositRate)"
+        }
+        
+        if (CurrentContract.shared.cargoValue != 0.0) {
+            savedCargoValue = CurrentContract.shared.cargoValue
+            cargoValueTextField.text = "\(CurrentContract.shared.cargoValue)"
+        }
+        
+        calculateDepositRateAndSetText()
     }
     
     @IBAction func SliderValueChanged(_ sender: UISlider) {

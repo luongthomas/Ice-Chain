@@ -34,6 +34,7 @@ struct ContractDB: Decodable {
         case depositLimit = "depositLimit"
         case depositorAddress = "depositorAddress"
         case depositorEmail = "depositorEmail"
+        case depositorName = "depositorName"
         case description = "description"
         case maxTemperature = "maxTemperature"
         case minTemperature = "minTemperature"
@@ -74,6 +75,7 @@ struct ContractDB: Decodable {
         self.deadline = try values.decode(Double.self, forKey: .deadline)
         self.depositLimit = try values.decode(Double.self, forKey: .depositLimit)
         self.depositorEmail = try values.decode(String.self, forKey: .depositorEmail)
+        self.depositorName = try values.decode(String.self, forKey: .depositorName)
         self.description = try values.decode(String.self, forKey: .description)
         self.maxTemperature = try values.decode(Double.self, forKey: .maxTemperature)
         self.minTemperature = try values.decode(Double.self, forKey: .minTemperature)

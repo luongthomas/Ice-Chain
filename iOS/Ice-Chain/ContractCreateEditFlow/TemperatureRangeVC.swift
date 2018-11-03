@@ -33,6 +33,8 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
             }
         } else {
             if let btn = otherRangeBtn {
+                btn.backgroundColor = niceBlue
+                btn.setTitleColor(.white, for: .normal)
                 btn.sendActions(for: .touchUpInside)
             }
             
