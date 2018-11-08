@@ -27,6 +27,7 @@ struct ContractDB: Decodable {
     var contractAddress: String  = ""
     var owner: String = ""
     var depositRate: Double = 0
+    var txid: String = ""
     
     enum CodingKeys: String, CodingKey {
         case contractName = "contractName"
@@ -46,6 +47,7 @@ struct ContractDB: Decodable {
         case contractAddress = "contractAddress"
         case owner = "owner"
         case depositRate = "depositRate"
+        case txid = "txid"
     }
     
     init() {
@@ -67,6 +69,7 @@ struct ContractDB: Decodable {
         contractAddress  = ""
         owner = ""
         depositRate = 0
+        txid = ""
     }
     
     init(from decoder: Decoder) throws {
@@ -87,6 +90,7 @@ struct ContractDB: Decodable {
         self.contractAddress = try values.decode(String.self, forKey: .contractAddress)
         self.owner = try values.decode(String.self, forKey: .owner)
         self.depositRate = try values.decode(Double.self, forKey: .depositRate)
+        self.txid = try values.decode(String.self, forKey: .txid)
     }
 }
 
