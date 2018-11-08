@@ -120,6 +120,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func transportationBtn(_ sender: Any) {
+        State.viewContractGraph = false
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
         self.navigationController?.present(newViewController, animated: true, completion: nil)

@@ -24,6 +24,7 @@ class ViewContractTemplateVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        CurrentContract.shared = contract!
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -98,6 +99,12 @@ class ViewContractTemplateVC: UIViewController {
         
         
         // TODO: Unload
+        if (actionButton.titleLabel?.text == "Unload") {
+            State.viewContractGraph = true
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
         // TODO: Download Report
         

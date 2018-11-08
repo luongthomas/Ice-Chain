@@ -2835,7 +2835,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="downloadReport:" destination="yrT-B9-lgJ" eventType="touchUpInside" id="sTw-2F-8uD"/>
-                                    <segue destination="lER-bQ-0GM" kind="push" id="wum-cc-C9K"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2893,7 +2892,7 @@
         <!--Chart Executed-->
         <scene sceneID="EpM-jN-hlE">
             <objects>
-                <viewController id="lER-bQ-0GM" customClass="ChartExecuted" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tempGraph" id="lER-bQ-0GM" customClass="ChartExecuted" customModule="Ice_Chain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TBE-Df-8aj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2917,7 +2916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQA-qf-yH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10017" y="866"/>
+            <point key="canvasLocation" x="6742" y="144"/>
         </scene>
         <!--Scan Results View Controller-->
         <scene sceneID="eqc-ux-VDO">
