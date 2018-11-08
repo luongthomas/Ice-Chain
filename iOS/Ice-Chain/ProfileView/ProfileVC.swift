@@ -39,9 +39,12 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         Users.shared.setSellerAsCurrentUser()
         refreshAccounts()
+
+        sellerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
+        buyerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
     }
     
-    private func refreshAccounts() {
+    @objc private func refreshAccounts() {
         if Users.shared.currentUser == "Buyer" {
             networkUtility.getAccountInfo(account: "Buyer") { (accountInfo, err) in
                 if let err = err {print(err)}
