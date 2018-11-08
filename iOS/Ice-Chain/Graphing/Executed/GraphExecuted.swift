@@ -13,14 +13,13 @@ class LineChart2ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
     
-    
+    @IBOutlet weak var statusLabel: UILabel!
     var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
-        self.title = "Unload"
+        self.title = CurrentContract.shared.contractName
         
         chartView.delegate = self
         
@@ -30,7 +29,7 @@ class LineChart2ViewController: DemoBaseViewController {
         chartView.pinchZoomEnabled = true
         
         // x-axis limit line
-        let llXAxis = ChartLimitLine(limit: 10, label: "Index 10")
+        let llXAxis = ChartLimitLine(limit: 500, label: "Index 500")
         llXAxis.lineWidth = 4
         llXAxis.lineDashLengths = [10, 10, 0]
         llXAxis.labelPosition = .rightBottom
@@ -53,8 +52,8 @@ class LineChart2ViewController: DemoBaseViewController {
         
         let leftAxis = chartView.leftAxis
         leftAxis.removeAllLimitLines()
-        leftAxis.addLimitLine(ll1)
-        leftAxis.addLimitLine(ll2)
+//        leftAxis.addLimitLine(ll1)
+//        leftAxis.addLimitLine(ll2)
         leftAxis.axisMaximum = 3
         leftAxis.axisMinimum = -2
         leftAxis.gridLineDashLengths = [5, 5]
@@ -65,13 +64,14 @@ class LineChart2ViewController: DemoBaseViewController {
         //[_chartView.viewPortHandler setMaximumScaleY: 2.f];
         //[_chartView.viewPortHandler setMaximumScaleX: 2.f];
         
-        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 1),
-                                   font: .systemFont(ofSize: 12),
-                                   textColor: .white,
-                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
-        marker.chartView = chartView
-        marker.minimumSize = CGSize(width: 80, height: 40)
-        chartView.marker = marker
+//        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 1),
+//                                   font: .systemFont(ofSize: 12),
+//                                   textColor: .white,
+//                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
+//        marker.chartView = chartView
+//        marker.minimumSize = CGSize(width: 80, height: 40)
+//        chartView.marker = marker
+
         
         chartView.legend.form = .line
         chartView.animate(xAxisDuration: 2.5)
@@ -80,14 +80,14 @@ class LineChart2ViewController: DemoBaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        scheduledTimerWithTimeInterval()
+        scheduledTimerWithTimeInterval()
     }
     
     
-//    func scheduledTimerWithTimeInterval(){
-//        // Change delay in seconds here
-//        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-//    }
+    func scheduledTimerWithTimeInterval(){
+        // Change delay in seconds here
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+    }
     
     @objc func update() {
         self.updateChartData()
@@ -98,22 +98,57 @@ class LineChart2ViewController: DemoBaseViewController {
             chartView.data = nil
             return
         }
-        self.setDataCount(Int(10), range: UInt32(10))
-        
+        if State.tempArray.count > 50 {
+            self.setDataCount(State.tempArray.count, range: UInt32(10))
+        } else {
+            self.setDataCount(Int(10), range: UInt32(10))
+        }
         
     }
     
-    
-    
     func setDataCount(_ count: Int, range: UInt32) {
+        var values = [ChartDataEntry]()
+        var min = 0.0
+        var max = 0.0
         
-        
-        let values = (0..<count).map { (i) -> ChartDataEntry in
-            // TODO: GET DATA HERE
-            let val  = Double.random(min: 1.9, max: 2.1)
-            
-            return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
+        if State.tempArray.count > 20 {
+            values = (0..<count).map { (i) -> ChartDataEntry in
+                let val = State.tempArray[i]
+                if val > max {
+                    max = val
+                }
+                
+                if val < min {
+                    min = val
+                }
+                
+                if val > CurrentContract.shared.maxTemperature {
+                    statusLabel.text = "Contract Failed: Value \(val) is larger than the maximum temperature of \(CurrentContract.shared.maxTemperature)"
+                }
+                
+                if val < CurrentContract.shared.minTemperature {
+                    statusLabel.text = "Contract Failed: Value \(val) is larger than the minimum temperature of \(CurrentContract.shared.minTemperature)"
+                }
+                
+                return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
+            }
+        } else {
+            values = (0..<count).map { (i) -> ChartDataEntry in
+                // TODO: GET DATA HERE
+                
+                let val  = Double.random(min: 1.9, max: 2.1)
+                if val > max {
+                    max = val
+                }
+                
+                if val < min {
+                    min = val
+                }
+                return ChartDataEntry(x: Double(i), y: val, icon: #imageLiteral(resourceName: "icon"))
+            }
         }
+        
+        
         
         let set1 = LineChartDataSet(values: values, label: "DataSet 1")
         set1.drawIconsEnabled = false
@@ -130,18 +165,14 @@ class LineChart2ViewController: DemoBaseViewController {
         set1.formLineWidth = 1
         set1.formSize = 15
         
-        let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
-                              ChartColorTemplates.colorFromString("#ffff0000").cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-        
-        set1.fillAlpha = 1
-        set1.fill = Fill(linearGradient: gradient, angle: 90) //.linearGradient(gradient, angle: 90)
-        set1.drawFilledEnabled = true
+        let yAxis = chartView.getAxis(.left)
+        yAxis.axisMaximum = max + 5.0
+        yAxis.axisMinimum = min - 5.0
+        let xAxis = chartView.xAxis
+        xAxis.axisMaximum = Double(State.tempArray.count)
         
         let data = LineChartData(dataSet: set1)
-        
         chartView.data = data
+        
     }
 }
-
-

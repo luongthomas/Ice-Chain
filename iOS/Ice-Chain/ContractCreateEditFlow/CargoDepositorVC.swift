@@ -23,8 +23,10 @@ class CargoDepositorVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    private func setupDefaultTemp() {
         if let btn = vendorBtn {
-            // select default value
             btn.sendActions(for: .touchUpInside)
         }
     }
@@ -43,29 +45,31 @@ class CargoDepositorVC: UIViewController {
         
         switch button.tag {
         case 0:
-            Contract.shared.depositor = .SELLER
+            CurrentContract.shared.depositorName = "Seller"
+            CurrentContract.shared.depositorEmail = "Seller@gmail.com"
+            CurrentContract.shared.depositorAddress = "\(Users.shared.sellerAddresses.first!)"
+            CurrentContract.shared.otherPartyName = "Seller"
+            CurrentContract.shared.otherPartyEmail = "Seller@gmail.com"
             // Post a notification
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
         case 1:
-            Contract.shared.depositor = .BUYER
+            CurrentContract.shared.depositorName = "Buyer"
+            CurrentContract.shared.depositorEmail = "Buyer@gmail.com"
+            CurrentContract.shared.depositorAddress = "\(Users.shared.buyerAddresses.first!)"
+            CurrentContract.shared.otherPartyName = "Buyer"
+            CurrentContract.shared.otherPartyEmail = "Buyer@gmail.com"
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)
             break
-            
         default:
             print("Unknown selection")
             return
         }
-        
     }
     
-    
     @IBAction func popOffVC() {
-        
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {}
 }

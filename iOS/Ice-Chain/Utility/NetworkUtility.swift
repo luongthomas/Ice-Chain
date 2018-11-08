@@ -33,61 +33,92 @@ class NetworkUtility {
     
     let jsonDecoder = JSONDecoder()
     
-    func getAccounts() {
-        sendRpcCommand(command: "listaccounts", parameters: []) { data, err in
-            if let data = data {
+    
+    // From EC2
+    func getContracts(completionHandler: @escaping (Contracts?, Error?) -> ()) {
+        let url = "http://35.165.80.135:5124/get-all-contracts"
+        
+        Alamofire.request(url, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
                 do {
-                    let account = try self.jsonDecoder.decode(AccountBalance.self, from: data)
-                    print(account.result.buyer)
-                    print(account.result.seller)
+                    let contracts = try self.jsonDecoder.decode(Contracts.self, from: response.data!) as Contracts
+                    completionHandler(contracts, nil)
                 } catch {
-                    print(error)
+                    completionHandler(nil, error)
                 }
-            }
-            if let err = err {
-                print("\(err)")
+                
+            case .failure(let error):
+                completionHandler(nil, error)
             }
         }
     }
     
-    func getAddressGroupings() {
-        sendRpcCommand(command: "listaddressgroupings", parameters: [], completionHandler: { (data, err) in
-
-            if let data = data {
+    func sendNewContractToDatabase(contract: ContractDB, completionHandler: @escaping (ObjectId?, Error?) -> ()) {
+        let contract = CurrentContract.shared
+        print("Sending ContractDB to DB")
+        let params: [String: Any] = [
+            "contractName" : contract.contractName,
+            "deadline" : contract.deadline,
+            "depositLimit" : contract.depositLimit,
+            "depositorAddress" : contract.depositorAddress,
+            "depositorEmail" : contract.depositorEmail,
+            "depositorName" : contract.depositorName,
+            "description" : contract.description,
+            "maxTemperature" : contract.maxTemperature,
+            "minTemperature" : contract.minTemperature,
+            "otherPartyAddress" : contract.otherPartyAddress,
+            "otherPartyEmail" : contract.otherPartyEmail,
+            "otherPartyName" : contract.otherPartyName,
+            "status" : contract.status,
+            "cargoValue" : contract.cargoValue,
+            "contractAddress" : contract.contractAddress,
+            "owner" : contract.owner,
+            "depositRate" : contract.depositRate
+        ]
+        
+        let url: String = "http://35.165.80.135:5124/contract-create"
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            
+            switch response.result {
+            case .success( _):
                 do {
-                    Users.shared.sellerAddresses = [String]()
-                    Users.shared.buyerAddresses = [String]()
-                    let addresses = try self.jsonDecoder.decode(AccountAddress.self, from: data)
-                    for address in addresses.result {
-                        for account in address {
-                            if let accountType = account.accountType {
-                                if accountType == Users.shared.sellerType {
-                                    Users.shared.sellerAddresses.append(account.address)
-                                    Users.shared.sellerBalance = account.amount
-                                } else if accountType == Users.shared.buyerType {
-                                    Users.shared.buyerAddresses.append(account.address)
-                                    Users.shared.buyerBalance = account.amount
-                                }
-                            }
-                        }
-                    }
-                    
+                    let objectId = try self.jsonDecoder.decode(ObjectId.self, from: response.data!) as ObjectId
+                    completionHandler(objectId, nil)
                 } catch {
-                    print(error)
+                    completionHandler(nil, error)
                 }
+            case .failure(let error):
+                completionHandler(nil, error)
             }
-            if let err = err {
-                print("\(err)")
+        }
+    }
+    
+    func getAccountInfo(account: String, completionHandler: @escaping (AccountInfo?, Error?) -> ()) {
+        var url: String = "http://35.165.80.135:5124/accountInfo/"
+        var accountType = ""
+        if (account == "Seller" || account == "Buyer") {
+            accountType = account
+            url += accountType
+        } else {
+            print("Error in choosing account")
+        }
+        Alamofire.request(url).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
+                do {
+                    let accountInfo = try self.jsonDecoder.decode(AccountInfo.self, from: response.data!) as AccountInfo
+                    completionHandler(accountInfo, nil)
+                } catch {
+                    completionHandler(nil, error)
+                }
+            case .failure(let error):
+                completionHandler(nil, error)
             }
-            
-            print("Seller addresses are: \(Users.shared.sellerAddresses) with amount of \(Users.shared.sellerBalance)")
-            print("Buyer addresses are: \(Users.shared.buyerAddresses) with amount of \(Users.shared.buyerBalance)")
-            
-            }
-        )
+        }
     }
 
-    
     func deployContract() {
         
         let contractCode = constants.byteCode
@@ -101,9 +132,9 @@ class NetworkUtility {
                 do {
                     let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
                     
-                    print("Transaction ID: \(response.result.txid)")
+//                    print("Transaction ID: \(response.result.txid)")
                     if let address = response.result.address {
-                        print("Address: \(address)")
+//                        print("Address: \(address)")
                         Deployed.shared.contractAddresses.append(address)
                     }
                     Deployed.shared.transactionIds.append(response.result.txid)
@@ -211,7 +242,7 @@ class NetworkUtility {
             
             switch response.result {
             case .success( _):
-                print(response.value)
+//                print(response.value)
                 completionHandler(response.data, nil)
             case .failure(let error):
                 completionHandler(nil, error)

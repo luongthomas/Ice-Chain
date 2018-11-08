@@ -38,18 +38,18 @@ class RunningContractVC: UIViewController {
         let valueDollars = NumberFormatter.localizedString(from: NSNumber(value: contract.cargoValue), number: NumberFormatter.Style.decimal)
         
         if Users.shared.currentUser == "Seller" {
-            role.text = "You Are \(contract.owner.rawValue)"
+            role.text = "You Are Seller"
         } else {
             role.text = "You Are Buyer"
         }
-        
+
         status.text = contract.status.rawValue
         email.text = contract.buyerEmail
         cargoType.text = contract.cargoType
         tempRange.text = "From \(contract.tempMin) C to \(contract.tempMax) C"
         deadline.text = dateFormatString
         value.text = "\(valueDollars) USD"
-        
+
         deposit.text = "\(depositDollars) USD"
     }
     

@@ -13,6 +13,11 @@ import RxCocoa
 
 class TemperatureViewController: UIViewController {
     
+    
+    var isTempArray = false
+    var prevOutput = ""
+    var totalTempString = ""
+    
     private let viewModel: TemperatureViewModelType
     
     private let disposeBag = DisposeBag()
@@ -45,14 +50,90 @@ class TemperatureViewController: UIViewController {
         button.addTarget(self, action: #selector(handleTempBtnPress), for: .touchUpInside)
         return button
     }()
+    
+    var dataCount: UILabel = {
+        let textView = UILabel()
+        textView.text = "0 data points"
+        textView.font = UIFont.boldSystemFont(ofSize: 26)
+        textView.textAlignment = .center
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    var graphButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.borderColor = .blue
+        button.borderWidth = 2
+        button.setTitle("Refresh Data", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleGraphBtnPress), for: .touchUpInside)
+        return button
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.setNotificationsState(enabled: true)
+        bindViewModel()
+        view.backgroundColor = .white
+        State.tempArray = []
+        if (State.viewContractGraph == false) {
+            view.addSubview(temperatureLabel)
+            view.addSubview(temperatureButton)
+            setupLayout()
+        } else {
+            getTempArrayData()
+            showGraphButton()
+        }
+    }
+    
 
     @objc func handleTempBtnPress() {
         print("Pressed Temperature Btn")
         
         // 0 will signify returning one temperature
+        isTempArray = false
         self.viewModel.writeToCharacteristic(value: "0")
-
+    }
+    
+    private func showGraphButton() {
+        view.addSubview(graphButton)
+        view.addSubview(dataCount)
         
+        dataCount.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        dataCount.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        dataCount.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        dataCount.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        graphButton.topAnchor.constraint(equalTo: dataCount.bottomAnchor, constant: 25).isActive = true
+        graphButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        graphButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        graphButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    private func getTempArrayData() {
+        isTempArray = true
+        self.viewModel.writeToCharacteristic(value: "1")
+    }
+    
+    @objc private func handleGraphBtnPress() {
+        if graphButton.titleLabel?.text == "Refresh Data" {
+            let stringTempArray = totalTempString.components(separatedBy: " ")
+            State.tempArray = stringTempArray.map{ NSString(string: $0).doubleValue }
+
+            dataCount.text = "\(State.tempArray.count) Data points"
+            
+            if State.tempArray.count > 20 {
+                graphButton.titleLabel?.text = "Show Graph"
+                graphButton.setTitle("Show Graph", for: .normal)
+                return
+            }
+        }
+        
+        if graphButton.titleLabel?.text == "Show Graph" {
+            let myViewController = LineChart2ViewController(nibName: "LineChart2ViewController", bundle: nil)
+            self.navigationController!.pushViewController(myViewController, animated: true)
+        }
     }
     
     private func bindViewModel() {
@@ -62,17 +143,24 @@ class TemperatureViewController: UIViewController {
     private func subscribeViewModelOutputs() {
         subscribeCharacteristicActionOutput(viewModel.characteristicReadOutput)
         subscribeCharacteristicActionOutput(viewModel.updatedValueAndNotificationOutput) { output in
-            let filteredOutput = output.digits
-            guard let tempDouble = Double(filteredOutput) else { return }
-            var tempText = ""
-            if tempDouble >= 0.0 {
-                tempText = "+\(tempDouble)\u{00B0} Celcius"
+            if !self.isTempArray {
+                let filteredOutput = output.digits
+                guard let tempDouble = Double(filteredOutput) else { return }
+                var tempText = ""
+                if tempDouble >= 0.0 {
+                    tempText = "+\(tempDouble)\u{00B0} Celcius"
+                } else {
+                    tempText = "-\(tempDouble)\u{00B0} Celcius"
+                }
+                self.temperatureLabel.text = tempText
+                
             } else {
-                tempText = "-\(tempDouble)\u{00B0} Celcius"
+                if output != self.prevOutput {
+                    self.totalTempString += output
+                }
+                
+                self.prevOutput = output
             }
-            
-            self.temperatureLabel.text = tempText
-            
         }
         subscribeCharacteristicActionOutput(viewModel.characteristicWriteOutput)
 
@@ -80,11 +168,13 @@ class TemperatureViewController: UIViewController {
     
     private func subscribeCharacteristicOutput(_ outputStream: Observable<Characteristic>) {
         outputStream.subscribe(onNext: { [unowned self] output in
-            if let data = output.value {
-                self.temperatureLabel.text = String(data: data, encoding: .ascii)
+            if self.isTempArray == false {
+                if let data = output.value {
+                    self.temperatureLabel.text = String(data: data, encoding: .ascii)
+                }
+            } else {
+                // Never Hits
             }
-            
-            
         }).disposed(by: disposeBag)
     }
     
@@ -95,7 +185,6 @@ class TemperatureViewController: UIViewController {
             case .success(let value):
                 if let data = value.characteristic.value {
                     let output = String(data: data, encoding: .ascii) ?? ""
-                    print(output)
                     additionalAction?(output)
                 }
                 
@@ -109,17 +198,6 @@ class TemperatureViewController: UIViewController {
     
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel.setNotificationsState(enabled: true)
-        bindViewModel()
-        view.backgroundColor = .white
-        
-        view.addSubview(temperatureLabel)
-        view.addSubview(temperatureButton)
-        
-        setupLayout()
-    }
     
     private func setupLayout() {
         temperatureLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true

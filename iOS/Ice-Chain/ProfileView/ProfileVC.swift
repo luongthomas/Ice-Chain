@@ -24,24 +24,44 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var buyerBtn: UIButton!
     @IBOutlet weak var sellerBtn: UIButton!
     
-    var hamburgerMenuIsVisible = false
+    @IBOutlet weak var loggedInUserLbl: UILabel!
+    @IBOutlet weak var createContractBtn: Button!
     
+    var hamburgerMenuIsVisible = false
+
     let networkUtility = NetworkUtility()
     
     @IBAction func handleButtonPress(_ sender: Any) {
-        networkUtility.getAddressGroupings()
+        refreshAccounts()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkUtility.getAddressGroupings()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // change 2 to desired number of seconds
-            
-            self.sellerBtn.sendActions(for: .touchUpInside)
-        }
         Users.shared.setSellerAsCurrentUser()
-        
+        refreshAccounts()
+
+        sellerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
+        buyerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
+    }
+    
+    @objc private func refreshAccounts() {
+        if Users.shared.currentUser == "Buyer" {
+            networkUtility.getAccountInfo(account: "Buyer") { (accountInfo, err) in
+                if let err = err {print(err)}
+                guard let info = accountInfo else { return }
+                Users.shared.buyerAddresses.append(info.address)
+                Users.shared.buyerBalance = info.balance
+                self.updateBuyerUI()
+            }
+        } else {
+            networkUtility.getAccountInfo(account: "Seller") { (accountInfo, err) in
+                if let err = err {print(err)}
+                guard let info = accountInfo else { return }
+                Users.shared.sellerAddresses.append(info.address)
+                Users.shared.sellerBalance = info.balance
+                self.updateSellerUI()
+            }
+        }
     }
 
     @IBAction func openHamburger(_ sender: Any) {
@@ -64,7 +84,6 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             hamburgerMenuIsVisible = false
         }
         
-        
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.layoutIfNeeded()
         }) { (animationComplete) in
@@ -72,29 +91,46 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    
     @IBAction func changeToBuyer(_ sender: Any) {
+        updateBuyerUI()
+    }
+    
+    func updateBuyerUI() {
         userImage.image = UIImage(named: "Buyer")
         userEmail.text = "buyer@gmail.com"
         qtumAddress.text = Users.shared.buyerAddresses.first
         qtumAmount.text = "\(Users.shared.buyerBalance) QTUM"
         Users.shared.setBuyerAsCurrentUser()
-        
+        loggedInUserLbl.text = "Buyer"
+        createContractBtn.isEnabled = false
     }
     
     @IBAction func changeToSeller(_ sender: Any) {
+        updateSellerUI()
+    }
+    
+    func updateSellerUI() {
         userImage.image = UIImage(named: "Seller")
         userEmail.text = "seller@gmail.com"
         qtumAddress.text = Users.shared.sellerAddresses.first
         qtumAmount.text = "\(Users.shared.sellerBalance) QTUM"
         Users.shared.setSellerAsCurrentUser()
-        
+        loggedInUserLbl.text = "Seller"
+        createContractBtn.isEnabled = true
     }
     
     @IBAction func transportationBtn(_ sender: Any) {
+        State.viewContractGraph = false
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
+        self.navigationController?.present(newViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func createContractBtn(_ sender: Any) {
+        // Reset Contract (notification is in CreateContractVC)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetCurrentContract"), object: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "contractFlowTemplate") as! CreateContractVC
         self.navigationController?.present(newViewController, animated: true, completion: nil)
     }
 }
@@ -136,5 +172,3 @@ public class TextField: UITextField, UITextFieldDelegate {
         delegate = self
     }
 }
-
-
