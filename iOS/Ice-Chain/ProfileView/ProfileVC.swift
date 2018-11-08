@@ -25,26 +25,40 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sellerBtn: UIButton!
     
     @IBOutlet weak var loggedInUserLbl: UILabel!
-    
     @IBOutlet weak var createContractBtn: Button!
     
     var hamburgerMenuIsVisible = false
-    
+
     let networkUtility = NetworkUtility()
     
     @IBAction func handleButtonPress(_ sender: Any) {
-        networkUtility.getAddressGroupings()
+        refreshAccounts()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkUtility.getAddressGroupings()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // change 2 to desired number of seconds
-            
-            self.sellerBtn.sendActions(for: .touchUpInside)
+        Users.shared.setSellerAsCurrentUser()
+        refreshAccounts()
+    }
+    
+    private func refreshAccounts() {
+        if Users.shared.currentUser == "Buyer" {
+            networkUtility.getAccountInfo(account: "Buyer") { (accountInfo, err) in
+                if let err = err {print(err)}
+                guard let info = accountInfo else { return }
+                Users.shared.buyerAddresses.append(info.address)
+                Users.shared.buyerBalance = info.balance
+                self.updateBuyerUI()
+            }
+        } else {
+            networkUtility.getAccountInfo(account: "Seller") { (accountInfo, err) in
+                if let err = err {print(err)}
+                guard let info = accountInfo else { return }
+                Users.shared.sellerAddresses.append(info.address)
+                Users.shared.sellerBalance = info.balance
+                self.updateSellerUI()
+            }
         }
-        Users.shared.setSellerAsCurrentUser()        
     }
 
     @IBAction func openHamburger(_ sender: Any) {
@@ -75,6 +89,10 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func changeToBuyer(_ sender: Any) {
+        updateBuyerUI()
+    }
+    
+    func updateBuyerUI() {
         userImage.image = UIImage(named: "Buyer")
         userEmail.text = "buyer@gmail.com"
         qtumAddress.text = Users.shared.buyerAddresses.first
@@ -82,10 +100,13 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         Users.shared.setBuyerAsCurrentUser()
         loggedInUserLbl.text = "Buyer"
         createContractBtn.isEnabled = false
-        
     }
     
     @IBAction func changeToSeller(_ sender: Any) {
+        updateSellerUI()
+    }
+    
+    func updateSellerUI() {
         userImage.image = UIImage(named: "Seller")
         userEmail.text = "seller@gmail.com"
         qtumAddress.text = Users.shared.sellerAddresses.first

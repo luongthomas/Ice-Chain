@@ -95,61 +95,30 @@ class NetworkUtility {
         }
     }
     
-    func getAccounts() {
-        sendRpcCommand(command: "listaccounts", parameters: []) { data, err in
-            if let data = data {
+    func getAccountInfo(account: String, completionHandler: @escaping (AccountInfo?, Error?) -> ()) {
+        var url: String = "http://35.165.80.135:5124/accountInfo/"
+        var accountType = ""
+        if (account == "Seller" || account == "Buyer") {
+            accountType = account
+            url += accountType
+        } else {
+            print("Error in choosing account")
+        }
+        Alamofire.request(url).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
                 do {
-                    let account = try self.jsonDecoder.decode(AccountBalance.self, from: data)
-                    print(account.result.buyer)
-                    print(account.result.seller)
+                    let accountInfo = try self.jsonDecoder.decode(AccountInfo.self, from: response.data!) as AccountInfo
+                    completionHandler(accountInfo, nil)
                 } catch {
-                    print(error)
+                    completionHandler(nil, error)
                 }
-            }
-            if let err = err {
-                print("\(err)")
+            case .failure(let error):
+                completionHandler(nil, error)
             }
         }
     }
-    
-    func getAddressGroupings() {
-        sendRpcCommand(command: "listaddressgroupings", parameters: [], completionHandler: { (data, err) in
 
-            if let data = data {
-                do {
-                    Users.shared.sellerAddresses = [String]()
-                    Users.shared.buyerAddresses = [String]()
-                    let addresses = try self.jsonDecoder.decode(AccountAddress.self, from: data)
-                    for address in addresses.result {
-                        for account in address {
-                            if let accountType = account.accountType {
-                                if accountType == Users.shared.sellerType {
-                                    Users.shared.sellerAddresses.append(account.address)
-                                    Users.shared.sellerBalance = account.amount
-                                } else if accountType == Users.shared.buyerType {
-                                    Users.shared.buyerAddresses.append(account.address)
-                                    Users.shared.buyerBalance = account.amount
-                                }
-                            }
-                        }
-                    }
-                    
-                } catch {
-                    print(error)
-                }
-            }
-            if let err = err {
-                print("\(err)")
-            }
-            
-//            print("Seller addresses are: \(Users.shared.sellerAddresses) with amount of \(Users.shared.sellerBalance)")
-//            print("Buyer addresses are: \(Users.shared.buyerAddresses) with amount of \(Users.shared.buyerBalance)")
-            
-            }
-        )
-    }
-
-    
     func deployContract() {
         
         let contractCode = constants.byteCode

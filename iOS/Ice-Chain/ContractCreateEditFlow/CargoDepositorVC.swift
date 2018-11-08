@@ -47,6 +47,7 @@ class CargoDepositorVC: UIViewController {
         case 0:
             CurrentContract.shared.depositorName = "Seller"
             CurrentContract.shared.depositorEmail = "Seller@gmail.com"
+            CurrentContract.shared.depositorAddress = "\(Users.shared.sellerAddresses.first!)"
             CurrentContract.shared.otherPartyName = "Seller"
             CurrentContract.shared.otherPartyEmail = "Seller@gmail.com"
             // Post a notification
@@ -55,6 +56,7 @@ class CargoDepositorVC: UIViewController {
         case 1:
             CurrentContract.shared.depositorName = "Buyer"
             CurrentContract.shared.depositorEmail = "Buyer@gmail.com"
+            CurrentContract.shared.depositorAddress = "\(Users.shared.buyerAddresses.first!)"
             CurrentContract.shared.otherPartyName = "Buyer"
             CurrentContract.shared.otherPartyEmail = "Buyer@gmail.com"
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "depositorSelected"), object: nil)

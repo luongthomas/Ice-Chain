@@ -39,6 +39,7 @@
 		71763C2B212B23B600E99C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C29212B23B600E99C3F /* Main.storyboard */; };
 		71763C30212B23B800E99C3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71763C2E212B23B800E99C3F /* LaunchScreen.storyboard */; };
 		7176FAE921485A4A0033D557 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176FAE821485A4A0033D557 /* Users.swift */; };
+		719C13A321942211000F12E9 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C13A221942211000F12E9 /* AccountInfo.swift */; };
 		71C29224218AAAD100191271 /* ContractsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29223218AAAD100191271 /* ContractsTableViewController.swift */; };
 		71C29227218AAB3300191271 /* ContractsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29226218AAB3300191271 /* ContractsTableViewCell.swift */; };
 		71C29229218AB92600191271 /* ViewContractTemplateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C29228218AB92600191271 /* ViewContractTemplateVC.swift */; };
@@ -124,6 +125,7 @@
 		71763C2F212B23B800E99C3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71763C31212B23B800E99C3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7176FAE821485A4A0033D557 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		719C13A221942211000F12E9 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		71C29223218AAAD100191271 /* ContractsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewController.swift; sourceTree = "<group>"; };
 		71C29226218AAB3300191271 /* ContractsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewCell.swift; sourceTree = "<group>"; };
 		71C29228218AB92600191271 /* ViewContractTemplateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContractTemplateVC.swift; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 				71486675214DBDA0001BC288 /* Deployed.swift */,
 				71486677214EAA5B001BC288 /* Txid.swift */,
 				71C2922A218B7C8400191271 /* ContractDB.swift */,
+				719C13A221942211000F12E9 /* AccountInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				716ABAE1214CCD3800B51F89 /* ContractEditBasicVC.swift in Sources */,
 				71C88F65218155A200364377 /* PeripheralServiceCell.swift in Sources */,
 				7150E82B21477338009CA176 /* DisplayContractVC.swift in Sources */,
+				719C13A321942211000F12E9 /* AccountInfo.swift in Sources */,
 				71C29224218AAAD100191271 /* ContractsTableViewController.swift in Sources */,
 				7150E82521462FD9009CA176 /* CargoValueVC.swift in Sources */,
 				7150E83021482146009CA176 /* MyContractsVC.swift in Sources */,

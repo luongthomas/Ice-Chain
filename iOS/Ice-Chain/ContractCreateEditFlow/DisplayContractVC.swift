@@ -46,17 +46,38 @@ class DisplayContractVC: UIViewController {
         depositValueQtum.text = "\(CurrentContract.shared.depositLimit) QTUM"
         owner.text = CurrentContract.shared.owner
         
-        if (Users.shared.currentUser == CurrentContract.shared.depositorName) {
-            actionBtn.setTitle("Deposit \(CurrentContract.shared.depositLimit) QTUM", for:  .normal)
+        if (CurrentContract.shared._id == "") {
+            actionBtn.setTitle("Offer Contract", for:  .normal)
         } else {
-            actionBtn.setTitle("Done", for:  .normal)
+            if (Users.shared.currentUser == CurrentContract.shared.depositorName) {
+                actionBtn.setTitle("Deposit \(CurrentContract.shared.depositLimit) QTUM", for:  .normal)
+            } else {
+                actionBtn.setTitle("Done", for:  .normal)
+            }
         }
-        
     }
     
     @IBAction func confirmContract(_ sender: Any) {
         if (actionBtn.titleLabel!.text == "Done" || actionBtn.titleLabel!.text == "Go Back") {
             dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        if (actionBtn.titleLabel!.text == "Offer Contract") {
+            // Creating new Contract and submitting to DB
+            CurrentContract.shared.status = Constants().ON_APPROVAL
+            print("Confirming Contract")
+            
+            NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (objId, err) in
+                if let err = err {
+                    print(err)
+                    DialogUtility().displayMyAlertMessage(vc: self, userMessage: "\(err)")
+                }
+                if let id = objId {
+                    print(id)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
             return
         }
         
@@ -68,7 +89,7 @@ class DisplayContractVC: UIViewController {
             } else {
                 balance = Users.shared.sellerBalance
             }
-            if (balance > CurrentContract.shared.depositLimit) {
+            if (balance < CurrentContract.shared.depositLimit) {
                 DialogUtility().displayMyAlertMessage(vc: self, userMessage: "Your balance \(balance) QTUM is not enough to cover the deposit")
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
@@ -79,22 +100,6 @@ class DisplayContractVC: UIViewController {
                 dismiss(animated: true, completion: nil)
                 print("Deposit and Send to blockchain")
                 return
-            }
-        } else {
-            // Creating new Contract and submitting to DB
-            CurrentContract.shared.status = Constants().ON_APPROVAL
-            print("Confirming Contract")
-            
-            // TODO: Send all information to database
-            NetworkUtility().sendNewContractToDatabase(contract: CurrentContract.shared) { (objId, err) in
-                if let err = err {
-                    print(err)
-                    DialogUtility().displayMyAlertMessage(vc: self, userMessage: err as! String)
-                }
-                if let id = objId {
-                    print(id)
-                }
-                self.dismiss(animated: true, completion: nil)
             }
         }
     }
