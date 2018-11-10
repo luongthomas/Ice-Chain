@@ -119,136 +119,136 @@ class NetworkUtility {
         }
     }
 
-    func deployContract() {
-        
-        let contractCode = constants.byteCode
-        let gasLimit = constants.gasLimit
-        let gasPrice = constants.gasPrice
-        var senderAddress = Users.shared.currentAddress
-        
-        sendRpcCommand(command: "createcontract", parameters: [contractCode, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
-            
-            if let data = data {
-                do {
-                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
-                    
+//    func deployContract() {
+//
+//        let contractCode = constants.byteCode
+//        let gasLimit = constants.gasLimit
+//        let gasPrice = constants.gasPrice
+//        var senderAddress = Users.shared.currentAddress
+//
+//        sendRpcCommand(command: "createcontract", parameters: [contractCode, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
+//
+//            if let data = data {
+//                do {
+//                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
+//
+////                    print("Transaction ID: \(response.result.txid)")
+//                    if let address = response.result.address {
+////                        print("Address: \(address)")
+//                        Deployed.shared.contractAddresses.append(address)
+//                    }
+//                    Deployed.shared.transactionIds.append(response.result.txid)
+//
+//                } catch {
+//                    print(error)
+//                }
+//            }
+//            if let err = err {
+//                print("\(err)")
+//            }
+//
+//        })
+//    }
+    
+//    func depositMoney() {
+//
+//        let depositABI = constants.sendPaymentABI
+//        guard let contractAddress = Deployed.shared.contractAddresses.last else { return }
+//        let gasLimit = constants.gasLimit
+//        let gasPrice = constants.gasPrice
+//        let deposit = Contract.running.deposit / constants.qtumPricePerUSD
+//        let amountToSend = (deposit * 100).rounded() / 100
+//        var senderAddress = Users.shared.currentAddress
+//
+//        if Contract.shared.depositor.rawValue == "SELLER" {
+//            senderAddress = Users.shared.sellerAddresses.last!
+//        } else if Contract.shared.depositor.rawValue == "BUYER" {
+//            senderAddress = Users.shared.buyerAddresses.last!
+//        } else {
+//            print("UNKNOWN SENDER ADDRESS")
+//        }
+//
+//        sendRpcCommand(command: "sendtocontract", parameters: [contractAddress, depositABI, amountToSend, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
+//
+//            if let data = data {
+//                do {
+//
+//                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
+//
 //                    print("Transaction ID: \(response.result.txid)")
-                    if let address = response.result.address {
+//                    if let address = response.result.address {
 //                        print("Address: \(address)")
-                        Deployed.shared.contractAddresses.append(address)
-                    }
-                    Deployed.shared.transactionIds.append(response.result.txid)
-                    
-                } catch {
-                    print(error)
-                }
-            }
-            if let err = err {
-                print("\(err)")
-            }
-            
-        })
-    }
-    
-    func depositMoney() {
-        
-        let depositABI = constants.sendPaymentABI
-        guard let contractAddress = Deployed.shared.contractAddresses.last else { return }
-        let gasLimit = constants.gasLimit
-        let gasPrice = constants.gasPrice
-        let deposit = Contract.running.deposit / constants.qtumPricePerUSD
-        let amountToSend = (deposit * 100).rounded() / 100
-        var senderAddress = Users.shared.currentAddress
-        
-        if Contract.shared.depositor.rawValue == "SELLER" {
-            senderAddress = Users.shared.sellerAddresses.last!
-        } else if Contract.shared.depositor.rawValue == "BUYER" {
-            senderAddress = Users.shared.buyerAddresses.last!
-        } else {
-            print("UNKNOWN SENDER ADDRESS")
-        }
-        
-        sendRpcCommand(command: "sendtocontract", parameters: [contractAddress, depositABI, amountToSend, gasLimit, gasPrice, senderAddress], completionHandler: { (data, err) in
-            
-            if let data = data {
-                do {
-                    
-                    let response = try self.jsonDecoder.decode(TransactionResponse.self, from: data)
-                    
-                    print("Transaction ID: \(response.result.txid)")
-                    if let address = response.result.address {
-                        print("Address: \(address)")
-                        Deployed.shared.contractAddresses.append(address)
-                    }
-                    Deployed.shared.transactionIds.append(response.result.txid)
-                    
-                } catch {
-                    print(error)
-                }
-            }
-            if let err = err {
-                print("\(err)")
-            }
-            
-        })
-    }
+//                        Deployed.shared.contractAddresses.append(address)
+//                    }
+//                    Deployed.shared.transactionIds.append(response.result.txid)
+//
+//                } catch {
+//                    print(error)
+//                }
+//            }
+//            if let err = err {
+//                print("\(err)")
+//            }
+//
+//        })
+//    }
     
     
-    func checkConfirmation(txid: String, completion: @escaping(Bool)->()) {
-        sendRpcCommand(command: "gettransaction", parameters: [txid], completionHandler: { (data, err) in
-            
-            if let data = data {
-                do {
-                    let response = try self.jsonDecoder.decode(Txid.self, from: data)
-                    
-                    let confirmations = response.result.confirmations
-                    if confirmations > 0 {
-                        print("Confirmations greater than 0")
-                        completion(true)
-                    } else {
-                        print("No confirmations yet")
-                        completion(false)
-                    }
-                    
-                } catch {
-                    print(error)
-                }
-            }
-            if let err = err {
-                print("\(err)")
-            }
-            
-        })
-    }
-    
-    // Sends back data and it must be encoded based on which data structure is expected
-    func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (Data?, Error?) -> ()) {
-        
-        // TODO: Check command is valid
-        // TODO: Check Parameters?
-        
-        let parameters: [String: Any] = [
-            "jsonrpc": "1.0",
-            "id": "iOS",
-            "method": command,
-            "params": parameters
-        ]
-        
-        let base = "https://qtum-testnet.iame.io/qtum-rpc?"
-        let key = "apiKey=585e54431550c0e6105acaeee44561e8"
-        let url = base + key
-        
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
-            
-            switch response.result {
-            case .success( _):
-//                print(response.value)
-                completionHandler(response.data, nil)
-            case .failure(let error):
-                completionHandler(nil, error)
-            }
-        }
-    }
+//    func checkConfirmation(txid: String, completion: @escaping(Bool)->()) {
+//        sendRpcCommand(command: "gettransaction", parameters: [txid], completionHandler: { (data, err) in
+//
+//            if let data = data {
+//                do {
+//                    let response = try self.jsonDecoder.decode(Txid.self, from: data)
+//
+//                    let confirmations = response.result.confirmations
+//                    if confirmations > 0 {
+//                        print("Confirmations greater than 0")
+//                        completion(true)
+//                    } else {
+//                        print("No confirmations yet")
+//                        completion(false)
+//                    }
+//
+//                } catch {
+//                    print(error)
+//                }
+//            }
+//            if let err = err {
+//                print("\(err)")
+//            }
+//
+//        })
+//    }
+//
+//    // Sends back data and it must be encoded based on which data structure is expected
+//    func sendRpcCommand(command: String, parameters: [Any], completionHandler: @escaping (Data?, Error?) -> ()) {
+//
+//        // TODO: Check command is valid
+//        // TODO: Check Parameters?
+//
+//        let parameters: [String: Any] = [
+//            "jsonrpc": "1.0",
+//            "id": "iOS",
+//            "method": command,
+//            "params": parameters
+//        ]
+//
+//        let base = "https://qtum-testnet.iame.io/qtum-rpc?"
+//        let key = "apiKey=585e54431550c0e6105acaeee44561e8"
+//        let url = base + key
+//
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
+//
+//            switch response.result {
+//            case .success( _):
+////                print(response.value)
+//                completionHandler(response.data, nil)
+//            case .failure(let error):
+//                completionHandler(nil, error)
+//            }
+//        }
+//    }
     
     
     
