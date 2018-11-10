@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BasicContractInfoVC: UIViewController {
+class BasicContractInfoVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var contractNameTextField: TextField!
@@ -18,6 +18,14 @@ class BasicContractInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitialValues()
+        self.contractNameTextField.delegate = self
+        self.buyerEmailTextField.delegate = self
+        self.cargoTypeTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     // Depending on if we are creating a new contract or not, either load up the values and show or fill in from pre-displayed text
