@@ -31,6 +31,15 @@ class DeadlineVC: UIViewController {
         }
     }
     
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[1]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
+    }
+    
     @IBAction func continueButton(_ sender: Any) {
         // Set contract Date
         CurrentContract.shared.deadline = Double(datePicker.date.timeIntervalSince1970)

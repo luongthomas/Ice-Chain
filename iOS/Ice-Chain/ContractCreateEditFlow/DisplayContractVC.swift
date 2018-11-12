@@ -57,6 +57,15 @@ class DisplayContractVC: UIViewController {
         }
     }
     
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[3]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
+    }
+    
     @IBAction func confirmContract(_ sender: Any) {
         if (actionBtn.titleLabel!.text == "Done" || actionBtn.titleLabel!.text == "Go Back") {
             dismiss(animated: true, completion: nil)
@@ -89,13 +98,17 @@ class DisplayContractVC: UIViewController {
             } else {
                 balance = Users.shared.sellerBalance
             }
+            
+            // Check if balance is high enough
             if (balance < CurrentContract.shared.depositLimit) {
                 DialogUtility().displayMyAlertMessage(vc: self, userMessage: "Your balance \(balance) QTUM is not enough to cover the deposit")
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
                 // TODO: Send off to blockchain
                 
+                
                 // TODO: Update database on status
+//                NetworkUtility()
                 
                 dismiss(animated: true, completion: nil)
                 print("Deposit and Send to blockchain")

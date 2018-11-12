@@ -8,12 +8,14 @@
 
 import UIKit
 
-class BasicContractInfoVC: UIViewController, UITextFieldDelegate {
+class BasicContractInfoVC: UIViewController, UITextFieldDelegate, UIBarPositioningDelegate, UINavigationBarDelegate {
 
     @IBOutlet weak var screenTitle: UILabel!
     @IBOutlet weak var contractNameTextField: TextField!
     @IBOutlet weak var buyerEmailTextField: TextField!
     @IBOutlet weak var cargoTypeTextField: TextField!
+    
+    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,11 @@ class BasicContractInfoVC: UIViewController, UITextFieldDelegate {
         self.contractNameTextField.delegate = self
         self.buyerEmailTextField.delegate = self
         self.cargoTypeTextField.delegate = self
+        self.navBar.delegate = self
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -28,7 +35,6 @@ class BasicContractInfoVC: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    // Depending on if we are creating a new contract or not, either load up the values and show or fill in from pre-displayed text
     private func setInitialValues() {
         if (CurrentContract.shared.owner == "") {
             CurrentContract.shared.owner = Users.shared.currentUser
@@ -77,6 +83,11 @@ class BasicContractInfoVC: UIViewController, UITextFieldDelegate {
         }
         
         return false
+    }
+    
+    // Depending on if we are creating a new contract or not, either load up the values and show or fill in from pre-displayed text
+    @IBAction func handleBack(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func continueButton(_ sender: Any) {

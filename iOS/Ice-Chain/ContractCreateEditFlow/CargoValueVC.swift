@@ -114,6 +114,15 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         depositRateDialog.setTitle(infoText, for: .normal)
     }
     
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[2]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
+    }
+    
     @IBAction func handleContinue(_ sender: Any) {
         if (CurrentContract.shared.depositorName != "" && CurrentContract.shared.cargoValue > 0) {
             let parentVC = self.parent as! CreateContractVC

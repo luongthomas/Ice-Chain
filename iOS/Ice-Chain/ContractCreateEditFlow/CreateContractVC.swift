@@ -33,6 +33,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         
         // Set up page control
         self.delegate = self
+        self.dataSource = self
         configurePageControl()
     }
     
@@ -52,6 +53,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         guard previousIndex >= 0 else {
 //            return orderedViewControllers.last
             // Uncomment below and remove the line above if you don't want page control to loop
+            
             return nil
         }
         
