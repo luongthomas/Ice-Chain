@@ -22,6 +22,12 @@ class ViewContractTemplateVC: UIViewController {
     
     var contract: ContractDB?
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setStatusText()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CurrentContract.shared = contract!
@@ -44,12 +50,26 @@ class ViewContractTemplateVC: UIViewController {
         } else {
             role.text = "You Are Buyer"
         }
+        
+        email.text = contract!.depositorEmail
+        cargoType.text = contract!.description
+        tempRange.text = "From \(contract!.minTemperature) C to \(contract!.maxTemperature) C"
+        deadline.text = dateFormatString
+        value.text = "\(valueDollars) USD"
+        deposit.text = "\(depositQTUM) QTUM"
+    }
+    
+    private func setStatusText() {
         let ON_APPROVAL = 0
         let RUNNING = 1
         let FAILED = 2
         let COMPLETED = 3
         
-        switch contract!.status {
+        let currentUser = Users.shared.currentUser
+        guard var contract = contract else { return }
+        contract = CurrentContract.shared
+        
+        switch contract.status {
         case ON_APPROVAL:
             status.text = "On Approval"
             if (currentUser == "Seller") {
@@ -77,13 +97,6 @@ class ViewContractTemplateVC: UIViewController {
             status.text = "Unknown status"
             actionButton.setTitle("Unknown Action", for: .normal)
         }
-        
-        email.text = contract!.depositorEmail
-        cargoType.text = contract!.description
-        tempRange.text = "From \(contract!.minTemperature) C to \(contract!.maxTemperature) C"
-        deadline.text = dateFormatString
-        value.text = "\(valueDollars) USD"
-        deposit.text = "\(depositQTUM) QTUM"
     }
     
     @IBAction func confirmContract(_ sender: Any) {
@@ -94,7 +107,7 @@ class ViewContractTemplateVC: UIViewController {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractFlowTemplate") as? CreateContractVC else { return }
 
             CurrentContract.shared = contract!
-            navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true, completion: nil)
         }
         
         
@@ -103,7 +116,7 @@ class ViewContractTemplateVC: UIViewController {
             State.viewContractGraph = true
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true, completion: nil)
         }
         
         // TODO: Download Report

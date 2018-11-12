@@ -1042,7 +1042,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voS-0P-tKy">
-                                <rect key="frame" x="129.5" y="99" width="116.5" height="38.5"/>
+                                <rect key="frame" x="129.5" y="79" width="116.5" height="38.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1066,7 +1066,7 @@
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqX-Sz-cGt">
-                                <rect key="frame" x="0.0" y="40" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="Syj-UZ-GLN">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="ZCi-8b-7oA">
@@ -1080,11 +1080,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bqX-Sz-cGt" firstAttribute="top" secondItem="Ied-24-3aa" secondAttribute="top" constant="20" id="6VT-cv-fIz"/>
+                            <constraint firstItem="bqX-Sz-cGt" firstAttribute="top" secondItem="Ied-24-3aa" secondAttribute="top" id="6VT-cv-fIz"/>
                             <constraint firstAttribute="trailing" secondItem="bqX-Sz-cGt" secondAttribute="trailing" id="PmR-33-MYH"/>
+                            <constraint firstItem="bqX-Sz-cGt" firstAttribute="leading" secondItem="Ied-24-3aa" secondAttribute="leading" id="XCc-nM-Crz"/>
                             <constraint firstItem="voS-0P-tKy" firstAttribute="top" secondItem="bqX-Sz-cGt" secondAttribute="bottom" constant="15" id="YVi-NU-WnT"/>
                             <constraint firstItem="voS-0P-tKy" firstAttribute="centerX" secondItem="B6M-pW-IsC" secondAttribute="centerX" id="kFR-yS-igC"/>
-                            <constraint firstItem="bqX-Sz-cGt" firstAttribute="leading" secondItem="Ied-24-3aa" secondAttribute="leading" id="tlv-Rz-Lmv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ied-24-3aa"/>
                     </view>
@@ -1499,10 +1499,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sk7-6E-r3b" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
-                                <rect key="frame" x="16" y="562" width="343" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sk7-6E-r3b" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
+                                <rect key="frame" x="15" y="562" width="345" height="55"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.53725490200000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="9sJ-eX-CDJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Offer Contract">
                                     <color key="titleColor" red="0.98846382389999998" green="0.98117973979999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1538,10 +1540,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2KS-cm-d4Z" firstAttribute="bottom" secondItem="Sk7-6E-r3b" secondAttribute="bottom" constant="50" id="4QV-yw-f34"/>
+                            <constraint firstItem="Sk7-6E-r3b" firstAttribute="leading" secondItem="2KS-cm-d4Z" secondAttribute="leading" constant="15" id="Bog-49-7gy"/>
                             <constraint firstItem="NPx-B6-9yR" firstAttribute="top" secondItem="ElZ-5V-KZv" secondAttribute="bottom" constant="32" id="LBJ-sd-iSE"/>
                             <constraint firstItem="2KS-cm-d4Z" firstAttribute="trailing" secondItem="6s5-vP-Rym" secondAttribute="trailing" id="SZ7-aD-u1M"/>
                             <constraint firstItem="6s5-vP-Rym" firstAttribute="top" secondItem="AOW-fG-mOi" secondAttribute="top" constant="20" id="bkK-7L-amV"/>
                             <constraint firstItem="6s5-vP-Rym" firstAttribute="leading" secondItem="AOW-fG-mOi" secondAttribute="leading" id="d2R-VB-S4l"/>
+                            <constraint firstItem="2KS-cm-d4Z" firstAttribute="trailing" secondItem="Sk7-6E-r3b" secondAttribute="trailing" constant="15" id="gsT-f2-X7E"/>
                             <constraint firstItem="ElZ-5V-KZv" firstAttribute="centerX" secondItem="AOW-fG-mOi" secondAttribute="centerX" id="hgH-gf-mNa"/>
                             <constraint firstItem="NPx-B6-9yR" firstAttribute="leading" secondItem="2KS-cm-d4Z" secondAttribute="leading" constant="32" id="lNi-Rh-YBc"/>
                             <constraint firstItem="2KS-cm-d4Z" firstAttribute="trailing" secondItem="NPx-B6-9yR" secondAttribute="trailing" constant="50" id="sLs-Hb-Rzc"/>

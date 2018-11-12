@@ -52,7 +52,7 @@ class DisplayContractVC: UIViewController {
             if (Users.shared.currentUser == CurrentContract.shared.depositorName) {
                 actionBtn.setTitle("Deposit \(CurrentContract.shared.depositLimit) QTUM", for:  .normal)
             } else {
-                actionBtn.setTitle("Done", for:  .normal)
+                actionBtn.setTitle("Confirm Contract", for:  .normal)
             }
         }
     }
@@ -67,7 +67,17 @@ class DisplayContractVC: UIViewController {
     }
     
     @IBAction func confirmContract(_ sender: Any) {
-        if (actionBtn.titleLabel!.text == "Done" || actionBtn.titleLabel!.text == "Go Back") {
+        if (actionBtn.titleLabel!.text == "Confirm Contract") {
+            NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in
+                if let err = err { print(err); return}
+                if let msg = message {print(msg)}
+                CurrentContract.shared.status = 1
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if (actionBtn.titleLabel!.text == "Go Back") {
             dismiss(animated: true, completion: nil)
             return
         }

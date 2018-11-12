@@ -15,12 +15,15 @@ class ContractsTableViewController: UITableViewController {
     
     var contracts = [ContractDB]()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadRealContracts()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 80
 
-        loadRealContracts()
-        
 //        if let savedContracts = loadContracts() {
 //            contracts += savedContracts
 //        }
@@ -202,6 +205,7 @@ class ContractsTableViewController: UITableViewController {
     private func loadRealContracts() {
         let networkUtility = NetworkUtility()
         networkUtility.getContracts { (items, err) in
+            self.contracts.removeAll(keepingCapacity: true)
             if let contractList = items {
                 for i in contractList.items {
                     self.contracts.append(i)

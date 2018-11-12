@@ -118,6 +118,39 @@ class NetworkUtility {
             }
         }
     }
+    
+    func updateContractStatus(contractStatus: ContractStatus, completionHandler: @escaping (String?, Error?) -> ()) {
+        let contract = CurrentContract.shared
+        
+        var statusValue = 0
+        
+        switch contractStatus {
+        case .NOT_RUNNING:
+            statusValue = 0
+        case .RUNNING:
+            statusValue = 1
+        case .FAILED:
+            statusValue = 2
+        case .COMPLETED:
+            statusValue = 3
+        }
+        
+        let params: [String: Any] = [
+            "_id" : contract._id,
+            "contractStatus" : statusValue
+        ]
+        
+        let url: String = "http://35.165.80.135:5124/update-status"
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.response?.statusCode {
+            case 200:
+                completionHandler("Successfully updated", nil)
+            default:
+                completionHandler(nil, response.error)
+            }
+        }
+    }
 
 //    func deployContract() {
 //
