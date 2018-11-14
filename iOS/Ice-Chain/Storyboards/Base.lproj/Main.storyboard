@@ -1286,6 +1286,7 @@
                         <outlet property="depositRateDialog" destination="FwQ-c7-Ld1" id="qzt-TJ-yj7"/>
                         <outlet property="depositRateLabel" destination="Eq3-zn-AKO" id="yoJ-Sn-NsB"/>
                         <outlet property="depositorPartyButton" destination="vUp-xy-VIU" id="7Rg-za-dtP"/>
+                        <outlet property="rateSlider" destination="rNb-A9-HJL" id="7Pm-xr-gU0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWU-3c-Svu" sceneMemberID="firstResponder"/>

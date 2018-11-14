@@ -12,6 +12,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var depositorPartyButton: Button!
     
+    @IBOutlet weak var rateSlider: UISlider!
     // TODO: Rename to Calculated
     @IBOutlet weak var depositRateDialog: Button!
     @IBOutlet weak var cargoValueTextField: TextField!
@@ -56,6 +57,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         
         if (CurrentContract.shared.depositRate != 0.0) {
             savedDepositRate = CurrentContract.shared.depositRate
+            rateSlider.value = Float(savedDepositRate)
             depositRateLabel.text = "\(CurrentContract.shared.depositRate)"
         }
         
