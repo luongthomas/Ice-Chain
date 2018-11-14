@@ -13,7 +13,6 @@ class NetworkUtility {
     
     let constants = Constants()
     
-    
     func sampleNetwork() {
         Alamofire.request("https://httpbin.varvar/get").responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
@@ -32,7 +31,6 @@ class NetworkUtility {
 
     
     let jsonDecoder = JSONDecoder()
-    
     
     // From EC2
     func getContracts(completionHandler: @escaping (Contracts?, Error?) -> ()) {
@@ -115,6 +113,33 @@ class NetworkUtility {
                 }
             case .failure(let error):
                 completionHandler(nil, error)
+            }
+        }
+    }
+    
+    func sendDeposit(account: String) {
+        let url: String = "http://35.165.80.135:5124/send-deposit/"
+        var accountType = ""
+        if (account == "Seller" || account == "Buyer") {
+            accountType = account
+        } else {
+            print("Error in choosing account")
+        }
+        
+        let contract = CurrentContract.shared
+        
+        let params: [String: Any] = [
+            "accountTypeFrom": accountType,
+            "txid": contract.txid,
+            "amount": contract.depositLimit
+        ]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
+                print("SUCCESS DEPOSIT")
+            case .failure(let error):
+                print("ERR \(error)")
             }
         }
     }

@@ -100,10 +100,12 @@ class DisplayContractVC: UIViewController {
             return
         }
         
+        let currentUser = Users.shared.currentUser
+        
         if (CurrentContract.shared._id != "") {
             // Contract in DB but not on Blockchain yet
             var balance = 0.0
-            if (Users.shared.currentUser == "Buyer") {
+            if (currentUser == "Buyer") {
                 balance = Users.shared.buyerBalance
             } else {
                 balance = Users.shared.sellerBalance
@@ -115,10 +117,9 @@ class DisplayContractVC: UIViewController {
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
                 // TODO: Send off to blockchain
-                
+                NetworkUtility().sendDeposit(account: currentUser)
                 
                 // TODO: Update database on status
-//                NetworkUtility()
                 
                 dismiss(animated: true, completion: nil)
                 print("Deposit and Send to blockchain")

@@ -117,6 +117,9 @@ class ViewContractTemplateVC: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
             self.present(vc, animated: true, completion: nil)
+            
+            // Scan results will put the data into the database, send it off to smart contract for verification
+            
         }
         
         // TODO: Download Report
