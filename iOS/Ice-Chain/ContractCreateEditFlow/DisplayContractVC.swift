@@ -117,17 +117,17 @@ class DisplayContractVC: UIViewController {
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
                 // TODO: Send off to blockchain
-                NetworkUtility().sendDeposit(account: currentUser)
+//                NetworkUtility().sendDeposit(account: currentUser)
                 
                 // Temporary Code to update status and not deposit yet
-//                NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in
-//                    if let err = err { print(err); return}
-//                    if let msg = message {print(msg)}
-//                    CurrentContract.shared.status = 1
-//                    self.actionBtn.setTitle("Go Back", for: .normal)
-////                    self.dismiss(animated: true, completion: nil)
-//                    return
-//                }
+                NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in
+                    if let err = err { print(err); return}
+                    if let msg = message {print(msg)}
+                    CurrentContract.shared.status = 1
+                    self.actionBtn.setTitle("Go Back", for: .normal)
+//                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
                 
                 
                 // TODO: Update database on status
