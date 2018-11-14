@@ -30,6 +30,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tap)
         
         registerNotifications()
+        setInitialValues()
         calculateDepositRateAndSetText()
     }
     
