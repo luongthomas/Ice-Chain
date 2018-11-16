@@ -117,6 +117,27 @@ class NetworkUtility {
         }
     }
     
+    func getConfirmations(txid: String, completionHandler: @escaping (Int?, Error?) -> ()) {
+        let url: String = "http://35.165.80.135:5124/get-confirmations/"
+        let params: [String: Any] = [
+            "txid" : txid,
+        ]
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.result {
+            case .success( _):
+                do {
+                    let confirmations = try self.jsonDecoder.decode(Confirmations.self, from: response.data!) as Confirmations
+                    completionHandler(confirmations.value, nil)
+                } catch {
+                    completionHandler(nil, error)
+                }
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+    
     func sendDeposit(account: String) {
         let url: String = "http://35.165.80.135:5124/send-deposit/"
         var accountType = ""

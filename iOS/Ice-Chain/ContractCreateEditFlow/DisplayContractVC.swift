@@ -117,7 +117,7 @@ class DisplayContractVC: UIViewController {
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
                 // TODO: Send off to blockchain
-//                NetworkUtility().sendDeposit(account: currentUser)
+                NetworkUtility().sendDeposit(account: currentUser)
                 
                 // Temporary Code to update status and not deposit yet
                 NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in

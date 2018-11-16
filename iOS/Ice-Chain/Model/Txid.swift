@@ -32,3 +32,7 @@ struct TxidResult: Codable {
     let confirmations : Int
     let txid : String
 }
+
+struct Confirmations: Codable {
+    var value : Int
+}
