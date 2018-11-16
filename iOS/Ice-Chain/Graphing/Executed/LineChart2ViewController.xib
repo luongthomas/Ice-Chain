@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineChart2ViewController">
             <connections>
                 <outlet property="chartView" destination="Oqd-Ej-1xl" id="tSA-aU-J9W"/>
+                <outlet property="doneButton" destination="4sy-FN-ll2" id="wvr-7I-ZEZ"/>
                 <outlet property="statusLabel" destination="VmS-yn-tv4" id="gvY-RX-46N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -43,19 +44,32 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sy-FN-ll2" customClass="Button" customModule="Ice_Chain" customModuleProvider="target">
+                    <rect key="frame" x="10" y="622" width="355" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="NrO-LL-EbC"/>
+                    </constraints>
+                    <state key="normal" title="Done"/>
+                    <connections>
+                        <action selector="handleDonePress:" destination="-1" eventType="touchUpInside" id="Vxu-qM-Qg8"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="leading" secondItem="TE7-or-dqL" secondAttribute="leading" id="6Mc-iO-BuY"/>
                 <constraint firstItem="TE7-or-dqL" firstAttribute="bottom" secondItem="VmS-yn-tv4" secondAttribute="bottom" constant="50" id="Ds4-kL-tr9"/>
                 <constraint firstAttribute="trailing" secondItem="VmS-yn-tv4" secondAttribute="trailing" constant="20" id="X2R-et-v1n"/>
+                <constraint firstItem="TE7-or-dqL" firstAttribute="trailing" secondItem="4sy-FN-ll2" secondAttribute="trailing" constant="10" id="Z02-fd-Ij7"/>
+                <constraint firstItem="TE7-or-dqL" firstAttribute="bottom" secondItem="4sy-FN-ll2" secondAttribute="bottom" constant="15" id="d9i-wr-c1V"/>
                 <constraint firstItem="VmS-yn-tv4" firstAttribute="top" secondItem="Oqd-Ej-1xl" secondAttribute="bottom" constant="25" id="fRE-Uq-2Vo"/>
                 <constraint firstItem="VmS-yn-tv4" firstAttribute="leading" secondItem="TE7-or-dqL" secondAttribute="leading" constant="20" id="foi-9k-kSY"/>
                 <constraint firstItem="TE7-or-dqL" firstAttribute="trailing" secondItem="Oqd-Ej-1xl" secondAttribute="trailing" id="mC3-xy-2CS"/>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="top" secondItem="TE7-or-dqL" secondAttribute="top" constant="50" id="tM2-S2-QkO"/>
+                <constraint firstItem="4sy-FN-ll2" firstAttribute="leading" secondItem="TE7-or-dqL" secondAttribute="leading" constant="10" id="yzW-F0-BkV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="TE7-or-dqL"/>
-            <point key="canvasLocation" x="157.5" y="222.5"/>
+            <point key="canvasLocation" x="156" y="221.73913043478262"/>
         </view>
     </objects>
 </document>

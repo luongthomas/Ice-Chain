@@ -197,6 +197,28 @@ class NetworkUtility {
             }
         }
     }
+    
+    func sendTemperatures(contractId: String, tempArray: [Double], completionHandler: @escaping (String?, Error?) -> ()) {
+        guard tempArray.count > 1 else { return }
+        
+        let params: [String: Any] = [
+            "_id" : contractId,
+            "temperatures": tempArray
+        ]
+        
+        let url: String = "http://35.165.80.135:5124/upload-temperatures"
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.response?.statusCode {
+            case 200:
+                completionHandler("Contract Success", nil)
+            case 202:
+                completionHandler("Contract Failed", nil)
+            default:
+                completionHandler(nil, response.error)
+            }
+        }
+    }
 
 //    func deployContract() {
 //

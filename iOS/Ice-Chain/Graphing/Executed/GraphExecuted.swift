@@ -13,11 +13,17 @@ class LineChart2ViewController: DemoBaseViewController {
     
     @IBOutlet var chartView: LineChartView!
     
+    @IBOutlet weak var doneButton: Button!
     @IBOutlet weak var statusLabel: UILabel!
     var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (State.downloadReport) {
+            doneButton.setTitle("Go Back", for: .normal)
+        }
+        
         // Do any additional setup after loading the view.
         self.title = CurrentContract.shared.contractName
         
@@ -98,12 +104,10 @@ class LineChart2ViewController: DemoBaseViewController {
             chartView.data = nil
             return
         }
-        if State.tempArray.count > 50 {
-            self.setDataCount(State.tempArray.count, range: UInt32(10))
-        } else {
-            self.setDataCount(Int(10), range: UInt32(10))
-        }
         
+        if State.tempArray.count > 20 {
+            self.setDataCount(State.tempArray.count, range: UInt32(10))
+        }
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
@@ -148,8 +152,6 @@ class LineChart2ViewController: DemoBaseViewController {
             }
         }
         
-        
-        
         let set1 = LineChartDataSet(values: values, label: "DataSet 1")
         set1.drawIconsEnabled = false
         
@@ -160,7 +162,7 @@ class LineChart2ViewController: DemoBaseViewController {
         set1.lineWidth = 1
         set1.circleRadius = 3
         set1.drawCircleHoleEnabled = false
-        set1.valueFont = .systemFont(ofSize: 9)
+//        set1.valueFont = .systemFont(ofSize: 9)
         set1.formLineDashLengths = [5, 2.5]
         set1.formLineWidth = 1
         set1.formSize = 15
@@ -174,5 +176,37 @@ class LineChart2ViewController: DemoBaseViewController {
         let data = LineChartData(dataSet: set1)
         chartView.data = data
         
+    }
+    
+    @IBAction func handleDonePress(_ sender: Any) {
+        guard let buttonText = doneButton.titleLabel!.text else { return }
+        
+        let dialogUtil = DialogUtility()
+        if buttonText == "Done" {
+            NetworkUtility().sendTemperatures(contractId: CurrentContract.shared._id, tempArray: State.tempArray) { (status, err) in
+                if let err = err {
+                    let errMsg = "Error in uploading temperatures to Smart Contract: \(err)"
+                    dialogUtil.displayMyAlertMessage(vc: self, userMessage: errMsg)
+                    print(errMsg)
+                    self.doneButton.setTitle("Go Back", for: .normal)
+                    return
+                }
+                
+                switch (status) {
+                case "Contract Success":
+                    self.statusLabel.text = "Successful Smart Contract. Updated successfully"
+                case "Contract Failed":
+                    self.statusLabel.text = "Failed Smart Contract.  Updated successfully."
+                default:
+                    self.statusLabel.text = "Unknown contract status"
+                }
+                
+                self.doneButton.setTitle("Go Back", for: .normal)
+            }
+        }
+    
+        if buttonText == "Go Back" {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }

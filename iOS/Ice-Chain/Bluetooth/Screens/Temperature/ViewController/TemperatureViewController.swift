@@ -12,8 +12,6 @@ import RxSwift
 import RxCocoa
 
 class TemperatureViewController: UIViewController {
-    
-    
     var isTempArray = false
     var prevOutput = ""
     var totalTempString = ""
@@ -118,7 +116,11 @@ class TemperatureViewController: UIViewController {
     
     @objc private func handleGraphBtnPress() {
         if graphButton.titleLabel?.text == "Refresh Data" {
-            let stringTempArray = totalTempString.components(separatedBy: " ")
+            if (totalTempString.isEmpty) {
+                return
+            }
+            let cleanedTempString = totalTempString.trimmingCharacters(in: .whitespacesAndNewlines)
+            let stringTempArray = cleanedTempString.components(separatedBy: " ")
             State.tempArray = stringTempArray.map{ NSString(string: $0).doubleValue }
 
             dataCount.text = "\(State.tempArray.count) Data points"

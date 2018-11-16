@@ -101,7 +101,7 @@ class ViewContractTemplateVC: UIViewController {
     @IBAction func confirmContract(_ sender: Any) {
         // Different button texts will take the user to different screens
         
-        // TODO: Approve/Edit
+        // MARK: Approve/Edit action
         if (actionButton.titleLabel?.text == "Approve/Edit") {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractFlowTemplate") as? CreateContractVC else { return }
 
@@ -109,22 +109,24 @@ class ViewContractTemplateVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
         
-        
-        // TODO: Unload
+        // MARK: Unload action
         if (actionButton.titleLabel?.text == "Unload") {
             State.viewContractGraph = true
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "scanResultsVC") as! ScanResultsViewController
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
             
-            // Scan results will put the data into the database, send it off to smart contract for verification
+            // Scan results will put the data into the database, send it off to smart contract for verification (currently doing on serverside)
             
         }
         
         // TODO: Download Report
-        
-        
-        
-        print("Confirming Contract")
+        if (actionButton.titleLabel?.text == "Download Report") {
+            print("Downloading Report")
+            State.downloadReport = true
+            State.tempArray = CurrentContract.shared.temperatures
+            let myViewController = LineChart2ViewController(nibName: "LineChart2ViewController", bundle: nil)
+            self.navigationController!.pushViewController(myViewController, animated: true)
+        }
     }
 }
