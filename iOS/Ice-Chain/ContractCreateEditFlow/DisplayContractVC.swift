@@ -24,16 +24,16 @@ class DisplayContractVC: UIViewController {
     
     @IBOutlet weak var actionBtn: Button!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let unixTimestamp = CurrentContract.shared.deadline
         let date = Date(timeIntervalSince1970: unixTimestamp)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: date)
-
+        
         contractName.text = CurrentContract.shared.contractName
         buyerEmail.text = CurrentContract.shared.otherPartyEmail
         cargoType.text = CurrentContract.shared.description
