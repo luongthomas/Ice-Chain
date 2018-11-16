@@ -55,6 +55,11 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func tempSelect(_ sender: Any) {
         guard let button = sender as? UIButton else {
             return
