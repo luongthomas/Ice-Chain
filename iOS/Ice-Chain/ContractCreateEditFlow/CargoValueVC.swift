@@ -12,6 +12,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var depositorPartyButton: Button!
     
+    @IBOutlet weak var rateSlider: UISlider!
     // TODO: Rename to Calculated
     @IBOutlet weak var depositRateDialog: Button!
     @IBOutlet weak var cargoValueTextField: TextField!
@@ -29,6 +30,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tap)
         
         registerNotifications()
+        setInitialValues()
         calculateDepositRateAndSetText()
     }
     
@@ -56,6 +58,7 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         
         if (CurrentContract.shared.depositRate != 0.0) {
             savedDepositRate = CurrentContract.shared.depositRate
+            rateSlider.value = Float(savedDepositRate)
             depositRateLabel.text = "\(CurrentContract.shared.depositRate)"
         }
         
@@ -112,6 +115,15 @@ class CargoValueVC: UIViewController, UITextFieldDelegate {
         CurrentContract.shared.depositRate = rate
         depositRateLabel.text = depositRateText
         depositRateDialog.setTitle(infoText, for: .normal)
+    }
+    
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[2]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
     }
     
     @IBAction func handleContinue(_ sender: Any) {

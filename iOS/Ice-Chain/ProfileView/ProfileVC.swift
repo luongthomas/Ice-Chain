@@ -38,29 +38,61 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         Users.shared.setSellerAsCurrentUser()
+        updateBuyerInfo { (success, err) in }
+        updateSellerInfo { (success, err) in }
         refreshAccounts()
+        registerResetNotification()
 
         sellerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
         buyerBtn.addTarget(self, action: #selector(refreshAccounts), for: .touchUpInside)
     }
     
+    private func registerResetNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resetContract(notification:)), name: NSNotification.Name(rawValue: "resetCurrentContract"), object: nil)
+    }
+    
+    @objc func resetContract(notification: NSNotification) {
+        CurrentContract.shared = ContractDB.init()
+        print(CurrentContract.shared.contractName)
+    }
+
     @objc private func refreshAccounts() {
         if Users.shared.currentUser == "Buyer" {
-            networkUtility.getAccountInfo(account: "Buyer") { (accountInfo, err) in
-                if let err = err {print(err)}
-                guard let info = accountInfo else { return }
-                Users.shared.buyerAddresses.append(info.address)
-                Users.shared.buyerBalance = info.balance
+            self.updateBuyerInfo {(success, err) in
+                if let err = err { print(err); return }
                 self.updateBuyerUI()
             }
         } else {
-            networkUtility.getAccountInfo(account: "Seller") { (accountInfo, err) in
-                if let err = err {print(err)}
-                guard let info = accountInfo else { return }
-                Users.shared.sellerAddresses.append(info.address)
-                Users.shared.sellerBalance = info.balance
+            self.updateSellerInfo {(success, err) in
+                if let err = err { print(err); return }
                 self.updateSellerUI()
             }
+        }
+    }
+    
+    func updateBuyerInfo(completionHandler: @escaping (Bool, Error?) -> ()) {
+        networkUtility.getAccountInfo(account: "Buyer") { (accountInfo, err) in
+            if let err = err {
+                completionHandler(false, err)
+                return
+            }
+            guard let info = accountInfo else { return }
+            Users.shared.buyerAddresses.append(info.address)
+            Users.shared.buyerBalance = info.balance
+            completionHandler(true, nil)
+        }
+    }
+    
+    func updateSellerInfo(completionHandler: @escaping (Bool, Error?) -> ()) {
+        networkUtility.getAccountInfo(account: "Seller") { (accountInfo, err) in
+            if let err = err {
+                completionHandler(false, err)
+                return
+            }
+            guard let info = accountInfo else { return }
+            Users.shared.sellerAddresses.append(info.address)
+            Users.shared.sellerBalance = info.balance
+            completionHandler(true, nil)
         }
     }
 

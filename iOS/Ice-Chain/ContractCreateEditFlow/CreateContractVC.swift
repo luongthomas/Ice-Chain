@@ -24,8 +24,6 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        registerResetNotification()
-        
         // Set up first view that will show up on page control
         if let firstViewController = pages.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
@@ -33,15 +31,8 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         
         // Set up page control
         self.delegate = self
+        self.dataSource = self
         configurePageControl()
-    }
-    
-    private func registerResetNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(resetContract(notification:)), name: NSNotification.Name(rawValue: "resetCurrentContract"), object: nil)
-    }
-    
-    @objc func resetContract(notification: NSNotification) {
-        CurrentContract.shared = ContractDB.init()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -52,6 +43,7 @@ class CreateContractVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         guard previousIndex >= 0 else {
 //            return orderedViewControllers.last
             // Uncomment below and remove the line above if you don't want page control to loop
+            
             return nil
         }
         

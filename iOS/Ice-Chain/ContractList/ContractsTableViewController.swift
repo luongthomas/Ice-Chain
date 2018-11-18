@@ -15,12 +15,15 @@ class ContractsTableViewController: UITableViewController {
     
     var contracts = [ContractDB]()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadRealContracts()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 80
 
-        loadRealContracts()
-        
 //        if let savedContracts = loadContracts() {
 //            contracts += savedContracts
 //        }
@@ -191,17 +194,39 @@ class ContractsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contract = contracts[indexPath.row]
-        switch (contract.status) {
-        default:
-            guard let vc = storyboard?.instantiateViewController(withIdentifier: "contractTemplate") as? ViewContractTemplateVC else { return }
-            vc.contract = contract
-            navigationController?.pushViewController(vc, animated: true)
+        let dialogUtil = DialogUtility()
+        
+        NetworkUtility().getConfirmations(txid: contract.txid) { (confirmations, err) in
+            
+            if let err = err {
+                dialogUtil.displayMyAlertMessage(vc: self, userMessage: "[ERR]: \(err)")
+                return
+            }
+            
+            guard let confirms = confirmations else {
+                dialogUtil.displayMyAlertMessage(vc: self, userMessage: "[ERR]: Unable to get number of confirmations.  Maybe server is having issues or network connectivity is not good.")
+                return
+            }
+            
+            if (confirms < 1) {
+                dialogUtil.displayMyAlertMessage(vc: self, userMessage: "Number of confirmations is not more than 2, please wait to try again")
+                return
+            } else {
+                print("Number of confirmations are: \(confirms)")
+                switch (contract.status) {
+                default:
+                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "contractTemplate") as? ViewContractTemplateVC else { return }
+                    vc.contract = contract
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
     }
     
     private func loadRealContracts() {
         let networkUtility = NetworkUtility()
         networkUtility.getContracts { (items, err) in
+            self.contracts.removeAll(keepingCapacity: true)
             if let contractList = items {
                 for i in contractList.items {
                     self.contracts.append(i)

@@ -11,4 +11,5 @@ import Foundation
 struct State {
     static var viewContractGraph = false
     static var tempArray = [Double]()
+    static var downloadReport = false
 }

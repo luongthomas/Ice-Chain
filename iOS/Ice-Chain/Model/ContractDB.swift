@@ -28,6 +28,7 @@ struct ContractDB: Decodable {
     var owner: String = ""
     var depositRate: Double = 0
     var txid: String = ""
+    var temperatures: [Double]
     
     enum CodingKeys: String, CodingKey {
         case contractName = "contractName"
@@ -48,6 +49,7 @@ struct ContractDB: Decodable {
         case owner = "owner"
         case depositRate = "depositRate"
         case txid = "txid"
+        case temperatures = "temperatures"
     }
     
     init() {
@@ -70,6 +72,7 @@ struct ContractDB: Decodable {
         owner = ""
         depositRate = 0
         txid = ""
+        temperatures = [Double]()
     }
     
     init(from decoder: Decoder) throws {
@@ -91,6 +94,12 @@ struct ContractDB: Decodable {
         self.owner = try values.decode(String.self, forKey: .owner)
         self.depositRate = try values.decode(Double.self, forKey: .depositRate)
         self.txid = try values.decode(String.self, forKey: .txid)
+        
+        if values.contains(.temperatures) {
+            self.temperatures = try values.decodeIfPresent(Array<Double>.self, forKey: .temperatures)!
+        } else {
+            self.temperatures = [Double]()
+        }
     }
 }
 

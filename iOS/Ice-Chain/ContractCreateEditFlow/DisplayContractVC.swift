@@ -24,16 +24,16 @@ class DisplayContractVC: UIViewController {
     
     @IBOutlet weak var actionBtn: Button!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let unixTimestamp = CurrentContract.shared.deadline
         let date = Date(timeIntervalSince1970: unixTimestamp)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         let dateFormatString = dateFormatter.string(from: date)
-
+        
         contractName.text = CurrentContract.shared.contractName
         buyerEmail.text = CurrentContract.shared.otherPartyEmail
         cargoType.text = CurrentContract.shared.description
@@ -52,13 +52,32 @@ class DisplayContractVC: UIViewController {
             if (Users.shared.currentUser == CurrentContract.shared.depositorName) {
                 actionBtn.setTitle("Deposit \(CurrentContract.shared.depositLimit) QTUM", for:  .normal)
             } else {
-                actionBtn.setTitle("Done", for:  .normal)
+                actionBtn.setTitle("Confirm Contract", for:  .normal)
             }
         }
     }
     
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[3]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
+    }
+    
     @IBAction func confirmContract(_ sender: Any) {
-        if (actionBtn.titleLabel!.text == "Done" || actionBtn.titleLabel!.text == "Go Back") {
+        if (actionBtn.titleLabel!.text == "Confirm Contract") {
+            NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in
+                if let err = err { print(err); return}
+                if let msg = message {print(msg)}
+                CurrentContract.shared.status = 1
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if (actionBtn.titleLabel!.text == "Go Back") {
             dismiss(animated: true, completion: nil)
             return
         }
@@ -81,23 +100,40 @@ class DisplayContractVC: UIViewController {
             return
         }
         
+        let currentUser = Users.shared.currentUser
+        
         if (CurrentContract.shared._id != "") {
             // Contract in DB but not on Blockchain yet
             var balance = 0.0
-            if (Users.shared.currentUser == "Buyer") {
+            if (currentUser == "Buyer") {
                 balance = Users.shared.buyerBalance
             } else {
                 balance = Users.shared.sellerBalance
             }
+            
+            // Check if balance is high enough
             if (balance < CurrentContract.shared.depositLimit) {
                 DialogUtility().displayMyAlertMessage(vc: self, userMessage: "Your balance \(balance) QTUM is not enough to cover the deposit")
                 actionBtn.setTitle("Go Back", for: .normal)
             } else {
                 // TODO: Send off to blockchain
+                NetworkUtility().sendDeposit(account: currentUser)
+                
+                // Temporary Code to update status and not deposit yet
+                NetworkUtility().updateContractStatus(contractStatus: ContractStatus.RUNNING) { (message, err) in
+                    if let err = err { print(err); return}
+                    if let msg = message {print(msg)}
+                    CurrentContract.shared.status = 1
+                    self.actionBtn.setTitle("Go Back", for: .normal)
+//                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
                 
                 // TODO: Update database on status
-                
-                dismiss(animated: true, completion: nil)
+                CurrentContract.shared.status = 1
+                self.actionBtn.setTitle("Go Back", for: .normal)
+//                dismiss(animated: true, completion: nil)
                 print("Deposit and Send to blockchain")
                 return
             }

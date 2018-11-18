@@ -22,7 +22,7 @@ contract IceChain {
     
     modifier isDepositable() {
         require(status == NOT_RUNNING);
-        require(msg.sender == depositor);
+        // require(msg.sender == depositor);
         _;
     }
     
@@ -44,28 +44,34 @@ contract IceChain {
     address private owner;
     
     // Contract initialized values
-    address depositor; 
-    address otherParty;
-    uint256 depositLimit;
-    uint256 deposited = 0;
-    int maxTemperature;
-    int minTemperature;
-    uint deadlineDate;
-    string description;
-    uint private status = NOT_RUNNING;
+    address public depositor; 
+    address public otherParty;
+    uint256 public depositLimit;
+    uint256 public deposited = 0;
+    int public maxTemperature;
+    int public minTemperature;
+    uint public deadlineDate;
+    string public description;
+    uint public status = NOT_RUNNING;
   
     // Holds how much QTUM each address can pull out as a refund
     mapping(address => uint) refunds;
-  
+//   [ 'qfh6e3XVs7TKGHshf4ifLKh4uwSdLqrY1S',
+//   'qYnuZGG5z3zUfK71n5LMyvCJwjdqcpn5wy',
+//   5,
+//   20,
+//   60,
+//   1542501721,
+//   'Chicken' ]
     constructor(address _depositor, address _otherParty, uint256 _depositLimit, int _minTemperature, int _maxTemperature, uint _deadlineDate, string _description) public {
         // Check parameters are valid
-        require(address(_depositor) != 0x0);
-        require(address(_otherParty) != 0x0);
-        require(_minTemperature > -1000);
-        require(_maxTemperature < 1000);
-        require(_maxTemperature > _minTemperature);
-        require(_deadlineDate > now);
-        require(bytes(_description).length > 0);
+        // require(address(_depositor) != 0x0);
+        // require(address(_otherParty) != 0x0);
+        // require(_minTemperature > -1000);
+        // require(_maxTemperature < 1000);
+        // require(_maxTemperature > _minTemperature);
+        // require(_deadlineDate > 0);
+        // require(bytes(_description).length > 0);
         
         // Set Contract values
         depositor = _depositor;
@@ -162,5 +168,9 @@ contract IceChain {
     
     function getDepositLimit() external view returns (uint256) {
         return depositLimit;
+    }
+    
+    function getDescription() external view returns (string) {
+        return description;
     }
 }

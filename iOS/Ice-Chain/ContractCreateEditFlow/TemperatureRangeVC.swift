@@ -55,13 +55,18 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func tempSelect(_ sender: Any) {
         guard let button = sender as? UIButton else {
             return
         }
         
         // Only do reset colors for the buttons that have preselected temp ranges
-        if (0...5).contains(button.tag) {
+        if (0...6).contains(button.tag) {
             resetAllBtnColors()
             button.backgroundColor = niceBlue
             button.setTitleColor(.white, for: .normal)
@@ -92,9 +97,11 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
             // Perishable Goods
             setTempRangeFor(min: -5.0, max: -1.0)
         case 6:
-            // Custom Temp Range
-            customTempRangeSelected()
+            // Custom Temp Range Open Dialog
             break
+        case 7:
+            // Custom Temp Range values chosen
+            customTempRangeSelected()
         default:
             print("Selection")
             return
@@ -131,6 +138,15 @@ class TemperatureRangeVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func unwindToGlobal(segue: UIStoryboardSegue) {}
+
+    @IBAction func handleBackBtnPress(_ sender: Any) {
+        // get parent view controller
+        let parentVC = self.parent as! CreateContractVC
+        
+        // change page of PageViewController
+        let prevPage = [parentVC.pages[0]]
+        parentVC.setViewControllers(prevPage, direction: .reverse, animated: true, completion: nil)
+    }
     
     @IBAction func handleContinue(_ sender: Any) {
         // get parent view controller
